@@ -1,0 +1,22 @@
+<%#
+Here we can pull in Webpacked files (js, css, images) directly into whichever rails view
+is using the code.
+
+The tags below are referencing 'app/javascript/packs/application.js', which is the default Webpack entrance file. This default entry point is a manifest of sorts to pull in additional application files.
+
+So maybe a way to set this up is to have a 'app/javascript/packs/mejs_avalon.js' specific file, which is
+included with one or two lines (as shown below), in whichever view needs it.
+
+So if a page/view doesn't need the Mediaelement player code, it doesn't have to download it.
+%>
+<%= javascript_pack_tag 'application' %>
+<%= stylesheet_pack_tag 'application' %>
+
+<video id="mediaplayer"
+  controls
+  style="max-width: 100%">
+  <source
+    src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+    type="video/mp4">
+  Your browser doesn't support HTML5 video tag.
+</video>
