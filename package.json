@@ -3,7 +3,8 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "^3.2.1",
-    "mediaelement": "^4.2.8"
+    "mediaelement": "^4.2.8",
+    "redux": "^3.7.2"
   },
   "devDependencies": {
     "webpack-dev-server": "^2.11.1"
