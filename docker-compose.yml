@@ -1,0 +1,87 @@
+version: '3'
+
+volumes:
+  streaming:
+  database:
+  fedora:
+  solr:
+
+networks:
+  external:
+  internal:
+    
+services:
+  db:
+    image: avalonmediasystem/db:fedora4
+    volumes:
+      - database:/data
+    environment:
+      - AVALON_DB_PASSWORD
+      - FEDORA_DB_PASSWORD
+      - PGDATA=/data
+      - POSTGRES_USER=postgres
+    networks:
+      internal:
+  fedora:
+    image: avalonmediasystem/fedora:4.7.4
+    depends_on:
+      - db
+    volumes:
+      - fedora:/data
+    environment:
+      - JAVA_OPTIONS=${JAVA_OPTIONS} -Dfcrepo.postgresql.password=${FEDORA_DB_PASSWORD} -Dfcrepo.postgresql.username=fedora -Dfcrepo.postgresql.host=db -Dfcrepo.modeshape.configuration=classpath:/config/jdbc-postgresql/repository.json
+    networks:
+      internal:
+  solr:
+    image: avalonmediasystem/solr:latest
+    volumes:
+      - solr:/opt/solr/server/solr/mycores
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - avalon
+      - /opt/solr/avalon_conf
+    networks:
+      internal:
+  hls:
+    image: avalonmediasystem/nginx
+    volumes:
+      - streaming:/data
+    ports:
+       - "8880:80"
+    networks:
+      external:
+  redis:
+    image: redis:alpine
+    networks:
+      internal:
+  avalon:
+    image: avalonmediasystem/avalon:7.0-dev
+    command: "/rails_init-dev.sh"
+    depends_on:
+      - db
+      - fedora
+      - solr
+      - redis
+    environment:
+      - REDIS_HOST=redis
+      - DATABASE_URL=postgresql://postgres@db/postgres         
+      - FEDORA_URL=http://fedoraAdmin:fedoraAdmin@fedora:8080/fedora/rest
+      - SOLR_URL=http://solr:8983/solr/avalon
+    volumes:
+      - ./masterfiles:/masterfiles
+      - ./gems:/gems
+      - .:/home/app/avalon 
+    ports:
+      - 3000:80 
+    networks:
+      external:
+      internal:
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      external:
