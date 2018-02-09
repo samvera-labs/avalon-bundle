@@ -8,3 +8,6 @@
 // layout file, like app/views/layouts/application.html.erb
 
 console.log('Hello World from Webpacker')
+
+// Import Mediaelement Avalon code
+import '../src/mejs-avalon.js';
