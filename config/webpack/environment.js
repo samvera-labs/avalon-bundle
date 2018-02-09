@@ -1,3 +1,21 @@
 const { environment } = require('@rails/webpacker')
+const webpack = require('webpack')
+
+/**
+ * Loaders
+ */
+const eslintLoader = {
+  enforce: 'pre',
+  test: /\.(js|jsx)$/i,
+  use: [{
+    loader: 'eslint-loader',
+    // Set eslint cli options here
+    query: {
+      fix: true
+    }
+  }]
+}
+// Ensure linting happens on pre-transpiled code
+environment.loaders.insert('eslint', eslintLoader, { before: 'babel'} )
 
 module.exports = environment
