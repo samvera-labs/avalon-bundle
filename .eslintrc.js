@@ -3,24 +3,26 @@ module.exports = {
     browser: true,
     commonjs: true,
     es6: true,
+    jasmine: true,
     jquery: true
   },
-  extends: ["eslint:recommended", "prettier"], // extending recommended config and config derived from eslint-config-prettier
-  plugins: ["prettier"], // activating eslint-plugin-prettier
+  extends: ['eslint:recommended', 'prettier', 'plugin:jasmine/recommended'],
+  plugins: ['prettier', 'jasmine'],
   parserOptions: {
     ecmaFeatures: {
       experimentalObjectRestSpread: true,
       jsx: true
     },
-    sourceType: "module"
+    sourceType: 'module'
   },
   rules: {
-    'prettier/prettier': [ // customizing prettier rules (unfortunately not many of them are customizable)
+    'prettier/prettier': [
+      // customizing prettier rules (unfortunately not many of them are customizable)
       'error',
       {
         singleQuote: true
-      },
+      }
     ],
-    eqeqeq: ['error', 'always'], // adding some custom ESLint rules
+    eqeqeq: ['error', 'always'] // adding some custom ESLint rules
   }
 };
