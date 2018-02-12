@@ -9,12 +9,25 @@
     "eslint": "^4.17.0",
     "eslint-config-prettier": "2.9.0",
     "eslint-loader": "^1.9.0",
+    "eslint-plugin-jasmine": "^2.9.2",
     "eslint-plugin-prettier": "2.6.0",
+    "istanbul-instrumenter-loader": "^3.0.0",
+    "jasmine-core": "^2.99.1",
+    "karma": "^2.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage": "^1.1.1",
+    "karma-coverage-istanbul-reporter": "^1.4.1",
+    "karma-jasmine": "^1.1.1",
+    "karma-jasmine-jquery": "^0.1.1",
+    "karma-jquery": "^0.2.2",
+    "karma-spec-reporter": "^0.0.32",
+    "karma-webpack": "^2.0.9",
     "prettier": "1.10.2",
     "webpack-dev-server": "^2.11.1"
   },
   "scripts": {
     "lint": "yarn run eslint --ext .js --ext .jsx app/javascript",
-    "pretty": "yarn run prettier --write app/javascript/src/*.js"
+    "pretty": "yarn run prettier --write app/javascript/src/*.js",
+    "test": "NODE_ENV=test karma start"
   }
 }

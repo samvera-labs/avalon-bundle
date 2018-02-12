@@ -28,3 +28,6 @@ dumb.rdb
 yarn-debug.log*
 yarn-error.log*
 .yarn-integrity
+
+# Test Coverage
+/coverage
