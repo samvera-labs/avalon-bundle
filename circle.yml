@@ -10,11 +10,12 @@ dependencies:
   pre:
     - curl -s https://raw.githubusercontent.com/chronogolf/circleci-google-chrome/master/use_chrome_stable_version.sh | bash
   post:
-    - npm install npm install eslint
+    - npm install prettier
+    - npm install eslint
+    - npm install eslint-plugin-prettier
+    - npm install eslint-plugin-jasmine
+    - ./node_modules/.bin/eslint app/javascript
     - bundle exec rubocop
-    - bundle exec rake hydra:test_server:
-        background: true
-    - bin/jetty_wait
 notify:
   webhooks:
     - url: https://coveralls.io/webhook?repo_token=99vvdztEbEsxv5JiHmFK6tJQPX5fSEeDM
