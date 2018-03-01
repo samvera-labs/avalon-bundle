@@ -19,3 +19,8 @@ dependencies:
 notify:
   webhooks:
     - url: https://coveralls.io/webhook?repo_token=99vvdztEbEsxv5JiHmFK6tJQPX5fSEeDM
+test:
+  pre:
+    - ./cc-test-reporter before-build
+  override:
+    - bundle exec rspec; ./cc-test-reporter after-build --exit-code $?
