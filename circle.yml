@@ -1,0 +1,26 @@
+machine:
+  ruby:
+    version: 2.4.1
+  services:
+    - redis
+general:
+  artifacts:
+    - "tmp/capybara"
+dependencies:
+  pre:
+    - curl -s https://raw.githubusercontent.com/chronogolf/circleci-google-chrome/master/use_chrome_stable_version.sh | bash
+  post:
+    - npm install prettier
+    - npm install eslint
+    - npm install eslint-plugin-prettier
+    - npm install eslint-plugin-jasmine
+    - ./node_modules/.bin/eslint app/javascript
+    - bundle exec rubocop
+notify:
+  webhooks:
+    - url: https://coveralls.io/webhook?repo_token=99vvdztEbEsxv5JiHmFK6tJQPX5fSEeDM
+test:
+  pre:
+    - ./cc-test-reporter before-build
+  override:
+    - bundle exec rspec; ./cc-test-reporter after-build --exit-code $?
