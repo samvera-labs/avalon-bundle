@@ -1,0 +1,15 @@
+# https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+# require: rubocop-rspec
+
+inherit_from:
+  - bixby_default.yml
+
+AllCops:
+  DisplayCopNames: true
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'spec/fixtures/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - '.gitignore'
