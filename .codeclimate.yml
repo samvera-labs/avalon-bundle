@@ -19,7 +19,7 @@ engines:
         - .es6
       ignore_warnings: true
   fixme:
-    enabled: true
+    enabled: false
   rubocop:
     enabled: true
     channel: rubocop-0-50
