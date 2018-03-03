@@ -60,6 +60,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'hyrax', '2.0.1'
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
+  gem 'bixby'
 end
 
 gem 'rsolr', '>= 1.0'

@@ -36,5 +36,6 @@ ratings:
 exclude_paths:
 - config/
 - db/
-- spec/
+- node_modules/
+- spec/fixtures/
 - vendor/
