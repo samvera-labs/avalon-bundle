@@ -22,6 +22,7 @@ dependencies:
 test:
   override:
     - yarn test
+    - bundle exec rake ci
 notify:
   webhooks:
 #    - url: https://coveralls.io/webhook?repo_token=99vvdztEbEsxv5JiHmFK6tJQPX5fSEeDM
