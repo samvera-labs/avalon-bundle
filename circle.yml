@@ -17,6 +17,8 @@ dependencies:
     - ~/.cache/yarn
   pre:
     - curl -s https://raw.githubusercontent.com/chronogolf/circleci-google-chrome/master/use_chrome_stable_version.sh | bash
+  post:
+    - bundle install
 test:
   override:
     - yarn test
