@@ -1,5 +1,16 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+
+if ENV['COVERAGE']
+  require 'simplecov'
+  require 'codeclimate-test-reporter'
+
+  SimpleCov.start('rails') do
+    add_filter '/spec'
+  end
+  SimpleCov.command_name 'spec'
+end
+
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production

@@ -1,0 +1,30 @@
+machine:
+  ruby:
+    version: 2.4.1
+  node:
+    version: 9.7.1
+  services:
+    - redis
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+    COVERAGE: true
+general:
+  artifacts:
+    - "tmp/capybara"
+dependencies:
+  override:
+    - yarn
+    - bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+  cache_directories:
+    - ~/.cache/yarn
+  pre:
+    - curl -s https://raw.githubusercontent.com/chronogolf/circleci-google-chrome/master/use_chrome_stable_version.sh | bash
+  post:
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+    - chmod +x ./cc-test-reporter
+test:
+  pre:
+    - ./cc-test-reporter before-build
+  override:
+    - yarn test
+    - bundle exec rake; ./cc-test-reporter after-build -t simplecov --exit-code $?
