@@ -78,3 +78,5 @@ group :test do
   gem 'codeclimate-test-reporter'
   gem 'simplecov'
 end
+
+gem 'config'

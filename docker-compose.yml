@@ -66,7 +66,7 @@ services:
     environment:
       - REDIS_HOST=redis
       - DATABASE_URL=postgresql://postgres@db/postgres         
-      - FEDORA_URL=http://fedoraAdmin:fedoraAdmin@fedora:8080/fedora/rest
+      - FEDORA_URL=http://fedora:8080/fedora/rest
       - SOLR_URL=http://solr:8983/solr/avalon
     volumes:
       - ./masterfiles:/masterfiles
@@ -77,11 +77,3 @@ services:
     networks:
       external:
       internal:
-  visualizer:
-    image: dockersamples/visualizer:stable
-    ports:
-      - "8080:8080"
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
-    networks:
-      external:
