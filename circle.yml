@@ -27,4 +27,4 @@ test:
     - ./cc-test-reporter before-build
   override:
     - yarn test
-    - COVERAGE=true bundle exec rake; ./cc-test-reporter after-build --exit-code $?
+    - bundle exec rake; ./cc-test-reporter after-build -t simplecov --exit-code $?
