@@ -14,7 +14,7 @@ general:
 dependencies:
   override:
     - yarn
-    - bundle install
+    - bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
   cache_directories:
     - ~/.cache/yarn
   pre:
@@ -27,4 +27,4 @@ test:
     - ./cc-test-reporter before-build
   override:
     - yarn test
-    - bundle exec rake; ./cc-test-reporter after-build --exit-code $?
+    - COVERAGE=true bundle exec rake; ./cc-test-reporter after-build --exit-code $?
