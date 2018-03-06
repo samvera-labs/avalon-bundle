@@ -7,6 +7,7 @@ machine:
     - redis
   environment:
     PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+    COVERAGE: true
 general:
   artifacts:
     - "tmp/capybara"

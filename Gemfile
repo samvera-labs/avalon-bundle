@@ -73,3 +73,7 @@ group :development, :test do
 end
 
 gem 'webpacker', '~> 3.0'
+
+group :test do
+  gem 'simplecov'
+end
