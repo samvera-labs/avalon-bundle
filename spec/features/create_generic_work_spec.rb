@@ -13,7 +13,7 @@ RSpec.feature 'Create a GenericWork', js: false do
       User.new(user_attributes) { |u| u.save(validate: false) }
     end
     let(:admin_set_id) { AdminSet.find_or_create_default_admin_set_id }
-    let(:permission_template) { Hyrax::PermissionTemplate.find_or_create_by!(admin_set_id: admin_set_id) }
+    let(:permission_template) { Hyrax::PermissionTemplate.find_or_create_by!(source_id: admin_set_id) }
     let(:workflow) { Sipity::Workflow.create!(active: true, name: 'test-workflow', permission_template: permission_template) }
 
     before do
@@ -39,7 +39,7 @@ RSpec.feature 'Create a GenericWork', js: false do
       # choose "payload_concern", option: "GenericWork"
       # click_button "Create work"
 
-      expect(page).to have_content "Add New Generic work"
+      expect(page).to have_content "Add New Generic Work"
       click_link "Files" # switch tab
       expect(page).to have_content "Add files"
       expect(page).to have_content "Add folder"
