@@ -3,8 +3,7 @@
 
 inherit_from:
   - bixby_default.yml
-
-inherit_from: .rubocop_fixme.yml
+  - .rubocop_fixme.yml
 
 AllCops:
   DisplayCopNames: true
