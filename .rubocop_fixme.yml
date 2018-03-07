@@ -1,0 +1,8 @@
+Metrics/BlockLength:
+  Exclude:
+    - 'app/controllers/catalog_controller.rb'
+    - 'spec/**/*.rb'
+
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/features/create_generic_work_spec.rb'
