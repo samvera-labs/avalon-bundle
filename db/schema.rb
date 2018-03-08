@@ -10,12 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180130155538) do
+ActiveRecord::Schema.define(version: 20180302041018) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "bookmarks", id: :serial, force: :cascade do |t|
+  create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "user_type"
     t.string "document_id"
@@ -40,6 +37,28 @@ ActiveRecord::Schema.define(version: 20180130155538) do
     t.index ["file_set_id", "file_id"], name: "by_file_set_id_and_file_id"
   end
 
+  create_table "collection_branding_infos", force: :cascade do |t|
+    t.string "collection_id"
+    t.string "role"
+    t.string "local_path"
+    t.string "alt_text"
+    t.string "target_url"
+    t.integer "height"
+    t.integer "width"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "collection_type_participants", force: :cascade do |t|
+    t.integer "hyrax_collection_type_id"
+    t.string "agent_type"
+    t.string "agent_id"
+    t.string "access"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hyrax_collection_type_id"], name: "hyrax_collection_type_id"
+  end
+
   create_table "content_blocks", force: :cascade do |t|
     t.string "name"
     t.text "value"
@@ -55,7 +74,7 @@ ActiveRecord::Schema.define(version: 20180130155538) do
     t.string "job_id"
     t.string "type"
     t.text "message"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.integer "parent_id"
     t.integer "lft", null: false
     t.integer "rgt", null: false
@@ -100,6 +119,21 @@ ActiveRecord::Schema.define(version: 20180130155538) do
     t.index ["user_id"], name: "index_file_view_stats_on_user_id"
   end
 
+  create_table "hyrax_collection_types", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "machine_id"
+    t.boolean "nestable", default: true, null: false
+    t.boolean "discoverable", default: true, null: false
+    t.boolean "sharable", default: true, null: false
+    t.boolean "allow_multiple_membership", default: true, null: false
+    t.boolean "require_membership", default: false, null: false
+    t.boolean "assigns_workflow", default: false, null: false
+    t.boolean "assigns_visibility", default: false, null: false
+    t.boolean "share_applies_to_new_works", default: true, null: false
+    t.index ["machine_id"], name: "index_hyrax_collection_types_on_machine_id", unique: true
+  end
+
   create_table "hyrax_features", force: :cascade do |t|
     t.string "key", null: false
     t.boolean "enabled", default: false, null: false
@@ -108,8 +142,8 @@ ActiveRecord::Schema.define(version: 20180130155538) do
   end
 
   create_table "job_io_wrappers", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "uploaded_file_id"
+    t.integer "user_id"
+    t.integer "uploaded_file_id"
     t.string "file_set_id"
     t.string "mime_type"
     t.string "original_name"
@@ -121,7 +155,7 @@ ActiveRecord::Schema.define(version: 20180130155538) do
     t.index ["user_id"], name: "index_job_io_wrappers_on_user_id"
   end
 
-  create_table "mailboxer_conversation_opt_outs", id: :serial, force: :cascade do |t|
+  create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
     t.string "unsubscriber_type"
     t.integer "unsubscriber_id"
     t.integer "conversation_id"
@@ -129,13 +163,13 @@ ActiveRecord::Schema.define(version: 20180130155538) do
     t.index ["unsubscriber_id", "unsubscriber_type"], name: "index_mailboxer_conversation_opt_outs_on_unsubscriber_id_type"
   end
 
-  create_table "mailboxer_conversations", id: :serial, force: :cascade do |t|
+  create_table "mailboxer_conversations", force: :cascade do |t|
     t.string "subject", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "mailboxer_notifications", id: :serial, force: :cascade do |t|
+  create_table "mailboxer_notifications", force: :cascade do |t|
     t.string "type"
     t.text "body"
     t.string "subject", default: ""
@@ -158,7 +192,7 @@ ActiveRecord::Schema.define(version: 20180130155538) do
     t.index ["type"], name: "index_mailboxer_notifications_on_type"
   end
 
-  create_table "mailboxer_receipts", id: :serial, force: :cascade do |t|
+  create_table "mailboxer_receipts", force: :cascade do |t|
     t.string "receiver_type"
     t.integer "receiver_id"
     t.integer "notification_id", null: false
@@ -175,11 +209,11 @@ ActiveRecord::Schema.define(version: 20180130155538) do
     t.index ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
   end
 
-  create_table "minter_states", id: :serial, force: :cascade do |t|
+  create_table "minter_states", force: :cascade do |t|
     t.string "namespace", default: "default", null: false
     t.string "template", null: false
     t.text "counters"
-    t.bigint "seq", default: 0
+    t.integer "seq", limit: 8, default: 0
     t.binary "rand"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -187,7 +221,7 @@ ActiveRecord::Schema.define(version: 20180130155538) do
   end
 
   create_table "permission_template_accesses", force: :cascade do |t|
-    t.bigint "permission_template_id"
+    t.integer "permission_template_id"
     t.string "agent_type"
     t.string "agent_id"
     t.string "access"
@@ -198,19 +232,19 @@ ActiveRecord::Schema.define(version: 20180130155538) do
   end
 
   create_table "permission_templates", force: :cascade do |t|
-    t.string "admin_set_id"
+    t.string "source_id"
     t.string "visibility"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "release_date"
     t.string "release_period"
-    t.index ["admin_set_id"], name: "index_permission_templates_on_admin_set_id", unique: true
+    t.index ["source_id"], name: "index_permission_templates_on_source_id", unique: true
   end
 
   create_table "proxy_deposit_requests", force: :cascade do |t|
     t.string "work_id", null: false
-    t.bigint "sending_user_id", null: false
-    t.bigint "receiving_user_id", null: false
+    t.integer "sending_user_id", null: false
+    t.integer "receiving_user_id", null: false
     t.datetime "fulfillment_date"
     t.string "status", default: "pending", null: false
     t.text "sender_comment"
@@ -222,8 +256,8 @@ ActiveRecord::Schema.define(version: 20180130155538) do
   end
 
   create_table "proxy_deposit_rights", force: :cascade do |t|
-    t.bigint "grantor_id"
-    t.bigint "grantee_id"
+    t.integer "grantor_id"
+    t.integer "grantee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["grantee_id"], name: "index_proxy_deposit_rights_on_grantee_id"
@@ -238,7 +272,7 @@ ActiveRecord::Schema.define(version: 20180130155538) do
   end
 
   create_table "qa_local_authority_entries", force: :cascade do |t|
-    t.bigint "local_authority_id"
+    t.integer "local_authority_id"
     t.string "label"
     t.string "uri"
     t.datetime "created_at", null: false
@@ -247,7 +281,7 @@ ActiveRecord::Schema.define(version: 20180130155538) do
     t.index ["uri"], name: "index_qa_local_authority_entries_on_uri", unique: true
   end
 
-  create_table "searches", id: :serial, force: :cascade do |t|
+  create_table "searches", force: :cascade do |t|
     t.binary "query_params"
     t.integer "user_id"
     t.string "user_type"
@@ -437,7 +471,7 @@ ActiveRecord::Schema.define(version: 20180130155538) do
 
   create_table "uploaded_files", force: :cascade do |t|
     t.string "file"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.string "file_set_uri"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -518,11 +552,4 @@ ActiveRecord::Schema.define(version: 20180130155538) do
     t.index ["work_id"], name: "index_work_view_stats_on_work_id"
   end
 
-  add_foreign_key "curation_concerns_operations", "users"
-  add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
-  add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
-  add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"
-  add_foreign_key "permission_template_accesses", "permission_templates"
-  add_foreign_key "qa_local_authority_entries", "qa_local_authorities", column: "local_authority_id"
-  add_foreign_key "uploaded_files", "users"
 end
