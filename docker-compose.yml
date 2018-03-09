@@ -33,7 +33,7 @@ services:
     networks:
       internal:
   solr:
-    image: avalonmediasystem/solr:latest
+    image: avalonmediasystem/solr:avalon-7.0
     volumes:
       - solr:/opt/solr/server/solr/mycores
     entrypoint:
