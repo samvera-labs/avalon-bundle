@@ -82,3 +82,5 @@ group :test do
 end
 
 gem 'config'
+
+gem 'riiif', '~> 1.1'
