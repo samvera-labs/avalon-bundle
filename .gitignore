@@ -34,3 +34,6 @@ yarn-error.log*
 
 # Test Coverage
 /coverage
+
+# Local dev configs
+.tern-project
