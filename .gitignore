@@ -10,13 +10,16 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
+/db/schema.rb
 
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-dumb.rdb
+dump.rdb
+.cache/
+.node-gyp/
 
 /node_modules
 /yarn-error.log
@@ -31,3 +34,6 @@ yarn-error.log*
 
 # Test Coverage
 /coverage
+
+# Local dev configs
+.tern-project
