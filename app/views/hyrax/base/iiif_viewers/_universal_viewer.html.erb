@@ -1,0 +1,5 @@
+<%= PulUvRails::UniversalViewer.script_tag %>
+<div class="viewer-wrapper">
+  <%# FIXME I can't get the polymorphic_path to work but hard coding it works for now %>
+  <div class="uv viewer" data-uri="<%= Rails.application.routes.url_helpers.manifest_hyrax_generic_work_path(presenter) %>"></div>
+</div>
