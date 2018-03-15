@@ -1,14 +1,6 @@
-<%= javascript_pack_tag 'avalon-player-pack' %>
-<%= stylesheet_pack_tag 'avalon-player-pack' %>
-
-<video id="mejs" class="avalon-bundle-player" controls src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
-
 <% if presenter.representative_id.present? && presenter.representative_presenter.present? %>
   <% if defined?(viewer) && viewer %>
-    <%= PulUvRails::UniversalViewer.script_tag %>
-    <div class="viewer-wrapper">
-      <div class="uv viewer" data-uri="<%= main_app.polymorphic_path [main_app, :manifest, presenter] %>"></div>
-    </div>
+    <%= iiif_viewer_display presenter %>
   <% else %>
     <%= media_display presenter.representative_presenter %>
   <% end %>

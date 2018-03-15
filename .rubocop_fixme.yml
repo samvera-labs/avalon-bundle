@@ -6,3 +6,14 @@ Metrics/BlockLength:
 RSpec/ExampleLength:
   Exclude:
     - 'spec/features/create_generic_work_spec.rb'
+
+RSpec/VerifiedDoubles:
+  Exclude:
+    - 'spec/presenters/hyrax/generic_work_presenter_spec.rb'
+
+# Copied from Hyrax
+# # By default RSpec/MessageSpies has the following:
+# #   Prefer have_received for setting message expectations. Setup form as a spy using allow or instance_spy.
+# # The default assumes EnforcedStyle is 'have_received'. Most of our specs are 'receive'
+RSpec/MessageSpies:
+  Enabled: false
