@@ -20,6 +20,7 @@
 dump.rdb
 .cache/
 .node-gyp/
+fits.log
 
 /node_modules
 /yarn-error.log
@@ -37,3 +38,5 @@ yarn-error.log*
 
 # Local dev configs
 .tern-project
+
+/gems
