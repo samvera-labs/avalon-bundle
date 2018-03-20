@@ -1,0 +1,90 @@
+version: 2
+jobs:
+  build:
+    docker:
+    # Primary container image where all steps run.
+     - image: avalonmediasystem/avalon:7.0-test
+       environment:
+        - DATABASE_URL=postgresql://postgres@localhost:5432/postgres
+        - FEDORA_URL=http://localhost:8080/fedora/rest
+        - SOLR_URL=http://localhost:8983/solr/avalon
+        - RAILS_ENV=test
+        - CC_TEST_REPORTER_ID=${CC_TEST_REPORTER_ID}
+    # Secondary container image on common network.
+     - image: avalonmediasystem/db:fedora4
+       environment:
+         - POSTGRES_USER=postgres
+     - image: avalonmediasystem/fedora:4.7.5
+       environment:
+         - 'JAVA_OPTIONS= -Dfcrepo.modeshape.configuration=classpath:/config/file-simple/repository.json'
+     - image: avalonmediasystem/solr:avalon-7.0
+       entrypoint:
+         - docker-entrypoint.sh
+         - solr-precreate
+         - avalon
+         - /opt/solr/avalon_conf
+     - image: redis:alpine
+
+    working_directory: /home/app/avalon
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - gem-cache-{{ arch }}-{{ .Branch }}
+            - gem-cache
+
+      - run:
+          command: |
+            bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+            bundle exec rake db:migrate
+
+      - save_cache:
+          key: gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - restore_cache:
+          keys:
+            - yarn-cache-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-cache-{{ arch }}-{{ .Branch }}
+            - yarn-cache
+
+      - run: yarn
+
+      - save_cache:
+          key: yarn-cache-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - .cache/yarn
+
+      - restore_cache:
+          keys:
+            - asset-cache-{{ arch }}-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+            - asset-cache-{{ arch }}-{{ .Branch }}
+            - asset-cache
+
+      - run:
+          command: bundle exec rake assets:precompile
+
+      - save_cache:
+          key: asset-cache-{{ arch }}-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - public/assets
+            - tmp/cache/assets/sprockets
+            - tmp/cache/webpacker
+
+      - run:
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+            ./cc-test-reporter before-build
+
+      - run:
+          command: |
+            bundle exec rake db:migrate
+
+            yarn test
+            COVERAGE=true bundle exec rspec
+            ./cc-test-reporter after-build -t simplecov --exit-code $?
