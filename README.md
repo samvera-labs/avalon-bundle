@@ -5,6 +5,7 @@ Docker provides an alternative way of setting up an Avalon Media System Developm
 * Install [Docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install/)
 * ```git clone https://github.com/samvera-labs/avalon-bundle```
 * ```cd avalon-bundle```
+* Use current user as the user for Avalon container `` export AVALON_UID=`id -u` AVALON_GID=`id -g` ``
 * ```docker-compose up```
 * Try loading Avalon in your browser: ```localhost:3000```
 

@@ -57,6 +57,7 @@ services:
       internal:
   avalon:
     image: avalonmediasystem/avalon:7.0-dev
+    user: ${AVALON_UID}:${AVALON_GID}
     command: "/rails_init-dev.sh"
     depends_on:
       - db
@@ -73,7 +74,7 @@ services:
       - ./gems:/gems
       - .:/home/app/avalon 
     ports:
-      - 3000:80 
+      - 3000:3000 
     networks:
       external:
       internal:
