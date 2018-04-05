@@ -5,8 +5,6 @@ volumes:
   database:
   fedora:
   solr:
-  simplest-sync:
-    external: true
 
 networks:
   external:
@@ -72,7 +70,7 @@ services:
       - FEDORA_URL=http://fedora:8080/fedora/rest
       - SOLR_URL=http://solr:8983/solr/avalon
     volumes:
-      - simplest-sync:/home/app/avalon:nocopy
+      - .:/home/app/avalon
     ports:
       - 3000:3000 
     networks:
