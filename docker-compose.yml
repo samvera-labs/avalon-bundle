@@ -1,10 +1,12 @@
-version: '3'
+version: '3.2'
 
 volumes:
   streaming:
   database:
   fedora:
   solr:
+  simplest-sync:
+    external: true
 
 networks:
   external:
@@ -70,9 +72,7 @@ services:
       - FEDORA_URL=http://fedora:8080/fedora/rest
       - SOLR_URL=http://solr:8983/solr/avalon
     volumes:
-      - ./masterfiles:/masterfiles
-      - ./gems:/gems
-      - .:/home/app/avalon 
+      - simplest-sync:/home/app/avalon:nocopy
     ports:
       - 3000:3000 
     networks:

@@ -113,7 +113,7 @@ GEM
       bootstrap-sass (~> 3.0)
       openseadragon (>= 0.2.0)
       rails
-    bootsnap (1.1.8)
+    bootsnap (1.2.1)
       msgpack (~> 1.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -133,6 +133,7 @@ GEM
       sass-rails
       signet
     builder (3.2.3)
+    bumbler (0.4.0)
     byebug (10.0.0)
     cancancan (1.17.0)
     capistrano (3.10.1)
@@ -797,6 +798,7 @@ PLATFORMS
 DEPENDENCIES
   bixby
   bootsnap
+  bumbler
   byebug
   capistrano (~> 3.10)
   capybara (~> 2.13)
