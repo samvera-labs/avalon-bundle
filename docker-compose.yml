@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2'
 
 volumes:
   streaming:
@@ -70,9 +70,7 @@ services:
       - FEDORA_URL=http://fedora:8080/fedora/rest
       - SOLR_URL=http://solr:8983/solr/avalon
     volumes:
-      - ./masterfiles:/masterfiles
-      - ./gems:/gems
-      - .:/home/app/avalon 
+      - .:/home/app/avalon
     ports:
       - 3000:3000 
     networks:
