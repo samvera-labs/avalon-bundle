@@ -61,7 +61,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'hyrax', '2.1.0.beta1'
+gem 'hyrax', '2.1.0.beta2'
 group :development, :test do
   gem 'bixby'
   gem 'solr_wrapper', '>= 0.3'
@@ -87,3 +87,4 @@ end
 gem 'config'
 
 gem 'riiif', '~> 1.1'
+gem 'iiif_manifest', github: 'samvera-labs/iiif_manifest', branch: 'prezi3'
