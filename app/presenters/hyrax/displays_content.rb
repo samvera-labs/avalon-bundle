@@ -64,10 +64,10 @@ module Hyrax
     def audio_content(original_file)
       [IIIFManifest::V3::DisplayContent.new(download_path(original_file, 'ogg'),
                                        duration: original_file.duration.try(:first),
-                                       type: 'Audio'),
+                                       type: 'Sound'),
        IIIFManifest::V3::DisplayContent.new(download_path(original_file, 'mp3'),
                                         duration: original_file.duration.try(:first),
-                                        type: 'Audio')]
+                                        type: 'Sound')]
     end
 
     def download_path(file_set, extension)
