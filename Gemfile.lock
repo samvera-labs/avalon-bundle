@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/samvera-labs/iiif_manifest.git
-  revision: 6c75b263d3d45da2978fc789886ccddeccc27a3e
+  revision: 139b553dd5563890dc2ba038b48445556fea6559
   branch: prezi3
   specs:
     iiif_manifest (0.4.0)
@@ -373,7 +373,7 @@ GEM
       signet
       simple_form (~> 3.2, <= 3.5.0)
       tinymce-rails (~> 4.1)
-    i18n (0.9.3)
+    i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     inflecto (0.0.2)
@@ -772,7 +772,7 @@ GEM
       actionpack (>= 3.1)
       jquery-rails
       railties (>= 3.1)
-    tzinfo (1.2.4)
+    tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uber (0.1.0)
     uglifier (4.1.5)
