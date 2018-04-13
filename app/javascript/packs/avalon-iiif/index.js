@@ -7,7 +7,9 @@ const iiifParser = manifest => {
   try {
     uri = manifest.content[0].items[0].body[0].items[0].id;
   } catch (error) {
+    /* eslint-disable */
     console.error(error);
+    /* eslint-enable */
   }
   return uri;
 };

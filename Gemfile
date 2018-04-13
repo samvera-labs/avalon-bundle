@@ -38,6 +38,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem "capistrano", "~> 3.10", require: false
 end
 
 group :development do
@@ -49,6 +50,7 @@ group :development do
   # gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'bootsnap'
   gem 'xray-rails'
+  gem 'bumbler'
 end
 
 group :production do

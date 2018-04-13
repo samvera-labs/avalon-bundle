@@ -60,6 +60,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    airbrussh (1.3.0)
+      sshkit (>= 1.6.1, != 1.7.0)
     almond-rails (0.1.0)
       rails (>= 4.2, < 6)
     arel (8.0.0)
@@ -111,7 +113,7 @@ GEM
       bootstrap-sass (~> 3.0)
       openseadragon (>= 0.2.0)
       rails
-    bootsnap (1.1.8)
+    bootsnap (1.2.1)
       msgpack (~> 1.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -131,8 +133,14 @@ GEM
       sass-rails
       signet
     builder (3.2.3)
+    bumbler (0.4.0)
     byebug (10.0.0)
     cancancan (1.17.0)
+    capistrano (3.10.1)
+      airbrussh (>= 1.0.0)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (>= 1.9.0)
     capybara (2.17.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -454,7 +462,7 @@ GEM
     logging (2.2.2)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
-    loofah (2.1.1)
+    loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.0)
@@ -479,6 +487,9 @@ GEM
       redic
     net-http-persistent (3.0.0)
       connection_pool (~> 2.2)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (4.2.0)
     nio4r (2.2.0)
     noid (0.9.0)
     noid-rails (3.0.0)
@@ -736,6 +747,9 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.3.13)
+    sshkit (1.16.0)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
     stomp (1.4.4)
     sxp (1.0.1)
       rdf (>= 2.2, < 4.0)
@@ -784,7 +798,9 @@ PLATFORMS
 DEPENDENCIES
   bixby
   bootsnap
+  bumbler
   byebug
+  capistrano (~> 3.10)
   capybara (~> 2.13)
   codeclimate-test-reporter
   coffee-rails (~> 4.2)

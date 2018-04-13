@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2'
 
 volumes:
   streaming:
@@ -33,7 +33,7 @@ services:
     networks:
       internal:
   solr:
-    image: avalonmediasystem/solr:latest
+    image: avalonmediasystem/solr:avalon-7.0
     volumes:
       - solr:/opt/solr/server/solr/mycores
     entrypoint:
@@ -57,6 +57,7 @@ services:
       internal:
   avalon:
     image: avalonmediasystem/avalon:7.0-dev
+    user: ${AVALON_UID}:${AVALON_GID}
     command: "/rails_init-dev.sh"
     depends_on:
       - db
@@ -69,11 +70,9 @@ services:
       - FEDORA_URL=http://fedora:8080/fedora/rest
       - SOLR_URL=http://solr:8983/solr/avalon
     volumes:
-      - ./masterfiles:/masterfiles
-      - ./gems:/gems
-      - .:/home/app/avalon 
+      - .:/home/app/avalon
     ports:
-      - 3000:80 
+      - 3000:3000 
     networks:
       external:
       internal:
