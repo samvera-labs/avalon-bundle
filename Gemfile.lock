@@ -1,4 +1,15 @@
 GIT
+  remote: https://github.com/avalonmediasystem/hydra-works.git
+  revision: d056245f340beaf9bf7ad42a276de460b789e475
+  branch: av_characterization
+  specs:
+    hydra-works (0.17.0)
+      hydra-derivatives (~> 3.0)
+      hydra-file_characterization (~> 0.3, >= 0.3.3)
+      hydra-pcdm (>= 0.9)
+      om (~> 3.1)
+
+GIT
   remote: https://github.com/samvera-labs/iiif_manifest.git
   revision: 139b553dd5563890dc2ba038b48445556fea6559
   branch: prezi3
@@ -321,11 +332,6 @@ GEM
     hydra-pcdm (0.11.0)
       active-fedora (>= 10, < 13)
       mime-types (>= 1)
-    hydra-works (0.17.0)
-      hydra-derivatives (~> 3.0)
-      hydra-file_characterization (~> 0.3, >= 0.3.3)
-      hydra-pcdm (>= 0.9)
-      om (~> 3.1)
     hyrax (2.1.0.beta2)
       active-fedora (~> 11.5, >= 11.5.2)
       almond-rails (~> 0.1)
@@ -815,6 +821,7 @@ DEPENDENCIES
   devise-guests (~> 0.6)
   factory_bot_rails
   fcrepo_wrapper
+  hydra-works!
   hyrax (= 2.1.0.beta2)
   iiif_manifest!
   jbuilder (~> 2.5)

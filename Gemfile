@@ -88,3 +88,4 @@ gem 'config'
 
 gem 'riiif', '~> 1.1'
 gem 'iiif_manifest', github: 'samvera-labs/iiif_manifest', branch: 'prezi3'
+gem 'hydra-works', github: 'avalonmediasystem/hydra-works', branch: 'av_characterization'
