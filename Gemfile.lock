@@ -229,6 +229,11 @@ GEM
       nokogiri (>= 1.4.3)
     erubi (1.7.0)
     execjs (2.7.0)
+    factory_bot (4.8.2)
+      activesupport (>= 3.0.0)
+    factory_bot_rails (4.8.2)
+      factory_bot (~> 4.8.2)
+      railties (>= 3.0.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     faraday-encoding (0.0.4)
@@ -807,6 +812,7 @@ DEPENDENCIES
   config
   devise
   devise-guests (~> 0.6)
+  factory_bot_rails
   fcrepo_wrapper
   hyrax (= 2.1.0.beta1)
   jbuilder (~> 2.5)
