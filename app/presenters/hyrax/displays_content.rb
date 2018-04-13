@@ -50,23 +50,23 @@ module Hyrax
     def video_content(original_file)
       # @see https://github.com/samvera-labs/iiif_manifest
       [IIIFManifest::V3::DisplayContent.new(download_path(original_file, 'mp4'),
-                                       width: original_file.width.try(:first),
-                                       height: original_file.height.try(:first),
-                                       duration: original_file.duration.try(:first),
+                                       width: Array(original_file.width).first.try(:to_i),
+                                       height: Array(original_file.height).first.try(:to_i),
+                                       duration: Array(original_file.duration).first.try(:to_i),
                                        type: 'Video'),
        IIIFManifest::V3::DisplayContent.new(download_path(original_file, 'webm'),
-                                        width: original_file.width.try(:first),
-                                        height: original_file.height.try(:first),
-                                        duration: original_file.duration.try(:first),
+                                        width: Array(original_file.width).first.try(:to_i),
+                                        height: Array(original_file.height).first.try(:to_i),
+                                        duration: Array(original_file.duration).first.try(:to_i),
                                         type: 'Video')]
     end
 
     def audio_content(original_file)
       [IIIFManifest::V3::DisplayContent.new(download_path(original_file, 'ogg'),
-                                       duration: original_file.duration.try(:first),
+                                       duration: Array(original_file.duration).first.try(:to_i),
                                        type: 'Sound'),
        IIIFManifest::V3::DisplayContent.new(download_path(original_file, 'mp3'),
-                                        duration: original_file.duration.try(:first),
+                                        duration: Array(original_file.duration).first.try(:to_i),
                                         type: 'Sound')]
     end
 
