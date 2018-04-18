@@ -10,30 +10,35 @@ module Hyrax
     #
     # @return [IIIFManifest::V3::DisplayContent] the display content required by the manifest builder.
     def display_content
-      return nil unless content_supported? && current_ability.can?(:read, id)
+      return nil unless display_content_allowed?
 
-      if solr_document.image?
-        # TODO: look at the request and target 2 or 3?
-        image_content_v2
-      elsif solr_document.video?
-        video_content
-      elsif solr_document.audio?
-        audio_content
-      end
+      image_content if solr_document.image?
+      video_content if solr_document.video?
+      audio_content if solr_document.audio?
     end
 
     private
+
+      def display_content_allowed?
+        content_supported? && current_ability.can?(:read, id)
+      end
 
       def content_supported?
         solr_document.video? || solr_document.audio? || solr_document.image?
       end
 
-      def image_content_v3
+      def image_content
         url = Hyrax.config.iiif_image_url_builder.call(
           solr_document.id,
           request.base_url,
           Hyrax.config.iiif_image_size_default
         )
+
+        # TODO: look at the request and target prezi 2 or 3 for images
+        image_content_v2(url)
+      end
+
+      def image_content_v3(url)
         # @see https://github.com/samvera-labs/iiif_manifest
         IIIFManifest::V3::DisplayContent.new(url,
                                              width: 640,
@@ -42,12 +47,7 @@ module Hyrax
                                              iiif_endpoint: iiif_endpoint(solr_document.id))
       end
 
-      def image_content_v2
-        url = Hyrax.config.iiif_image_url_builder.call(
-          solr_document.id,
-          request.base_url,
-          Hyrax.config.iiif_image_size_default
-        )
+      def image_content_v2(url)
         # @see https://github.com/samvera-labs/iiif_manifest
         IIIFManifest::DisplayImage.new(url,
                                        width: 640,
