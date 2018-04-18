@@ -13,13 +13,13 @@ module Hyrax
 
     private
 
-    def manifest_builder
-      # TODO Switch to all V3 Manifests in the future or make based upon request headers
-      if presenter.representative_presenter.image?
-        ::IIIFManifest::ManifestFactory.new(presenter)
-      else
-        ::IIIFManifest::V3::ManifestFactory.new(presenter)
+      def manifest_builder
+        # TODO: Switch to all V3 Manifests in the future or make based upon request headers
+        if presenter.representative_presenter.image?
+          ::IIIFManifest::ManifestFactory.new(presenter)
+        else
+          ::IIIFManifest::V3::ManifestFactory.new(presenter)
+        end
       end
-    end
   end
 end

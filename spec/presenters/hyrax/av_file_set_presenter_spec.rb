@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Hyrax::AVFileSetPresenter do
   let(:solr_document) { SolrDocument.new(id: '12345') }
-  let(:request) { double(base_url: 'http://test.host') }
-  let(:ability) { double "Ability" }
+  let(:request) { instance_double("Request", base_url: 'http://test.host') }
+  let(:ability) { instance_double("Ability") }
   let(:presenter) { described_class.new(solr_document, ability, request) }
   let(:read_permission) { true }
   let(:id) { solr_document.id }
@@ -27,8 +27,6 @@ RSpec.describe Hyrax::AVFileSetPresenter do
 
     context 'with a file' do
       context "when the file is not a known file" do
-        let(:file_path) { File.open(fixture_path + '/hyrax_generic_stub.txt') }
-
         it { is_expected.to be_nil }
       end
 
@@ -59,6 +57,7 @@ RSpec.describe Hyrax::AVFileSetPresenter do
           allow(solr_document).to receive(:video?).and_return(true)
         end
 
+        # rubocop:disable RSpec/ExampleLength
         it 'creates an array of content objects' do
           expect(subject).to all(be_instance_of IIIFManifest::V3::DisplayContent)
           expect(subject.length).to eq 2
@@ -68,11 +67,10 @@ RSpec.describe Hyrax::AVFileSetPresenter do
           expect(subject.map(&:duration)).to all(eq 1000)
           expect(subject.map(&:url)).to match_array([mp4_url, webm_url])
         end
+        # rubocop:enable RSpec/ExampleLength
       end
 
       context "when the file is an image" do
-        let(:file_path) { File.open(fixture_path + '/world.png') }
-
         before do
           allow(solr_document).to receive(:image?).and_return(true)
         end

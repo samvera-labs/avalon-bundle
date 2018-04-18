@@ -11,6 +11,9 @@ RSpec/VerifiedDoubles:
   Exclude:
     - 'spec/presenters/hyrax/generic_work_presenter_spec.rb'
 
+RSpec/NamedSubject:
+  Enabled: false
+
 # Copied from Hyrax
 # # By default RSpec/MessageSpies has the following:
 # #   Prefer have_received for setting message expectations. Setup form as a spy using allow or instance_spy.
