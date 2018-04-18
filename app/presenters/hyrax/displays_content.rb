@@ -12,9 +12,9 @@ module Hyrax
     def display_content
       return nil unless display_content_allowed?
 
-      image_content if solr_document.image?
-      video_content if solr_document.video?
-      audio_content if solr_document.audio?
+      return image_content if solr_document.image?
+      return video_content if solr_document.video?
+      return audio_content if solr_document.audio?
     end
 
     private
