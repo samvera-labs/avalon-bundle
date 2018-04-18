@@ -75,6 +75,7 @@ group :development, :test do
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'rspec-its'
 end
 
 gem 'webpacker', '~> 3.0'

@@ -10,14 +10,12 @@ module Hyrax
     #
     # @return [IIIFManifest::V3::DisplayContent] the display content required by the manifest builder.
     def display_content
-      return nil unless ::FileSet.exists?(id) && content_supported? && current_ability.can?(:read, id)
-      # @todo this is slow, find a better way (perhaps index iiif url):
-      # original_file = ::FileSet.find(id).original_file
-      # file_set = ::FileSet.find(id)
+      return nil unless content_supported? && current_ability.can?(:read, id)
       file_set = solr_document
 
       if solr_document.image?
-        image_content(file_set)
+        image_content_v2(file_set)
+        # TODO look at the request and target 2 or 3?
       elsif solr_document.video?
         video_content(file_set)
       elsif solr_document.audio?
@@ -30,10 +28,10 @@ module Hyrax
     private
 
     def content_supported?
-      solr_document.video? || solr_document.audio? #|| solr_document.image?
+      solr_document.video? || solr_document.audio? || solr_document.image?
     end
 
-    def image_content(original_file)
+    def image_content_v3(original_file)
       url = Hyrax.config.iiif_image_url_builder.call(
         original_file.id,
         request.base_url,
@@ -44,6 +42,19 @@ module Hyrax
                                      width: 640,
                                      height: 480,
                                      type: 'Image',
+                                     iiif_endpoint: iiif_endpoint(original_file.id))
+    end
+
+    def image_content_v2(original_file)
+      url = Hyrax.config.iiif_image_url_builder.call(
+        original_file.id,
+        request.base_url,
+        Hyrax.config.iiif_image_size_default
+      )
+      # @see https://github.com/samvera-labs/iiif_manifest
+      IIIFManifest::DisplayImage.new(url,
+                                     width: 640,
+                                     height: 480,
                                      iiif_endpoint: iiif_endpoint(original_file.id))
     end
 
