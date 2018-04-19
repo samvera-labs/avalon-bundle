@@ -82,6 +82,7 @@ gem 'webpacker', '~> 3.0'
 group :test do
   gem 'codeclimate-test-reporter'
   gem 'simplecov'
+  gem 'database_cleaner'
 end
 
 gem 'config'
