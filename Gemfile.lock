@@ -172,6 +172,7 @@ GEM
     connection_pool (2.2.1)
     crass (1.0.3)
     daemons (1.2.6)
+    database_cleaner (1.6.2)
     declarative (0.0.10)
     declarative-option (0.1.0)
     deep_merge (1.2.1)
@@ -810,6 +811,7 @@ DEPENDENCIES
   codeclimate-test-reporter
   coffee-rails (~> 4.2)
   config
+  database_cleaner
   devise
   devise-guests (~> 0.6)
   factory_bot_rails
