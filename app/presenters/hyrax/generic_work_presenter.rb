@@ -2,6 +2,8 @@
 #  `rails generate hyrax:work GenericWork`
 module Hyrax
   class GenericWorkPresenter < Hyrax::WorkShowPresenter
+    Hyrax::MemberPresenterFactory.file_presenter_class = Hyrax::AVFileSetPresenter
+
     # @return [Boolean] render a IIIF viewer
     def iiif_viewer?
       representative_id.present? &&
