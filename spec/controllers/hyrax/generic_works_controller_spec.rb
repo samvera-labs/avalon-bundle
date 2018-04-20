@@ -13,24 +13,24 @@ RSpec.describe Hyrax::GenericWorksController, clean_repo: true do
   describe '#manifest' do
     let(:work) { create(:work_with_one_file, user: user) }
     let(:file_set) { work.ordered_members.to_a.first }
-    let(:manifest_factory2) { double(to_h: { test: 'manifest2' }) }
-    let(:manifest_factory3) { double(to_h: { test: 'manifest3' }) }
+    let(:manifest_factory2) { instance_double("IIIFManifest::ManifestBuilder", to_h: { test: 'manifest2' }) }
+    let(:manifest_factory3) { instance_double("IIIFManifest::V3::ManifestBuilder", to_h: { test: 'manifest3' }) }
 
     before do
       Hydra::Works::AddFileToFileSet.call(file_set,
                                           File.open(fixture_path + file),
                                           :original_file)
       allow(IIIFManifest::ManifestFactory).to receive(:new)
-                                                  .with(Hyrax::WorkShowPresenter)
-                                                  .and_return(manifest_factory2)
+        .with(Hyrax::WorkShowPresenter)
+        .and_return(manifest_factory2)
       allow(IIIFManifest::V3::ManifestFactory).to receive(:new)
-                                                      .with(Hyrax::WorkShowPresenter)
-                                                      .and_return(manifest_factory3)
-      @request.headers['Accept'] = mime
+        .with(Hyrax::WorkShowPresenter)
+        .and_return(manifest_factory3)
+      request.headers['Accept'] = mime
     end
 
     context 'with IIIF V2' do
-      let(:mime) { Hyrax::GenericWorksController::IIIF_DEFAULT_MANIFEST_MIME.gsub("/#{Hyrax::GenericWorksController::IIIF_DEFAULT_VERSION}/", "/2/")}
+      let(:mime) { Hyrax::GenericWorksController::IIIF_DEFAULT_MANIFEST_MIME.gsub("/#{Hyrax::GenericWorksController::IIIF_DEFAULT_VERSION}/", "/2/") }
 
       context 'for image' do
         let(:file) { '/image.png' }
@@ -61,7 +61,7 @@ RSpec.describe Hyrax::GenericWorksController, clean_repo: true do
     end
 
     context 'with IIIF V3' do
-      let(:mime) { Hyrax::GenericWorksController::IIIF_DEFAULT_MANIFEST_MIME.gsub("/#{Hyrax::GenericWorksController::IIIF_DEFAULT_VERSION}/", "/3/")}
+      let(:mime) { Hyrax::GenericWorksController::IIIF_DEFAULT_MANIFEST_MIME.gsub("/#{Hyrax::GenericWorksController::IIIF_DEFAULT_VERSION}/", "/3/") }
 
       context 'for image' do
         let(:file) { '/image.jpg' }
@@ -90,6 +90,5 @@ RSpec.describe Hyrax::GenericWorksController, clean_repo: true do
         end
       end
     end
-
   end
 end
