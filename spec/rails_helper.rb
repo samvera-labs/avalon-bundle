@@ -20,6 +20,9 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'hyrax'
 require 'factory_bot'
+require 'database_cleaner'
+require 'active_fedora/cleaner'
+require File.expand_path('spec/support/features/session_helpers', Hyrax::Engine.root)
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -73,4 +76,49 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include FactoryBot::Syntax::Methods
+
+  # Copied from Hyrax's spec_helper and modified
+  config.before :suite do
+    DatabaseCleaner.clean_with(:truncation)
+    # Noid minting causes extra LDP requests which slow the test suite.
+    # Hyrax.config.enable_noids = false
+  end
+
+  config.before do |example|
+    if example.metadata[:type] == :feature && Capybara.current_driver != :rack_test
+      DatabaseCleaner.strategy = :truncation
+    else
+      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.start
+    end
+
+    if example.metadata[:clean_repo]
+      ActiveFedora::Cleaner.clean!
+      # The JS is executed in a different thread, so that other thread
+      # may think the root path has already been created:
+      ActiveFedora.fedora.connection.send(:init_base_path) if example.metadata[:js]
+    end
+    Hyrax.config.nested_relationship_reindexer = if example.metadata[:with_nested_reindexing]
+                                                   # Use the default relationship reindexer (and the cascading reindexing of child documents)
+                                                   Hyrax.config.default_nested_relationship_reindexer
+                                                 else
+                                                   # Don't use the nested relationship reindexer. This slows everything down quite a bit.
+                                                   ->(id:) {}
+                                                 end
+  end
+
+  config.before(:all, type: :feature) do
+    # Assets take a long time to compile. This causes two problems:
+    # 1) the profile will show the first feature test taking much longer than it
+    #    normally would.
+    # 2) The first feature test will trigger rack-timeout
+    #
+    # Precompile the assets to prevent these issues.
+    visit "/assets/application.css"
+    visit "/assets/application.js"
+  end
+
+  config.after do
+    DatabaseCleaner.clean
+  end
 end
