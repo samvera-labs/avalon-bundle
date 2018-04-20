@@ -52,5 +52,6 @@ module Hyrax
       else
         ::IIIFManifest::ManifestFactory.new(presenter)
       end
+    end
   end
 end
