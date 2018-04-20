@@ -121,4 +121,6 @@ RSpec.configure do |config|
   config.after do
     DatabaseCleaner.clean
   end
+
+  config.include Devise::Test::ControllerHelpers, type: :controller
 end
