@@ -1,5 +1,5 @@
 // Import any custom CSS here
-import './styles/avalon-bundle-styles.css';
+import './styles/avalon-bundle-styles';
 
 const initPlayer = () => {
   $('document').ready(() => {
