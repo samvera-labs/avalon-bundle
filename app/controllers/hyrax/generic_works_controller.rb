@@ -32,7 +32,7 @@ module Hyrax
           v = matched[0].to_i
           version = v > version ? v : version
         end
-        version == 0 ? IIIF_DEFAULT_VERSION : version
+        version.zero? ? IIIF_DEFAULT_VERSION : version
       end
 
       # @return true if the request is for IIIF version 3; false otherwise

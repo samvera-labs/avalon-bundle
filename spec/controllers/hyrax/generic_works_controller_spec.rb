@@ -22,8 +22,8 @@ RSpec.describe Hyrax::GenericWorksController do
         .with(Hyrax::WorkShowPresenter)
         .and_return(manifest_factory2)
       allow(IIIFManifest::V3::ManifestFactory).to receive(:new)
-         .with(Hyrax::WorkShowPresenter)
-         .and_return(manifest_factory3)
+        .with(Hyrax::WorkShowPresenter)
+        .and_return(manifest_factory3)
       request.headers['Accept'] = mime
     end
 
@@ -54,16 +54,16 @@ RSpec.describe Hyrax::GenericWorksController do
       it 'returns IIIF default version manifest' do
         get :manifest, params: { id: 'testwork', format: :json }
         expect(response.headers['Content-Type']).to eq Hyrax::GenericWorksController::IIIF_DEFAULT_MANIFEST_MIME
-        if (Hyrax::GenericWorksController::IIIF_DEFAULT_VERSION == 2)
+        if Hyrax::GenericWorksController::IIIF_DEFAULT_VERSION == 2
           expect(response.body).to eq "{\"test\":\"manifest2\"}"
-        elsif (Hyrax::GenericWorksController::IIIF_DEFAULT_VERSION == 3)
+        elsif Hyrax::GenericWorksController::IIIF_DEFAULT_VERSION == 3
           expect(response.body).to eq "{\"test\":\"manifest3\"}"
         end
       end
     end
 
     context 'for request accepting both IIIF V2 and V3' do
-      let(:mime) { "#{mime2},#{ mime3}" }
+      let(:mime) { "#{mime2},#{mime3}" }
 
       it 'returns manifest with the highest accepted IIIF version' do
         get :manifest, params: { id: 'testwork', format: :json }
@@ -71,6 +71,5 @@ RSpec.describe Hyrax::GenericWorksController do
         expect(response.body).to eq "{\"test\":\"manifest3\"}"
       end
     end
-
   end
 end
