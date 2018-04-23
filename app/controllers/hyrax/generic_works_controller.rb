@@ -24,7 +24,7 @@ module Hyrax
 
       # @return the highest IIIF version (as an integer) specified in the Accept request header, or the default version if none specified
       def iiif_version
-        version = IIIF_DEFAULT_VERSION
+        version = 0 # assume all valid versions will be at least greater than 0
         accept = request.headers['Accept']
         # check for multiple profiles for highest IIIF version. Note: only digits are allowed in the version number
         regexp = Regexp.new(Regexp.escape(IIIF_DEFAULT_MANIFEST_MIME[/profile.*$/]).gsub("/#{IIIF_DEFAULT_VERSION}/", "/(\\d+)/"))
@@ -32,7 +32,7 @@ module Hyrax
           v = matched[0].to_i
           version = v > version ? v : version
         end
-        version
+        version == 0 ? IIIF_DEFAULT_VERSION : version
       end
 
       # @return true if the request is for IIIF version 3; false otherwise
