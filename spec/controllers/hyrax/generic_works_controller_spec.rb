@@ -18,12 +18,8 @@ RSpec.describe Hyrax::GenericWorksController do
 
     before do
       allow(controller).to receive(:presenter).and_return(presenter)
-      allow(IIIFManifest::ManifestFactory).to receive(:new)
-        .with(Hyrax::WorkShowPresenter)
-        .and_return(manifest_factory2)
-      allow(IIIFManifest::V3::ManifestFactory).to receive(:new)
-        .with(Hyrax::WorkShowPresenter)
-        .and_return(manifest_factory3)
+      allow(IIIFManifest::ManifestFactory).to receive(:new).with(presenter).and_return(manifest_factory2)
+      allow(IIIFManifest::V3::ManifestFactory).to receive(:new).with(presenter).and_return(manifest_factory3)
       request.headers['Accept'] = mime
     end
 
@@ -35,7 +31,6 @@ RSpec.describe Hyrax::GenericWorksController do
         expect(response.headers['Content-Type']).to eq mime
         expect(response.body).to eq "{\"test\":\"manifest2\"}"
       end
-      # end
     end
 
     context 'for request accepting IIIF V3' do
@@ -54,11 +49,9 @@ RSpec.describe Hyrax::GenericWorksController do
       it 'returns IIIF default version manifest' do
         get :manifest, params: { id: 'testwork', format: :json }
         expect(response.headers['Content-Type']).to eq Hyrax::GenericWorksController::IIIF_DEFAULT_MANIFEST_MIME
-        if Hyrax::GenericWorksController::IIIF_DEFAULT_VERSION == 2
-          expect(response.body).to eq "{\"test\":\"manifest2\"}"
-        elsif Hyrax::GenericWorksController::IIIF_DEFAULT_VERSION == 3
-          expect(response.body).to eq "{\"test\":\"manifest3\"}"
-        end
+        # the following code assumes Hyrax::GenericWorksController::IIIF_DEFAULT_VERSION is 2;
+        # if this constant changes, this code also needs to be changed accordingly
+        expect(response.body).to eq "{\"test\":\"manifest2\"}"
       end
     end
 
