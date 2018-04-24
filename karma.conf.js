@@ -10,13 +10,14 @@ module.exports = function(config) {
       "karma-jasmine",
       "karma-webpack",
       "karma-chrome-launcher",
+      "karma-sourcemap-loader",
       "karma-coverage-istanbul-reporter" /* optional */,
       "karma-spec-reporter" /* optional */
     ],
     files: ["app/javascript/**/*.spec.js"],
     exclude: [],
-    webpack: webpackConfig,
-    preprocessors: {'app/javascript/**/*.spec.js': ['webpack']},
+
+    preprocessors: {'app/javascript/**/*.spec.js': ['webpack', 'sourcemap']},
     reporters: ['progress', 'coverage-istanbul'],
     coverageIstanbulReporter: {
       reports: [ 'html', 'lcovonly', 'text-summary' ],
@@ -26,7 +27,8 @@ module.exports = function(config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['MyHeadlessChrome'],
+    //browsers: ['MyHeadlessChrome'],
+    browsers: ['Chrome'],
     customLaunchers: {
       MyHeadlessChrome: {
         base: 'ChromeHeadless',
@@ -34,6 +36,7 @@ module.exports = function(config) {
       }
     },
     singleRun: true,
-    failOnEmptyTestSuite: false
+    failOnEmptyTestSuite: false,
+    webpack: webpackConfig
   });
 };
