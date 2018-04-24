@@ -1,6 +1,8 @@
 <%= javascript_pack_tag 'avalon-player-pack' %>
 <%= stylesheet_pack_tag 'avalon-player-pack' %>
 
-<div class="avalon-viewer-wrapper">
-  <video id="mejs" class="avalon-bundle-player" controls src="<%= hyrax.download_path(presenter.representative_presenter, file: 'mp4') %>"></video>
+<div class="avalon-viewer-wrapper" id="avalon-viewer-wrapper" data-work-id="<%= presenter.id %>">
+  <video id="mejs" class="avalon-bundle-player" controls>
+    <source src="<%= hyrax.download_path(presenter.representative_presenter, file: 'mp4') %>">
+  </video>
 </div>

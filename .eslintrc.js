@@ -9,6 +9,7 @@ module.exports = {
   extends: ['eslint:recommended', 'prettier', 'plugin:jasmine/recommended'],
   plugins: ['prettier', 'jasmine'],
   parserOptions: {
+    ecmaVersion: 2017,
     ecmaFeatures: {
       experimentalObjectRestSpread: true,
       jsx: true
@@ -23,6 +24,7 @@ module.exports = {
         singleQuote: true
       }
     ],
-    eqeqeq: ['error', 'always'] // adding some custom ESLint rules
+    eqeqeq: ['error', 'always'], // adding some custom ESLint rules
+    'no-console': 0
   }
 };
