@@ -1,17 +1,5 @@
-// Import any custom CSS here
+// Import relevant css/scss
 import './styles/avalon-bundle-styles';
 
-const initPlayer = () => {
-  $('document').ready(() => {
-    // Initialize Mediaelement on the media HTML element
-    /* eslint-disable no-unused-vars, no-console */
-    $('#mejs').mediaelementplayer({
-      stretching: 'responsive',
-      success: function(mediaElement, originalNode, instance) {
-        console.log('mediaElement', mediaElement);
-      }
-    });
-    /* eslint-enable no-unused-vars, no-console */
-  });
-};
-export default initPlayer;
+import AvalonPlayer from './AvalonPlayer';
+new AvalonPlayer();

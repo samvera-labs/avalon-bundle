@@ -4,6 +4,7 @@
   "dependencies": {
     "@rails/webpacker": "^3.2.1",
     "jquery": "^3.3.1",
+    "karma-sourcemap-loader": "^0.3.7",
     "mediaelement": "^4.2.8"
   },
   "devDependencies": {

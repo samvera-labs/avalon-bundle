@@ -29,6 +29,7 @@ development:
   <<: *default
   compile: true
 
+  devtool: 'inline-source-map'
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
     https: false
