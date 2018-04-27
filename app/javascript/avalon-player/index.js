@@ -1,5 +1,4 @@
-// Import relevant css/scss
-import './styles/avalon-bundle-styles';
 import AvalonPlayer from './AvalonPlayer';
+import './styles/avalon-bundle-styles';
 
 new AvalonPlayer();

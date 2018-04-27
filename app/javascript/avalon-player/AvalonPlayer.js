@@ -13,9 +13,7 @@ export default class AvalonPlayer {
    */
   initializePlayer() {
     $('document').ready(() => {
-      this.workId = document.getElementById(
-        'avalon-viewer-wrapper'
-      ).dataset.workId;
+      this.workId = this.getMediaObjectId();
 
       if (!this.workId) {
         return;
@@ -25,6 +23,10 @@ export default class AvalonPlayer {
         .then(response => this.setVideoSourceUrls(response))
         .then(() => this.wrapWithMediaelementPlayer());
     });
+  }
+
+  getMediaObjectId() {
+    return document.getElementById('avalon-viewer-wrapper').dataset.workId;
   }
 
   /**
