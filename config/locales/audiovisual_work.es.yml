@@ -1,0 +1,10 @@
+es:
+  hyrax:
+    icons:
+      audiovisual_work:     'fa fa-file-text-o'
+    select_type:
+      audiovisual_work:
+        # TODO: translate `human_name` into Spanish
+        description:        "Audiovisual work trabajos"
+        name:               "Audiovisual Work"
+        # TODO: translate `human_name` into Spanish
