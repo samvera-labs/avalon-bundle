@@ -1,6 +1,6 @@
 // config/webpack/test.js
 
-// const environment = require('./environment')
+const environment = require('./environment')
 // environment.plugins.get('Manifest').opts.writeToFileEmit = process.env.NODE_ENV !== 'test'
 // environment.loaders.set('istanbul-instrumenter', {
 //   test: /\.js$/,
@@ -11,4 +11,5 @@
 //   },
 //   exclude: ["node_modules", /\.spec\.js$/]
 // }) // optional
-// module.exports = environment.toWebpackConfig()
+
+module.exports = environment.toWebpackConfig()
