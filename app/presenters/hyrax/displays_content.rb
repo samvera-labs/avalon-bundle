@@ -64,7 +64,7 @@ module Hyrax
         IIIFManifest::V3::DisplayContent.new(download_path(type),
                                              width: Array(solr_document.width).first.try(:to_i),
                                              height: Array(solr_document.height).first.try(:to_i),
-                                             duration: Array(solr_document.duration).first.try(:to_i),
+                                             duration: Array(solr_document.duration).first.try(:to_i) / 1000.0,
                                              type: 'Video')
       end
 
@@ -74,7 +74,7 @@ module Hyrax
 
       def audio_display_content(type)
         IIIFManifest::V3::DisplayContent.new(download_path(type),
-                                             duration: Array(solr_document.duration).first.try(:to_i),
+                                             duration: Array(solr_document.duration).first.try(:to_i) / 1000.0,
                                              type: 'Sound')
       end
 

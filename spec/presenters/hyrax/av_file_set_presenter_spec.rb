@@ -43,7 +43,7 @@ RSpec.describe Hyrax::AVFileSetPresenter do
           expect(subject).to all(be_instance_of IIIFManifest::V3::DisplayContent)
           expect(subject.length).to eq 2
           expect(subject.map(&:type)).to all(eq 'Sound')
-          expect(subject.map(&:duration)).to all(eq 1000)
+          expect(subject.map(&:duration)).to all(eq 1.000)
           expect(subject.map(&:url)).to match_array([mp3_url, ogg_url])
         end
       end
@@ -64,7 +64,7 @@ RSpec.describe Hyrax::AVFileSetPresenter do
           expect(subject.map(&:type)).to all(eq 'Video')
           expect(subject.map(&:width)).to all(eq 640)
           expect(subject.map(&:height)).to all(eq 480)
-          expect(subject.map(&:duration)).to all(eq 1000)
+          expect(subject.map(&:duration)).to all(eq 1.000)
           expect(subject.map(&:url)).to match_array([mp4_url, webm_url])
         end
         # rubocop:enable RSpec/ExampleLength
