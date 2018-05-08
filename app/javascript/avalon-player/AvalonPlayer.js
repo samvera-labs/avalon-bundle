@@ -1,46 +1,31 @@
-import { fetchManifest } from '../avalon-api';
+import 'mediaelement';
+import 'mediaelement/build/mediaelementplayer.css';
+import * as avalonApi from '../avalon-api';
 
 /* eslint-disable no-unused-vars */
 export default class AvalonPlayer {
-  constructor() {
-    this.workId;
-    this.initializePlayer();
+  async getManifest(mediaId) {
+    if (!mediaId) {
+      return;
+    }
+    return await avalonApi.fetchManifest(mediaId);
   }
 
-  /**
-   * Initialize a mediaelement player instance from the media object's IIIF manifest
-   * @return {void}
-   */
-  initializePlayer() {
-    $('document').ready(() => {
-      this.workId = document.getElementById(
-        'avalon-viewer-wrapper'
-      ).dataset.workId;
-
-      if (!this.workId) {
-        return;
-      }
-
-      fetchManifest(this.workId)
-        .then(response => this.setVideoSourceUrls(response))
-        .then(() => this.wrapWithMediaelementPlayer());
-    });
+  getMediaObjectId() {
+    return document.getElementById('avalon-viewer-wrapper').dataset.workId;
   }
 
-  /**
-   * Create child <source> elements for HTML <video> or <audio> parent
-   * @param  {object}  manifest Current mediaobject IIIF manifest
-   * @return {Promise}
-   */
-  async setVideoSourceUrls(manifest) {
+  setVideoSourceUrls(manifest) {
+    if (!manifest || Object.keys(manifest).length === 0) {
+      return;
+    }
     const url = manifest.items['0'].items['0'].items['0'].body.items['0'].id;
     $('#mejs').html(`<source src="${url}" />`);
+
+    // Eventually we'll want to return all source urls - need clarification on what to put on DOM
+    return [url];
   }
 
-  /**
-   * Instantiate a Mediaelement wrapper around current HTML5 media element
-   * @return {void}
-   */
   wrapWithMediaelementPlayer() {
     $('#mejs').mediaelementplayer({
       stretching: 'responsive',
