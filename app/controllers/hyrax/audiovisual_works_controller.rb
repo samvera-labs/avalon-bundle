@@ -5,7 +5,7 @@ module Hyrax
   class AudiovisualWorksController < ApplicationController
     # Adds GenericWorks behaviors to the controller.
     # TODO extends GenericWorksController directly?
-    include GenericWorksController
+    # include GenericWorksController
     self.curation_concern_type = ::AudiovisualWork
 
     # Use this line if you want to use a custom presenter
