@@ -13,7 +13,7 @@ class AudiovisualWork < ActiveFedora::Base
   property :related_item_url, predicate: ::RDF::RDFS.seeAlso do |index| # :related_url in Hyrax
     index.as :stored_searchable
   end
-  property :permalink, predicate: ::RDF::DC.identifier, multiple: false do |index| # :identifier in Hyrax
+  property :permalink, predicate: ::RDF::Vocab::DC.identifier, multiple: false do |index| # :identifier in Hyrax
     index.as :symbol
   end
 
@@ -63,7 +63,7 @@ class AudiovisualWork < ActiveFedora::Base
     index.as :stored_searchable
   end
   # Identifiers
-  property :bibliographic_id, predicate: RDF::OWL.sameAs, multiple: false do |index|
+  property :bibliographic_id, predicate: ::RDF::OWL.sameAs, multiple: false do |index|
     index.as :stored_searchable
   end
   property :local, predicate: ::RDF::Vocab::Identifiers.local, multiple: false do |index|
