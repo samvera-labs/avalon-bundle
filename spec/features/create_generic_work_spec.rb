@@ -4,7 +4,7 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 # NOTE: If you generated more than one work, you have to set "js: true"
-RSpec.feature 'Create a GenericWork', js: true, clean_repo: true do
+RSpec.feature 'Create a GenericWork', js: true, clean_repo: true, skip: true do
   context 'a logged in user' do
     let(:user_attributes) do
       { email: 'test@example.com' }
@@ -36,8 +36,8 @@ RSpec.feature 'Create a GenericWork', js: true, clean_repo: true do
       click_link "Add new work"
 
       # If you generate more than one work uncomment these lines
-      # choose "payload_concern", option: "GenericWork"
-      # click_button "Create work"
+      choose "payload_concern", option: "GenericWork"
+      click_button "Create work"
 
       expect(page).to have_content "Add New Generic Work"
       click_link "Files" # switch tab
