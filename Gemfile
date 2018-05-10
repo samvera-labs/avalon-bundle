@@ -86,6 +86,7 @@ group :test do
   gem 'codeclimate-test-reporter'
   gem 'simplecov'
   gem 'database_cleaner'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 gem 'config'

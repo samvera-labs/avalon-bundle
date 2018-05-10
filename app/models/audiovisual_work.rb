@@ -3,6 +3,10 @@
 class AudiovisualWork < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
 
+  # Using from Hyrax::BasicMetadata:
+  # :title, :date_created, :license (for terms of use), :identifier (for permalink),
+  # :creator, :contribuor, :publisher, :language, :subject (for topical subject)
+
   # Required
   property :date_issued, predicate: ::RDF::Vocab::DC.issued, multiple: false do |index|
     index.as :stored_searchable, :facetable
@@ -12,9 +16,6 @@ class AudiovisualWork < ActiveFedora::Base
     index.as :stored_searchable
   end
   property :genre, predicate: ::RDF::Vocab::EDM.hasType do |index|
-    index.as :stored_searchable, :facetable
-  end
-  property :topical_subject, predicate: ::RDF::Vocab::DC.subject do |index|
     index.as :stored_searchable, :facetable
   end
   property :geographic_subject, predicate: ::RDF::Vocab::DC.spatial do |index|
@@ -30,6 +31,7 @@ class AudiovisualWork < ActiveFedora::Base
     index.as :stored_searchable
   end
   # This property will put together type and note content in a parsable string
+  # Also covers statement of responsibility
   property :note, predicate: ::RDF::Vocab::SKOS.note do |index|
     index.as :stored_searchable
   end
@@ -70,6 +72,7 @@ class AudiovisualWork < ActiveFedora::Base
   # self.valid_child_concerns = []
 
   validates :title, presence: { message: 'Your work must have a title.' }
+  validates :date_issued, presence: { message: 'Your work must have date issued.' }
 
   # This must be included at the end, because it finalizes the metadata
   # # schema (by adding accepts_nested_attributes)

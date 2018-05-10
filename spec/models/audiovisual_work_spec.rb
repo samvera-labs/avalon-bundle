@@ -6,7 +6,8 @@ RSpec.describe AudiovisualWork do
   subject(:work) { build(:audiovisual_work) }
 
   let(:properties) do
-    [:date_created,
+    [:title,
+     :date_created,
      :license,
      :related_item,
      :identifier,
@@ -14,10 +15,10 @@ RSpec.describe AudiovisualWork do
      :contributor,
      :publisher,
      :language,
+     :subject,
      :date_issued,
      :abstract,
      :genre,
-     :topical_subject,
      :geographic_subject,
      :temporal_subject,
      :physical_description,
@@ -41,11 +42,21 @@ RSpec.describe AudiovisualWork do
     end
   end
 
+  describe 'validations' do
+    it 'validates presence of title' do
+      expect(subject).to validate_presence_of(:title).with_message('Your work must have a title.')
+    end
+    it 'validates presence of date issued' do
+      expect(subject).to validate_presence_of(:date_issued).with_message('Your work must have date issued.')
+    end
+  end
+
   describe 'to_solr' do
     let(:solr_doc) { subject.to_solr }
 
     let(:solr_fields) do
-      ['date_created_tesim',
+      ['title_tesim',
+       'date_created_tesim',
        'license_tesim',
        'related_item_tesim',
        'identifier_tesim',
@@ -53,10 +64,10 @@ RSpec.describe AudiovisualWork do
        'contributor_tesim',
        'publisher_tesim',
        'language_tesim',
+       'subject_tesim',
        'date_issued_tesim',
        'abstract_tesim',
        'genre_tesim',
-       'topical_subject_tesim',
        'geographic_subject_tesim',
        'temporal_subject_tesim',
        'physical_description_tesim',

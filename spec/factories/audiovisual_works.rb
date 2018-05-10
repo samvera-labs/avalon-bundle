@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :audiovisual_work, class: AudiovisualWork do
+    title { ['Work title'] }
     date_created { ['1952'] }
     license { ['CC BY-SA-ND'] }
     related_item { ['http://example.com/another-resource'] }
@@ -11,7 +12,7 @@ FactoryBot.define do
     date_issued { '1952' }
     abstract { ['Lorem ipsum dolor sit amet, consectetur adipiscing elit...'] }
     genre { ['Thrash Metal'] }
-    topical_subject { ['Audiovisual Software'] }
+    subject { ['Audiovisual Software'] }
     geographic_subject { ['Bloomington, Ind.'] }
     temporal_subject { ['1960s'] }
     physical_description { '33 1/3 R.P.M.' }
