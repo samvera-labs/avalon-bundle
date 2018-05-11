@@ -1,0 +1,10 @@
+zh:
+  hyrax:
+    icons:
+      audiovisual_work:     'fa fa-file-text-o'
+    select_type:
+      audiovisual_work:
+        # TODO: translate `human_name` into Chinese
+        description:        "Audiovisual work 作品"
+        name:               "Audiovisual Work"
+        # TODO: translate `human_name` into Chinese

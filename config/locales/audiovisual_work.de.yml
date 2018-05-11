@@ -1,0 +1,8 @@
+de:
+  hyrax:
+    icons:
+      audiovisual_work:     'fa fa-file-text-o'
+    select_type:
+      audiovisual_work:
+        description:        "Audiovisual work Werke"
+        name:               "Audiovisual Work"

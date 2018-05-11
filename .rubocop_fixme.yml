@@ -6,6 +6,7 @@ Metrics/BlockLength:
 RSpec/ExampleLength:
   Exclude:
     - 'spec/features/create_generic_work_spec.rb'
+    - 'spec/features/create_audiovisual_work_spec.rb'
 
 RSpec/VerifiedDoubles:
   Exclude:

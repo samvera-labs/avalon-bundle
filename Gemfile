@@ -37,7 +37,9 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
+  gem 'capybara-selenium'
   gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
   gem "capistrano", "~> 3.10", require: false
 end
 
@@ -84,6 +86,7 @@ group :test do
   gem 'codeclimate-test-reporter'
   gem 'simplecov'
   gem 'database_cleaner'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 gem 'config'
