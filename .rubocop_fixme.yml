@@ -10,6 +10,7 @@ RSpec/ExampleLength:
 
 RSpec/VerifiedDoubles:
   Exclude:
+    - 'spec/presenters/hyrax/audiovisual_work_presenter_spec.rb'
     - 'spec/presenters/hyrax/generic_work_presenter_spec.rb'
 
 RSpec/NamedSubject:

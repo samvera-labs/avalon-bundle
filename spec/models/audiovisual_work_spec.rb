@@ -7,31 +7,33 @@ RSpec.describe AudiovisualWork do
 
   let(:properties) do
     [:title,
+     :date_issued,
      :date_created,
-     :license,
-     :related_item,
-     :identifier,
      :creator,
      :contributor,
      :publisher,
-     :language,
-     :subject,
-     :date_issued,
      :abstract,
-     :genre,
-     :geographic_subject,
-     :temporal_subject,
      :physical_description,
-     :table_of_contents,
-     :note,
+     :language,
+     :genre,
+     :topical_subject,
+     :temporal_subject,
+     :geographic_subject,
+     :permalink,
+     :related_item,
      :bibliographic_id,
      :local,
+     :oclc,
      :lccn,
      :issue_number,
      :matrix_number,
      :music_publisher,
      :video_recording_identifier,
-     :oclc]
+     :table_of_contents,
+     :note,
+     :rights_statement,
+     :license,
+     :terms_of_use]
   end
 
   describe "metadata" do
@@ -55,37 +57,39 @@ RSpec.describe AudiovisualWork do
     let(:solr_doc) { subject.to_solr }
 
     let(:solr_fields) do
-      ['title_tesim',
-       'date_created_tesim',
-       'license_tesim',
-       'related_item_tesim',
-       'identifier_tesim',
-       'creator_tesim',
-       'contributor_tesim',
-       'publisher_tesim',
-       'language_tesim',
-       'subject_tesim',
-       'date_issued_tesim',
-       'abstract_tesim',
-       'genre_tesim',
-       'geographic_subject_tesim',
-       'temporal_subject_tesim',
-       'physical_description_tesim',
-       'table_of_contents_tesim',
-       'note_tesim',
-       'bibliographic_id_tesim',
-       'local_tesim',
-       'lccn_tesim',
-       'issue_number_tesim',
-       'matrix_number_tesim',
-       'music_publisher_tesim',
-       'video_recording_identifier_tesim',
-       'oclc_tesim']
+      [:title_tesim,
+       :date_issued_tesim,
+       :date_created_tesim,
+       :creator_tesim,
+       :contributor_tesim,
+       :publisher_tesim,
+       :abstract_tesim,
+       :physical_description_tesim,
+       :language_tesim,
+       :genre_tesim,
+       :topical_subject_tesim,
+       :temporal_subject_tesim,
+       :geographic_subject_tesim,
+       :permalink_tesim,
+       :related_item_tesim,
+       :bibliographic_id_tesim,
+       :local_tesim,
+       :oclc_tesim,
+       :lccn_tesim,
+       :issue_number_tesim,
+       :matrix_number_tesim,
+       :music_publisher_tesim,
+       :video_recording_identifier_tesim,
+       :table_of_contents_tesim,
+       :note_tesim,
+       :rights_statement_tesim,
+       :license_tesim,
+       :terms_of_use_tesim]
     end
 
     it 'has solr fields' do
       solr_fields.each do |field|
-        expect(solr_doc.fetch(field)).not_to be_blank
+        expect(solr_doc.fetch(field.to_s)).not_to be_blank
       end
     end
 
