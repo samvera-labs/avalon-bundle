@@ -6,6 +6,7 @@ module Hyrax
     # Adds Hyrax behaviors to the controller.
     include Hyrax::WorksControllerBehavior
     include Hyrax::BreadcrumbsForWorks
+    include Hyrax::IIIFControllerBehavior
 
     # TODO: Add GenericWorks behaviors to the controller.
     self.curation_concern_type = ::AudiovisualWork
