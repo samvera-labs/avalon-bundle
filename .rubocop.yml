@@ -16,4 +16,6 @@ AllCops:
     - 'spec/fixtures/**/*'
     - 'tmp/**/*'
     - 'vendor/**/*'
+    - 'public/assets/**/*'
+    - 'gems/**/*'
     - '.gitignore'
