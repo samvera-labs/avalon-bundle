@@ -50,7 +50,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   # gem 'spring'
   # gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'bootsnap'
   gem 'xray-rails'
   gem 'bumbler'
 end
@@ -74,6 +73,7 @@ gem 'devise-guests', '~> 0.6'
 gem 'jquery-rails'
 gem 'rsolr', '>= 1.0'
 group :development, :test do
+  gem 'bootsnap'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
   gem 'factory_bot_rails'

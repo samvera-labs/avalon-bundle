@@ -11,8 +11,8 @@ RSpec.describe Hyrax::GenericWorksController do
     let(:solr_document) { SolrDocument.new }
     let(:ability) { nil }
     let(:presenter) { Hyrax::GenericWorkPresenter.new(solr_document, ability, request) }
-    let(:mime2) { Hyrax::GenericWorksController::IIIF_DEFAULT_MANIFEST_MIME.gsub("/#{Hyrax::GenericWorksController::IIIF_DEFAULT_VERSION}/", "/2/") }
-    let(:mime3) { Hyrax::GenericWorksController::IIIF_DEFAULT_MANIFEST_MIME.gsub("/#{Hyrax::GenericWorksController::IIIF_DEFAULT_VERSION}/", "/3/") }
+    let(:mime2) { Hyrax::GenericWorksController::IIIF_PRESENTATION_2_MIME }
+    let(:mime3) { Hyrax::GenericWorksController::IIIF_PRESENTATION_3_MIME }
     let(:manifest_factory2) { instance_double("IIIFManifest::ManifestBuilder", to_h: { test: 'manifest2' }) }
     let(:manifest_factory3) { instance_double("IIIFManifest::V3::ManifestBuilder", to_h: { test: 'manifest3' }) }
 
@@ -48,7 +48,7 @@ RSpec.describe Hyrax::GenericWorksController do
 
       it 'returns IIIF default version manifest' do
         get :manifest, params: { id: 'testwork', format: :json }
-        expect(response.headers['Content-Type']).to eq Hyrax::GenericWorksController::IIIF_DEFAULT_MANIFEST_MIME
+        expect(response.headers['Content-Type']).to eq Hyrax::GenericWorksController::IIIF_PRESENTATION_2_MIME
         # the following code assumes Hyrax::GenericWorksController::IIIF_DEFAULT_VERSION is 2;
         # if this constant changes, this code also needs to be changed accordingly
         expect(response.body).to eq "{\"test\":\"manifest2\"}"
@@ -62,6 +62,64 @@ RSpec.describe Hyrax::GenericWorksController do
         get :manifest, params: { id: 'testwork', format: :json }
         expect(response.headers['Content-Type']).to eq mime3
         expect(response.body).to eq "{\"test\":\"manifest3\"}"
+      end
+    end
+
+    context 'for request without accept header' do
+      let(:mime) { nil }
+
+      it 'returns manifest with the highest accepted IIIF version' do
+        get :manifest, params: { id: 'testwork', format: :json }
+        expect(response.headers['Content-Type']).to eq Hyrax::GenericWorksController::IIIF_PRESENTATION_2_MIME
+        expect(response.body).to eq "{\"test\":\"manifest2\"}"
+      end
+    end
+
+    context 'for work with audio representative media' do
+      let(:mime) { nil }
+      let(:presenter) { Hyrax::GenericWorkPresenter.new(solr_document, ability, request) }
+      let(:rep_presenter) { instance_double("Hyrax::FileSetPresenter", audio?: true, video?: false) }
+
+      before do
+        allow(presenter).to receive(:representative_presenter).and_return(rep_presenter)
+      end
+
+      it 'returns manifest with the highest accepted IIIF version' do
+        get :manifest, params: { id: 'testwork', format: :json }
+        expect(response.headers['Content-Type']).to eq mime3
+        expect(response.body).to eq "{\"test\":\"manifest3\"}"
+      end
+    end
+
+    context 'for work with video representative media' do
+      let(:mime) { nil }
+      let(:presenter) { Hyrax::GenericWorkPresenter.new(solr_document, ability, request) }
+      let(:rep_presenter) { instance_double("Hyrax::FileSetPresenter", audio?: false, video?: true) }
+
+      before do
+        allow(presenter).to receive(:representative_presenter).and_return(rep_presenter)
+      end
+
+      it 'returns manifest with the highest accepted IIIF version' do
+        get :manifest, params: { id: 'testwork', format: :json }
+        expect(response.headers['Content-Type']).to eq mime3
+        expect(response.body).to eq "{\"test\":\"manifest3\"}"
+      end
+    end
+
+    context 'for work with non-av representative media' do
+      let(:mime) { nil }
+      let(:presenter) { Hyrax::GenericWorkPresenter.new(solr_document, ability, request) }
+      let(:rep_presenter) { instance_double("Hyrax::FileSetPresenter", audio?: false, video?: false) }
+
+      before do
+        allow(presenter).to receive(:representative_presenter).and_return(rep_presenter)
+      end
+
+      it 'returns manifest with the highest accepted IIIF version' do
+        get :manifest, params: { id: 'testwork', format: :json }
+        expect(response.headers['Content-Type']).to eq mime2
+        expect(response.body).to eq "{\"test\":\"manifest2\"}"
       end
     end
   end

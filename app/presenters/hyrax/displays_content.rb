@@ -34,8 +34,8 @@ module Hyrax
           Hyrax.config.iiif_image_size_default
         )
 
-        # TODO: look at the request and target prezi 2 or 3 for images
-        image_content_v2(url)
+        # Look at the request and target prezi 2 or 3 for images
+        parent.iiif_version == 3 ? image_content_v3(url) : image_content_v2(url)
       end
 
       def image_content_v3(url)

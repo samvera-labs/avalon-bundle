@@ -7,9 +7,11 @@ RSpec.describe Hyrax::AVFileSetPresenter do
   let(:presenter) { described_class.new(solr_document, ability, request) }
   let(:read_permission) { true }
   let(:id) { solr_document.id }
+  let(:parent_presenter) { instance_double("Hyrax::GenericWorkPresenter", iiif_version: 2) }
 
   before do
     allow(ability).to receive(:can?).with(:read, solr_document.id).and_return(read_permission)
+    allow(presenter).to receive(:parent).and_return(parent_presenter)
   end
 
   describe '#display_content' do
@@ -118,6 +120,15 @@ RSpec.describe Hyrax::AVFileSetPresenter do
           let(:read_permission) { false }
 
           it { is_expected.to be_nil }
+        end
+
+        context "when the parent presenter's iiif_version is 3" do
+          let(:parent_presenter) { instance_double("Hyrax::GenericWorkPresenter", iiif_version: 3) }
+
+          it 'creates a V3 content object' do
+            expect(subject).to be_instance_of IIIFManifest::V3::DisplayContent
+            expect(subject.url).to eq "http://test.host/images/#{id}/full/600,/0/default.jpg"
+          end
         end
       end
     end
