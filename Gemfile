@@ -36,11 +36,11 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
+  gem "capistrano", "~> 3.10", require: false
   gem 'capybara', '~> 2.13'
   gem 'capybara-selenium'
-  gem 'selenium-webdriver'
   gem 'chromedriver-helper'
-  gem "capistrano", "~> 3.10", require: false
+  gem 'selenium-webdriver'
 end
 
 group :development do
@@ -50,8 +50,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   # gem 'spring'
   # gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'xray-rails'
   gem 'bumbler'
+  gem 'xray-rails'
 end
 
 group :production do
@@ -74,23 +74,23 @@ gem 'jquery-rails'
 gem 'rsolr', '>= 1.0'
 group :development, :test do
   gem 'bootsnap'
-  gem 'fcrepo_wrapper'
-  gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'fcrepo_wrapper'
   gem 'rspec-its'
+  gem 'rspec-rails'
 end
 
 gem 'webpacker', '~> 3.0'
 
 group :test do
   gem 'codeclimate-test-reporter'
-  gem 'simplecov'
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'simplecov'
 end
 
 gem 'config'
 
-gem 'riiif', '~> 1.1'
-gem 'iiif_manifest', github: 'samvera-labs/iiif_manifest', branch: 'prezi3'
 gem 'hydra-works', github: 'avalonmediasystem/hydra-works', branch: 'av_characterization'
+gem 'iiif_manifest', github: 'samvera-labs/iiif_manifest', branch: 'prezi3'
+gem 'riiif', '~> 1.1'
