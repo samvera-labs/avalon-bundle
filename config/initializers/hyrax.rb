@@ -156,6 +156,12 @@ Hyrax.config do |config|
 
   # Fields to display in the IIIF metadata section; default is the required fields
   # config.iiif_metadata_fields = Hyrax::Forms::WorkForm.required_fields
+  config.iiif_metadata_fields = [
+    :title, :date_issued, :date_created, :creator, :contributor, :publisher,
+    :abstract, :physical_description, :language, :genre,
+    :topical_subject, :temporal_subject, :geographic_subject, :permalink, :related_item,
+    :bibliographic_id, :local, :oclc, :lccn, :issue_number, :matrix_number, :music_publisher, :video_recording_identifier,
+    :table_of_contents, :note, :rights_statement, :license, :terms_of_use]
 
   # Should a button with "Share my work" show on the front page to all users (even those not logged in)?
   # config.display_share_button_when_not_logged_in = true
