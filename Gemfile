@@ -92,5 +92,5 @@ end
 gem 'config'
 
 gem 'hydra-works', github: 'avalonmediasystem/hydra-works', branch: 'av_characterization'
-gem 'iiif_manifest', github: 'samvera-labs/iiif_manifest', branch: 'prezi3'
+gem 'iiif_manifest', github: 'samvera-labs/iiif_manifest'
 gem 'riiif', '~> 1.1'
