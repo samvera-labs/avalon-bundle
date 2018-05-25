@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe FileSet do
-  let(:file_set) { described_class.create }
+  describe '#structure', clean_repo: true do
+    let(:file_set) { described_class.create }
 
-  describe '#structure' do
     context 'when a structure file is present' do
       before do
         structure = file_set.build_structure
