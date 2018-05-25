@@ -61,4 +61,16 @@ RSpec.describe Hyrax::AudiovisualWorkPresenter do
       presenter.send(:note)
     end
   end
+
+  describe "manifest" do
+    it "respond to #manifest" do
+      expect(presenter.respond_to?(:manifest)).to be true
+    end
+
+    it "to be an array and contains hashes with 'label' and 'value'" do
+      expect(presenter.manifest).to be_kind_of Array
+      expect(presenter.manifest.all? { |v| v.is_a? Hash }).to be true
+      expect(presenter.manifest.all? { |v| v['label'].present? && v['value'] }).to be true
+    end
+  end
 end
