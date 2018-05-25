@@ -4,7 +4,7 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 # NOTE: If you generated more than one work, you have to set "js: true"
-RSpec.feature 'Create a AudiovisualWork', js: true, clean_repo: true, skip: true do
+RSpec.feature 'Create an AudiovisualWork', js: true, clean_repo: true, skip: true do
   context 'a logged in user' do
     let(:user_attributes) do
       { email: 'test@example.com' }

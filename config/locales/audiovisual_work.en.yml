@@ -6,3 +6,144 @@ en:
       audiovisual_work:
         description:        "Audiovisual work works"
         name:               "Audiovisual Work"
+  simple_form:
+    hints:
+      audiovisual_work:
+        abstract: |
+          Summary provides a space for describing the contents of the item. Examples
+          include liner notes, contents list, or an opera scene abstract. This field
+          is not meant for cataloger's descriptions but for descriptions that
+          accompany the item. Depending on the length of the summary it may be
+          truncated in search results.
+        bibliographic_id: |
+          Bibliographic ID should be used for an external record identifier that can connect the Avalon item to a catalog record or other record for the original item. Type specifies the type of external record identifier.
+        collection: |
+          Collection defines the source or host of the item (for example, the source
+          of the original record or the collection responsible for entering
+          information about the item). Collections will be aggregated for browsing
+          access. Examples: Variations, Indiana University Libraries Film Archive,
+          IUCAT, NUcat.
+        contributor: |
+          Contributors are persons or bodies associated with the item but not considered
+          primary to the creation of its content. Examples of this would be performers in
+          a band or opera, conductor, arranger, cinematographer, and choreographer. At
+          this time this is no ability to specify a contributor as a corporate body. When
+          possible, use the <a href="http://id.loc.gov/authorities/names.html"
+          target="_blank">Library of Congress Name Authority File</a>.
+        creator: |
+          Main contributors are the primary persons
+          or bodies associated with the creation of the content.  Main contributors
+          will be included in search results display and aggregated for browsing
+          access. At this time there is no ability to specify a main contributor as
+          a corporate body. When possible, use the <a
+          href="http://id.loc.gov/authorities/names.html" target="_blank">Library of
+          Congress Name Authority File</a>.
+        date_created: |
+          Creation date should only be used if Date is a re-issue date. Then Creation date
+          would contain the original publication date. Enter date information in a format
+          consistent with the options shown in <a
+          href="http://www.loc.gov/standards/datetime/pre-submission.html"
+          target="_blank">Extended Date/Time Format (EDTF) 1.0</a>.
+        date_issued: |
+          Date should be the main publication date
+          associated with the item to be used for sorting browse and search results.
+          Enter date information in a format consistent with the options shown in <a
+          href="http://www.loc.gov/standards/datetime/pre-submission.html"
+          target="_blank">Extended Date/Time Format (EDTF) 1.0</a>.
+        genre: |
+          Genre can be used to categorize an item by form, style, or subject matter. For
+          consistency and to allow for sorting and aggregating, use terms from the <a
+          href="http://metadataregistry.org/concept/list/vocabulary_id/148.html"
+          target="_blank">Open Metadata Registry labels for PBCore: pbcoreGenre</a>.
+        geographic_subject: |
+          Location should be used for the geographic subject of the content. For
+          consistency and to allow for sorting and aggregating, use terms from the
+          <a href="http://www.getty.edu/research/tools/vocabularies/tgn/index.html"
+          target="_blank">Getty Thesaurus of Geographic Names</a>.
+        issue_number: |
+          Sound recording issue number should be used as an external record identifier that can connect the Avalon item to a catalog record or other record for the original item. This identifier differs from Bibliographic Identifier in that it is not used to retrieve a record from another system. Type specifies the type of external record identifier.
+        language: |
+          Language describes the languages used in the item. Typing two or more
+          letters within the field will bring up permitted matches. Only terms or
+          codes from the <a href="http://www.loc.gov/marc/languages/"
+          target="_blank">MARC Code List for Languages</a> may be used. This is an
+          optional field.
+        lccn: |
+          The Library of Congress Control Number should be used as an external record identifier that can connect the Avalon item to a catalog record or other record for the original item. This identifier differs from Bibliographic Identifier in that it is not used to retrieve a record from another system. Type specifies the type of external record identifier.
+        local: |
+          Locally defined identifier should be used as an external record identifier that can connect the Avalon item to a catalog record or other record for the original item. This identifier differs from Bibliographic Identifier in that it is not used to retrieve a record from another system. Type specifies the type of external record identifier.
+        matrix_number: |
+          Matrix Number, which is the code on the run-out groove area of a gramophone record, should be used as an external record identifier that can connect the Avalon item to a catalog record or other record for the original item. This identifier differs from Bibliographic Identifier in that it is not used to retrieve a record from another system. Type specifies the type of external record identifier.
+        music_publisher: |
+          Music Publisher/Label should be used as an external record identifier that can connect the Avalon item to a catalog record or other record for the original item. This identifier differs from Bibliographic Identifier in that it is not used to retrieve a record from another system. Type specifies the type of external record identifier.
+        note: |
+          Note is used to describe aspects of the resource not accounted for in any of the other fields, such as creation or production credits, performers, venue, historical or biographical information, language details, awards given to the performance or the work performed. Recommended use is to provide a separate Contributor field for each person or body associated with the creation of the content and to use a Note to provide more information about such contributions or to provide information about secondary persons or bodies associated with the creation of the content. Type specifies the type of note and is used as a label in the user interface.<br><br>Statement of Responsibility is used to provide information about primary persons or bodies associated with the creation of the content, along with details about their roles. This information can be transcribed from the credits  listed in the resource itself or on its packaging. Recommended use is to provide a separate Contributor field for each person or body listed in the Statement of Responsibility. Statement of Responsibility may be left empty if the use of Contributor fields alone is preferred. Statement of Responsibility is displayed in the user interface appended to the Title field, following a ' / '.
+        oclc: |
+           Identifier assigned by Online Computer Library Center, Incorporated should be used as an external record identifier that can connect the Avalon item to a catalog record or other record for the original item. This identifier differs from Bibliographic Identifier in that it is not used to retrieve a record from another system. Type specifies the type of external record identifier.
+        permalink: |
+          The item Permalink is a URL that links to the Item as a whole. In addition, each section of an item will have a distinct permalink assigned in the File Upload page. If configured to do so, Avalon will automatically generate a permalink if this field is left blank.
+        physical_description: |
+          Physical Description is an optional field that will display information about the original resource being described.
+        publisher: |
+          Publisher of the content of the item.
+        related_item: |
+          The label is the text that will be displayed in the item record and will link to the URL entered. Related Item is an optional field.
+        table_of_contents: |
+          Table of Contents is used to provide the titles of separate works or parts of a resource. Information provided may also contain statements of responsibility or other sequential designations. Titles of separate works or parts should be separated by ' -- ' (space-hyphen-hyphen-space).
+        temporal_subject: |
+          Time period should be used for the temporal subject of the content (for example,
+          years or year ranges). Enter date information in a format consistent with the
+          options shown in <a href="http://www.loc.gov/standards/datetime/pre-
+          submission.html" target="_blank">Extended Date/Time Format (EDTF) 1.0</a>.
+        terms_of_use: |
+          Terms of Use describes the conditions under which content may be used. This is an optional field.
+        title: |
+          Title is used for display in search results and
+          single item views. Recommended use is to reflect the content captured in
+          digitized media files (such as the title of the piece performed or a short
+          description of the content of a home movie). Lengthy titles may be truncated in
+          the search results view.
+        topical_subject: |
+          Subject should be used for the topical subject of the content. For
+          consistency and to allow for sorting and aggregating, use terms from the
+          <a href="http://id.loc.gov/authorities/subjects.html"
+          target="_blank">Library of Congress Subject Headings</a>. For temporal
+          subjects, use the Time period(s) field and for geographic subjects, use
+          the Location(s) field in this form. See below.
+        video_recording_identifier: |
+          Publisher-assigned videorecording number should be used as an external record identifier that can connect the Avalon item to a catalog record or other record for the original item. This identifier differs from Bibliographic Identifier in that it is not used to retrieve a record from another system. Type specifies the type of external record identifier.
+
+    labels:
+      audiovisual_work:
+        abstract: Summary
+        bibliographic_id: Bibliographic ID
+        contributor: Contributor(s)
+        creator: Main Contributor(s)
+        date_created: Creation Date
+        date_issued: Publication Date
+        genre: Genre(s)
+        geographic_subject: Location(s)
+        issue_number: Issue Number
+        language: Language
+        lccn: LCCN
+        local: Local Identifier
+        matrix_number: Matrix Number
+        music_publisher: Music Publisher/Label
+        note: Note(s)
+        oclc: OCLC
+        permalink: Permalink
+        physical_description: Physical Description
+        publisher: Publisher
+        related_item: Related Item(s)
+        table_of_contents: Table of Contents
+        temporal_subject: Time Period(s)
+        terms_of_use: Terms of Use
+        title: Title
+        topical_subject: Subject(s)
+        video_recording_identifier: Video Recording Identifier
+
+    placeholders:
+      audiovisual_work:
+      # TODO We can add placeholders for note and related_item as each is a combined string of 2 fields instead of 2 separate fields as in Avalone 6
+#        note: <type>: <value>
+#        related_item: <label>: <URL>
