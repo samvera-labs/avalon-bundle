@@ -270,3 +270,6 @@ Date::DATE_FORMATS[:standard] = "%m/%d/%Y"
 Qa::Authorities::Local.register_subauthority('subjects', 'Qa::Authorities::Local::TableBasedAuthority')
 Qa::Authorities::Local.register_subauthority('languages', 'Qa::Authorities::Local::TableBasedAuthority')
 Qa::Authorities::Local.register_subauthority('genres', 'Qa::Authorities::Local::TableBasedAuthority')
+
+require 'active_fedora/with_metadata/file_format_schema'
+ActiveFedora::WithMetadata::DefaultMetadataClassFactory.file_metadata_schemas += [ActiveFedora::WithMetadata::FileFormatSchema]
