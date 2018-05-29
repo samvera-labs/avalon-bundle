@@ -19,3 +19,7 @@ AllCops:
     - 'public/assets/**/*'
     - 'gems/**/*'
     - '.gitignore'
+
+require: './lib/rubocop/cops/avalon/license_header'
+Avalon/LicenseHeader:
+  Enabled: true
