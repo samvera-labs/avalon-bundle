@@ -1,4 +1,3 @@
-<%#
 Copyright 2011-2018, The Trustees of Indiana University and Northwestern
 University. Additional copyright may be held by others, as reflected in
 the commit history.
@@ -14,13 +13,3 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
----  END LICENSE_HEADER BLOCK  ---
-%>
-<%= javascript_pack_tag 'avalon-player-pack' %>
-<%= stylesheet_pack_tag 'avalon-player-pack' %>
-
-<div class="avalon-viewer-wrapper" id="avalon-viewer-wrapper" data-work-id="<%= presenter.id %>">
-  <video id="mejs" class="avalon-bundle-player" controls>
-    <source src="<%= hyrax.download_path(presenter.representative_presenter, file: 'mp4') %>">
-  </video>
-</div>
