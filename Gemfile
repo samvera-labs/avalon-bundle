@@ -95,4 +95,4 @@ gem 'hydra-works', github: 'avalonmediasystem/hydra-works', branch: 'av_characte
 gem 'iiif_manifest', github: 'samvera-labs/iiif_manifest'
 gem 'riiif', '~> 1.1'
 
-gem license_header
+gem 'license_header'
