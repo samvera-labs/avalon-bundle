@@ -72,5 +72,9 @@ RSpec.describe Hyrax::AudiovisualWorkPresenter do
       expect(presenter.manifest.all? { |v| v.is_a? Hash }).to be true
       expect(presenter.manifest.all? { |v| v['label'].present? && v['value'] }).to be true
     end
+
+    it "has all the labels translated" do
+      expect(presenter.manifest.all? { |v| !v['label'].include?("translation missing: ") }).to be true
+    end
   end
 end
