@@ -126,6 +126,7 @@ en:
         issue_number: Issue Number
         language: Language
         lccn: LCCN
+        license: License
         local: Local Identifier
         matrix_number: Matrix Number
         music_publisher: Music Publisher/Label
@@ -135,6 +136,7 @@ en:
         physical_description: Physical Description
         publisher: Publisher
         related_item: Related Item(s)
+        rights_statement: Right Statement
         table_of_contents: Table of Contents
         temporal_subject: Time Period(s)
         terms_of_use: Terms of Use
