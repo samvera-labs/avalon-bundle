@@ -34,7 +34,11 @@ module Hyrax
     delegate :related_item, to: :solr_document
     delegate :note, to: :solr_document
 
-    def manifest
+    # IIIF metadata for inclusion in the manifest (overrides Hyrax::WorkShowPresenter method)
+    #  Called by the `iiif_manifest` gem to add metadata
+    #
+    # @return [Array] array of metadata hashes
+    def manifest_metadata
       iiif_metadata_fields = [
         :title, :creator, :rights_statement, :date_issued, :date_created, :contributor, :publisher, :abstract,
         :physical_description, :language, :genre, :topical_subject, :temporal_subject, :geographic_subject,
