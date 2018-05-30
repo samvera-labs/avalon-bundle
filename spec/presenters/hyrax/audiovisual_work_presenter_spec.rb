@@ -79,19 +79,19 @@ RSpec.describe Hyrax::AudiovisualWorkPresenter do
     end
   end
 
-  describe "manifest" do
-    it "respond to #manifest" do
-      expect(presenter.respond_to?(:manifest)).to be true
+  describe "manifest_metadata" do
+    it "respond to #manifest_metadata" do
+      expect(presenter.respond_to?(:manifest_metadata)).to be true
     end
 
     it "to be an array and contains hashes with 'label' and 'value'" do
-      expect(presenter.manifest).to be_kind_of Array
-      expect(presenter.manifest.all? { |v| v.is_a? Hash }).to be true
-      expect(presenter.manifest.all? { |v| v['label'].present? && v['value'] }).to be true
+      expect(presenter.manifest_metadata).to be_kind_of Array
+      expect(presenter.manifest_metadata.all? { |v| v.is_a? Hash }).to be true
+      expect(presenter.manifest_metadata.all? { |v| v['label'].present? && v['value'] }).to be true
     end
 
     it "has all the labels translated" do
-      expect(presenter.manifest.all? { |v| !v['label'].include?("translation missing: ") }).to be true
+      expect(presenter.manifest_metadata.all? { |v| !v['label'].include?("translation missing: ") }).to be true
     end
   end
 end
