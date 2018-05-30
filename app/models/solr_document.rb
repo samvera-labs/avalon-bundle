@@ -46,4 +46,7 @@ class SolrDocument
   attribute :table_of_contents, Solr::String, 'table_of_contents_tesim'
   attribute :note, Solr::Array, 'note_tesim'
   attribute :terms_of_use, Solr::Array, 'terms_of_use_tesim'
+
+  # Hyrax fix
+  attribute :creator, Solr::Array, 'creator_tesim'
 end
