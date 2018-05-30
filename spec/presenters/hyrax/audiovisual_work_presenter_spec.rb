@@ -70,7 +70,7 @@ RSpec.describe Hyrax::AudiovisualWorkPresenter do
     it "to be an array and contains hashes with 'label' and 'value'" do
       expect(presenter.manifest_metadata).to be_kind_of Array
       expect(presenter.manifest_metadata.all? { |v| v.is_a? Hash }).to be true
-      expect(presenter.manifest_metadata.all? { |v| v['label'].present? && v['value'] }).to be true
+      expect(presenter.manifest_metadata.all? { |v| v['label'].present? && v['value'].present? }).to be true
     end
 
     it "has all the labels translated" do

@@ -31,9 +31,11 @@ module Hyrax
 
       metadata = []
       iiif_metadata_fields.each do |field|
+        value = Array.wrap(send(field))
+        next if value.blank?
         metadata << {
           'label' => I18n.t("simple_form.labels.audiovisual_work.#{field}"),
-          'value' => Array.wrap(send(field))
+          'value' => value
         }
       end
       metadata
