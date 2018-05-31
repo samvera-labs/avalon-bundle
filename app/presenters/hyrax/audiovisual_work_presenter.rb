@@ -34,19 +34,25 @@ module Hyrax
     delegate :related_item, to: :solr_document
     delegate :note, to: :solr_document
 
-    def manifest
-      iiif_metadata_fields = [
-        :title, :creator, :rights_statement, :date_issued, :date_created, :contributor, :publisher, :abstract,
-        :physical_description, :language, :genre, :topical_subject, :temporal_subject, :geographic_subject,
-        :permalink, :related_item, :bibliographic_id, :local, :oclc, :lccn, :issue_number, :matrix_number,
-        :music_publisher, :video_recording_identifier, :table_of_contents, :note, :license, :terms_of_use
-      ]
+    IIIF_METADATA_FIELDS = [
+      :title, :creator, :rights_statement, :date_issued, :date_created, :contributor, :publisher, :abstract,
+      :physical_description, :language, :genre, :topical_subject, :temporal_subject, :geographic_subject,
+      :permalink, :related_item, :bibliographic_id, :local, :oclc, :lccn, :issue_number, :matrix_number,
+      :music_publisher, :video_recording_identifier, :table_of_contents, :note, :license, :terms_of_use
+    ].freeze
 
+    # IIIF metadata for inclusion in the manifest (overrides Hyrax::WorkShowPresenter method)
+    #  Called by the `iiif_manifest` gem to add metadata
+    #
+    # @return [Array] array of metadata hashes
+    def manifest_metadata
       metadata = []
-      iiif_metadata_fields.each do |field|
+      IIIF_METADATA_FIELDS.each do |field|
+        value = Array.wrap(send(field))
+        next if value.blank?
         metadata << {
           'label' => I18n.t("simple_form.labels.audiovisual_work.#{field}"),
-          'value' => Array.wrap(send(field))
+          'value' => value
         }
       end
       metadata
