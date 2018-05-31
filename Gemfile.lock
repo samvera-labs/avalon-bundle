@@ -86,20 +86,22 @@ GEM
       io-like (~> 0.3.0)
     arel (8.0.0)
     ast (2.4.0)
-    autoprefixer-rails (8.5.0)
+    autoprefixer-rails (8.5.2)
       execjs
     awesome_nested_set (3.1.4)
       activerecord (>= 4.0.0, < 5.3)
-    aws-partitions (1.87.0)
-    aws-sdk-core (3.20.2)
+    aws-eventstream (1.0.0)
+    aws-partitions (1.89.1)
+    aws-sdk-core (3.21.2)
+      aws-eventstream (~> 1.0)
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
     aws-sdk-kms (1.5.0)
       aws-sdk-core (~> 3)
       aws-sigv4 (~> 1.0)
-    aws-sdk-s3 (1.10.0)
-      aws-sdk-core (~> 3)
+    aws-sdk-s3 (1.13.0)
+      aws-sdk-core (~> 3, >= 3.21.2)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.0)
     aws-sigv4 (1.0.2)
@@ -195,7 +197,7 @@ GEM
       activesupport (>= 3.0)
       deep_merge (~> 1.2.1)
       dry-validation (>= 0.10.4)
-    connection_pool (2.2.1)
+    connection_pool (2.2.2)
     crass (1.0.4)
     daemons (1.2.6)
     database_cleaner (1.6.2)
@@ -276,7 +278,7 @@ GEM
       railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    google-api-client (0.21.1)
+    google-api-client (0.21.2)
       addressable (~> 2.5, >= 2.5.1)
       googleauth (>= 0.5, < 0.7.0)
       httpclient (>= 2.8.1, < 3.0)
@@ -300,6 +302,7 @@ GEM
       tilt
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
+    highline (1.7.10)
     hiredis (0.6.1)
     htmlentities (4.3.4)
     http_logger (0.5.1)
@@ -324,7 +327,7 @@ GEM
       deprecation
       mime-types (> 2.0, < 4.0)
       mini_magick (>= 3.2, < 5)
-    hydra-editor (4.0.1)
+    hydra-editor (4.0.2)
       active-fedora (>= 9.0.0)
       almond-rails (~> 0.1)
       cancancan (~> 1.8)
@@ -340,7 +343,7 @@ GEM
     hydra-pcdm (0.11.0)
       active-fedora (>= 10, < 13)
       mime-types (>= 1)
-    hyrax (2.1.0.rc3)
+    hyrax (2.1.0)
       active-fedora (~> 11.5, >= 11.5.2)
       almond-rails (~> 0.1)
       awesome_nested_set (~> 3.1)
@@ -450,6 +453,8 @@ GEM
       slop
     legato (0.7.0)
       multi_json
+    license_header (0.0.4)
+      highline
     link_header (0.0.8)
     linkeddata (2.2.4)
       equivalent-xml (~> 0.6)
@@ -839,10 +844,11 @@ DEPENDENCIES
   factory_bot_rails
   fcrepo_wrapper
   hydra-works!
-  hyrax (= 2.1.0.rc3)
+  hyrax (= 2.1.0)
   iiif_manifest!
   jbuilder (~> 2.5)
   jquery-rails
+  license_header
   listen (>= 3.0.5, < 3.2)
   pg (~> 0.18)
   puma (~> 3.7)
