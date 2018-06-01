@@ -57,6 +57,10 @@ module Hyrax
       end
     end
 
+    def ranges
+      file_set_presenters.collect { |file_set_presenter| file_set_presenter.range }
+    end
+
     private
 
       def parse_accept(accept)

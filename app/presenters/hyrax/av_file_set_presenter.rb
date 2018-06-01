@@ -20,5 +20,34 @@ module Hyrax
     include DisplaysContent
 
     Hyrax::MemberPresenterFactory.file_presenter_class = Hyrax::AVFileSetPresenter
+
+    attr_accessor :media_fragment
+
+    def range
+      # TODO replace this example with the crosswalked structure
+      ManifestRange.new(
+        label: 'Parent Range',
+        items:[
+          self.clone.tap { |s| s.media_fragment = 't=0,50'},
+          ManifestRange.new(
+            label: 'Child Leaf',
+            items: [
+              self.clone.tap { |s| s.media_fragment = 't=50,100'}
+            ]
+          ),
+          self.clone.tap { |s| s.media_fragment = 't=100,150'}
+        ]
+      )
+    end
+  end
+
+  class ManifestRange
+    attr_reader :label, :ranges, :file_set_presenters, :items
+    def initialize(label:, ranges: [], file_set_presenters: [], items: [])
+      @label = label
+      @ranges = ranges
+      @file_set_presenters = file_set_presenters
+      @items = items
+    end
   end
 end
