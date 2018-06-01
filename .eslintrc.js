@@ -6,7 +6,12 @@ module.exports = {
     jasmine: true,
     jquery: true
   },
-  extends: ['eslint:recommended', 'prettier', 'plugin:jasmine/recommended'],
+  extends: [
+    'eslint:recommended',
+    'prettier',
+    'plugin:jasmine/recommended',
+    'plugin:react/recommended'
+  ],
   plugins: ['prettier', 'jasmine'],
   parserOptions: {
     ecmaVersion: 2017,

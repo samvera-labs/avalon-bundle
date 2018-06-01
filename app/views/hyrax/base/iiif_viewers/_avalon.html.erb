@@ -16,11 +16,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ---  END LICENSE_HEADER BLOCK  ---
 %>
-<%= javascript_pack_tag 'avalon-player-pack' %>
-<%= stylesheet_pack_tag 'avalon-player-pack' %>
+<%= javascript_pack_tag 'react-iiif-media-player-pack' %>
+<%= stylesheet_pack_tag 'react-iiif-media-player-pack' %>
 
-<div class="avalon-viewer-wrapper" id="avalon-viewer-wrapper" data-work-id="<%= presenter.id %>">
-  <video id="mejs" class="avalon-bundle-player" controls>
-    <source src="<%= hyrax.download_path(presenter.representative_presenter, file: 'mp4') %>">
-  </video>
-</div>
+<div id="avln-iiif-player-root" data-manifest-url="<%= main_app.polymorphic_path [main_app, :manifest, presenter], { locale: nil } %>" />
+<div id="react-mounter"></div>
