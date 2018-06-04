@@ -4,6 +4,8 @@
 module ActiveFedora::WithMetadata
   class ExternalFileUriSchema < ActiveTriples::Schema
     # Don't cast to keep values as RDF::URI instead of RDF::Resource
-    property :external_file_uri, predicate: ::RDF::Vocab::EBUCore.locator, cast: false
+    property :external_file_uri, predicate: ::RDF::Vocab::EBUCore.locator, cast: false do |index|
+      index.as :stored_searchable
+    end
   end
 end
