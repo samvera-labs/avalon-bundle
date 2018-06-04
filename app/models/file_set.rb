@@ -32,4 +32,11 @@ class FileSet < ActiveFedora::Base
   def files_metadata
     files.collect { |f| { id: f.id, label: f.label.first, external_file_uri: f.external_file_uri.first } }
   end
+
+  def to_solr(solr_doc = {})
+    super(solr_doc).tap do |doc|
+      doc['structure_tesim'] = structure.content unless structure.nil? || structure.content.blank?
+    end
+  end
+
 end

@@ -15,6 +15,8 @@
 # limitations under the License.
 # ---  END LICENSE_HEADER BLOCK  ---
 
+require 'avalon/manifest_range'
+
 module Hyrax
   class AVFileSetPresenter < Hyrax::FileSetPresenter
     include DisplaysContent
@@ -24,30 +26,61 @@ module Hyrax
     attr_accessor :media_fragment
 
     def range
-      # TODO replace this example with the crosswalked structure
-      ManifestRange.new(
-        label: 'Parent Range',
-        items:[
-          self.clone.tap { |s| s.media_fragment = 't=0,50'},
-          ManifestRange.new(
-            label: 'Child Leaf',
-            items: [
-              self.clone.tap { |s| s.media_fragment = 't=50,100'}
-            ]
-          ),
-          self.clone.tap { |s| s.media_fragment = 't=100,150'}
-        ]
+      structure_ng_xml.empty? ? simple_iiif_range : structure_to_iiif_range
+    end
+
+    private
+
+    def simple_iiif_range
+      # TODO embed_title?
+      Avalon::ManifestRange.new(
+          label: {'@none'.to_sym => [title.first]},
+          items: [
+            self.clone.tap { |s| s.media_fragment = 't=0,'}
+          ]
       )
     end
-  end
 
-  class ManifestRange
-    attr_reader :label, :ranges, :file_set_presenters, :items
-    def initialize(label:, ranges: [], file_set_presenters: [], items: [])
-      @label = label
-      @ranges = ranges
-      @file_set_presenters = file_set_presenters
-      @items = items
+    def structure_to_iiif_range
+      div_to_iiif_range(structure_ng_xml.root)
     end
+
+    def div_to_iiif_range(div_node)
+      # TODO handle the case when items is empty, or does not contain any Div/Span node
+      items = div_node.children.select {|child| child.element?}.collect do |node|
+        if node.name == "Div"
+          div_to_iiif_range(node)
+        elsif node.name == "Span"
+          span_to_iiif_range(node)
+        end
+      end
+      Avalon::ManifestRange.new(
+          label: {'@none'.to_sym => [div_node[:label]]},
+          items: items
+      )
+    end
+
+    def span_to_iiif_range(span_node)
+      Avalon::ManifestRange.new(
+          label: {'@none'.to_sym => [span_node[:label]]},
+          items: [
+              self.clone.tap do |s|
+                s.media_fragment = "t=#{parse_hour_min_sec(span_node[:begin])},#{parse_hour_min_sec(span_node[:end])}"
+              end
+          ]
+      )
+    end
+
+    def parse_hour_min_sec s
+      return nil if s.nil?
+      smh = s.split(':').reverse
+      (Float(smh[0]) rescue 0) + 60*(Float(smh[1]) rescue 0) + 3600*(Float(smh[2]) rescue 0)
+    end
+
+    def structure_ng_xml
+      @structure_ng_xml ||= Nokogiri::XML(solr_document['structure_tesim'])
+    end
+
   end
+  
 end
