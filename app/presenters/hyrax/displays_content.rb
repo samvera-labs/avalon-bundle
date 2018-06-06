@@ -74,11 +74,14 @@ module Hyrax
 
       def video_content
         # @see https://github.com/samvera-labs/iiif_manifest
-        [video_display_content(download_path('mp4')), video_display_content(download_path('webm'))]
+        return [video_display_content(download_path('mp4')), video_display_content(download_path('webm'))] unless solr_document['files_metadata_ssi'].present?
+        files_metadata = JSON.parse(solr_document['files_metadata_ssi'])
+        files_metadata.map{ |f| video_display_content(f['external_file_uri'], f['label']) }
       end
 
-      def video_display_content(url)
+      def video_display_content(url, label='')
         IIIFManifest::V3::DisplayContent.new(url,
+                                             label: label,
                                              width: Array(solr_document.width).first.try(:to_i),
                                              height: Array(solr_document.height).first.try(:to_i),
                                              duration: Array(solr_document.duration).first.try(:to_i) / 1000.0,
@@ -86,11 +89,14 @@ module Hyrax
       end
 
       def audio_content
-        [audio_display_content(download_path('ogg')), audio_display_content(download_path('mp3'))]
+        return [audio_display_content(download_path('ogg')), audio_display_content(download_path('mp3'))] unless solr_document['files_metadata_ssi'].present?
+        files_metadata = JSON.parse(solr_document['files_metadata_ssi'])
+        files_metadata.map{ |f| audio_display_content(f['external_file_uri'], f['label']) }
       end
 
-      def audio_display_content(url)
+      def audio_display_content(url, label='')
         IIIFManifest::V3::DisplayContent.new(url,
+                                             label: label,
                                              duration: Array(solr_document.duration).first.try(:to_i) / 1000.0,
                                              type: 'Sound')
       end
