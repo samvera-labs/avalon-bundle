@@ -74,11 +74,11 @@ module Hyrax
 
       def video_content
         # @see https://github.com/samvera-labs/iiif_manifest
-        [video_display_content("mp4"), video_display_content("webm")]
+        [video_display_content(download_path('mp4')), video_display_content(download_path('webm'))]
       end
 
-      def video_display_content(type)
-        IIIFManifest::V3::DisplayContent.new(download_path(type),
+      def video_display_content(url)
+        IIIFManifest::V3::DisplayContent.new(url,
                                              width: Array(solr_document.width).first.try(:to_i),
                                              height: Array(solr_document.height).first.try(:to_i),
                                              duration: Array(solr_document.duration).first.try(:to_i) / 1000.0,
@@ -86,11 +86,11 @@ module Hyrax
       end
 
       def audio_content
-        [audio_display_content('ogg'), audio_display_content('mp3')]
+        [audio_display_content(download_path('ogg')), audio_display_content(download_path('mp3'))]
       end
 
-      def audio_display_content(type)
-        IIIFManifest::V3::DisplayContent.new(download_path(type),
+      def audio_display_content(url)
+        IIIFManifest::V3::DisplayContent.new(url,
                                              duration: Array(solr_document.duration).first.try(:to_i) / 1000.0,
                                              type: 'Sound')
       end
