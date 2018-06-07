@@ -176,6 +176,7 @@ RSpec.describe Hyrax::AVFileSetPresenter do
   end
 
   describe '#range' do
+    let(:structure_tesim) { nil }
     let(:solr_document) { SolrDocument.new(id: id, structure_tesim: structure_tesim) }
 
     it 'responds to #range' do
@@ -185,7 +186,6 @@ RSpec.describe Hyrax::AVFileSetPresenter do
     subject { presenter.range }
 
     context 'without structure' do
-      let(:structure_tesim) { nil }
       let(:media_fragment) { 't=0,' }
       it 'returns a simple range' do
         expect(subject.label).to eq first_title

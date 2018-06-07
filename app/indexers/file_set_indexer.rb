@@ -19,6 +19,7 @@ class FileSetIndexer < Hyrax::FileSetIndexer
   def generate_solr_document
     super.tap do |solr_doc|
       solr_doc['files_metadata_ssi'] = object.files_metadata.to_json
+      solr_doc['structure_tesim'] = object.structure.content unless structure.nil? || structure.content.blank?
     end
   end
 end

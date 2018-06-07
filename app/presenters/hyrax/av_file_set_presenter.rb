@@ -26,7 +26,8 @@ module Hyrax
     attr_accessor :media_fragment
 
     def range
-      structure_ng_xml.empty? ? simple_iiif_range : structure_to_iiif_range
+      byebug
+      structure_ng_xml.blank? ? simple_iiif_range : structure_to_iiif_range
     end
 
     private
