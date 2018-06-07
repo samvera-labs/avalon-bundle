@@ -76,3 +76,5 @@ services:
     networks:
       external:
       internal:
+    stdin_open: true
+    tty: true
