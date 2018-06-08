@@ -26,8 +26,7 @@ module Hyrax
     attr_accessor :media_fragment
 
     def range
-      byebug
-      structure_ng_xml.blank? ? simple_iiif_range : structure_to_iiif_range
+      structure_ng_xml.root.blank? ? simple_iiif_range : structure_to_iiif_range
     end
 
     private
@@ -47,7 +46,6 @@ module Hyrax
     end
 
     def div_to_iiif_range(div_node)
-      # TODO handle the case when items is empty, or does not contain any Div/Span node
       items = div_node.children.select {|child| child.element?}.collect do |node|
         if node.name == "Div"
           div_to_iiif_range(node)
@@ -55,6 +53,15 @@ module Hyrax
           span_to_iiif_range(node)
         end
       end
+
+      # if a non-leaf node has no valid "Div" or "Span" children, then it would become empty range node containing no canvas
+      # TODO There's probably better way to handle this, by defining some XML schema to require existance of at least one
+      # Div/Span child node under root or each Div node, so Nokogiri::XML parser will report such error, and structure_ng_xml
+      # shall check such errors and raise exception there
+      if (items.empty?)
+        raise Nokogiri::XML::SyntaxError.new("Empty root or Div node: #{div_node[:label]}")
+      end
+
       Avalon::ManifestRange.new(
           label: {'@none'.to_sym => [div_node[:label]]},
           items: items

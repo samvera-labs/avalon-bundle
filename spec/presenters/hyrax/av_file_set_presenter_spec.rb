@@ -188,7 +188,7 @@ RSpec.describe Hyrax::AVFileSetPresenter do
     context 'without structure' do
       let(:media_fragment) { 't=0,' }
       it 'returns a simple range' do
-        expect(subject.label).to eq first_title
+        expect(subject.label['@none'.to_sym].first).to eq first_title
         expect(subject.items.first.media_fragment).to eq media_fragment
       end
     end
@@ -207,21 +207,21 @@ RSpec.describe Hyrax::AVFileSetPresenter do
 <Item label="Root 0">
     <Span label="Span 0.1" begin="0:00:00" end="0:01:00"/>
     <Div label="Div 0.2">
-        <Span label="Span 0.2.1 begin="0:01:01" end="0:02.00"/>
-        <Span label="Span 0.2.2 begin="0:02:01" end="0:03.00"/>
+        <Span label="Span 0.2.1" begin="0:01:01" end="0:02:00"/>
+        <Span label="Span 0.2.2" begin="0:02:01" end="0:03:00"/>
     </Div>
 </Item>'
       end
 
       it 'returns a hierarchy of ranges/canvases' do
-        expect(subject.label['@none'.to_sym]).to eq 'Root 0'
-        expect(subject.items.first.label).to eq 'Span 0.1'
-        expect(subject.items.first.media_fragment).to eq '0,60'
-        expect(subject.items.second.label).to eq 'Div 0.2'
-        expect(subject.items.second.items.first.label).to eq 'Span 0.2.1'
-        expect(subject.items.second.items.first.media_fragment).to eq '61,120'
-        expect(subject.items.second.items.second.label).to eq 'Span 0.2.2'
-        expect(subject.items.second.items.second.media_fragment).to eq '121,180'
+        expect(subject.label['@none'.to_sym].first).to eq 'Root 0'
+        expect(subject.items.first.label['@none'.to_sym].first).to eq 'Span 0.1'
+        expect(subject.items.first.items.first.media_fragment).to eq 't=0.0,60.0'
+        expect(subject.items.second.label['@none'.to_sym].first).to eq 'Div 0.2'
+        expect(subject.items.second.items.first.label['@none'.to_sym].first).to eq 'Span 0.2.1'
+        expect(subject.items.second.items.first.items.first.media_fragment).to eq 't=61.0,120.0'
+        expect(subject.items.second.items.second.label['@none'.to_sym].first).to eq 'Span 0.2.2'
+        expect(subject.items.second.items.second.items.first.media_fragment).to eq 't=121.0,180.0'
       end
     end
   end
