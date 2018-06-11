@@ -19,5 +19,5 @@ limitations under the License.
 <%= javascript_pack_tag 'react-iiif-media-player-pack' %>
 <%= stylesheet_pack_tag 'react-iiif-media-player-pack' %>
 
-<div id="avln-iiif-player-root" data-manifest-url="<%= main_app.polymorphic_path [main_app, :manifest, presenter], { locale: nil } %>" />
+<div id="avln-iiif-player-root" data-manifest-url="<%= main_app.polymorphic_path [main_app, :manifest, presenter], { locale: nil } %>"></div>
 <div id="react-mounter"></div>
