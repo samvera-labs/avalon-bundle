@@ -38,5 +38,4 @@ class FileSet < ActiveFedora::Base
       doc['structure_tesim'] = structure.content unless structure.nil? || structure.content.blank?
     end
   end
-
 end

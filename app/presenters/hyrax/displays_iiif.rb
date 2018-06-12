@@ -61,10 +61,10 @@ module Hyrax
 
     def ranges
       [
-          Avalon::ManifestRange.new(
-              label: {'@none'.to_sym => title.first},
-              items: file_set_presenters.collect { |file_set_presenter| file_set_presenter.range }
-          )
+        Avalon::ManifestRange.new(
+          label: { '@none'.to_sym => title.first },
+          items: file_set_presenters.collect(&:range)
+        )
       ]
     end
 

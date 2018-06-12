@@ -96,10 +96,11 @@ RSpec.describe Hyrax::AudiovisualWorkPresenter do
   end
 
   describe '#ranges' do
+    subject { presenter.ranges }
     let(:first_title) { 'Work Title' }
     let(:title) { [first_title] }
     let(:file_set_presenter) { instance_double("Hyrax::AVFileSetPresenter") }
-    let(:range) {instance_double("Avalon::ManifestRange") }
+    let(:range) { instance_double("Avalon::ManifestRange") }
 
     before do
       allow(presenter).to receive(:title).and_return(title)
@@ -110,8 +111,6 @@ RSpec.describe Hyrax::AudiovisualWorkPresenter do
     it 'responds to #ranges' do
       expect(presenter.respond_to?(:ranges)).to be true
     end
-
-    subject { presenter.ranges }
 
     it 'returns an array of top level ManifestRanges from its File Set Presenters' do
       expect(subject.size).to eq 1

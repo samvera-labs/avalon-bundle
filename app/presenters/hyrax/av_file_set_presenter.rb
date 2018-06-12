@@ -31,67 +31,63 @@ module Hyrax
 
     private
 
-    def simple_iiif_range
-      # TODO embed_title?
-      Avalon::ManifestRange.new(
-          label: {'@none'.to_sym => [title.first]},
+      def simple_iiif_range
+        # TODO: embed_title?
+        Avalon::ManifestRange.new(
+          label: { '@none'.to_sym => [title.first] },
           items: [
-            self.clone.tap { |s| s.media_fragment = 't=0,'}
+            clone.tap { |s| s.media_fragment = 't=0,' }
           ]
-      )
-    end
+        )
+      end
 
-    def structure_to_iiif_range
-      div_to_iiif_range(structure_ng_xml.root)
-    end
+      def structure_to_iiif_range
+        div_to_iiif_range(structure_ng_xml.root)
+      end
 
-    def div_to_iiif_range(div_node)
-      items = div_node.children.select {|child| child.element?}.collect do |node|
-        if node.name == "Div"
-          div_to_iiif_range(node)
-        elsif node.name == "Span"
-          span_to_iiif_range(node)
+      def div_to_iiif_range(div_node)
+        items = div_node.children.select(&:element?).collect do |node|
+          if node.name == "Div"
+            div_to_iiif_range(node)
+          elsif node.name == "Span"
+            span_to_iiif_range(node)
+          end
         end
-      end
 
-      # if a non-leaf node has no valid "Div" or "Span" children, then it would become empty range node containing no canvas
-      # raise an exception here as this error shall have been caught and handled by the parser and shall never happen here
-      if (items.empty?)
-        raise Nokogiri::XML::SyntaxError.new("Empty root or Div node: #{div_node[:label]}")
-      end
+        # if a non-leaf node has no valid "Div" or "Span" children, then it would become empty range node containing no canvas
+        # raise an exception here as this error shall have been caught and handled by the parser and shall never happen here
+        raise Nokogiri::XML::SyntaxError, "Empty root or Div node: #{div_node[:label]}" if items.empty?
 
-      Avalon::ManifestRange.new(
-          label: {'@none'.to_sym => [div_node[:label]]},
+        Avalon::ManifestRange.new(
+          label: { '@none'.to_sym => [div_node[:label]] },
           items: items
-      )
-    end
+        )
+      end
 
-    def span_to_iiif_range(span_node)
-      Avalon::ManifestRange.new(
-          label: {'@none'.to_sym => [span_node[:label]]},
+      def span_to_iiif_range(span_node)
+        Avalon::ManifestRange.new(
+          label: { '@none'.to_sym => [span_node[:label]] },
           items: [
-              self.clone.tap do |s|
-                s.media_fragment = "t=#{parse_hour_min_sec(span_node[:begin])},#{parse_hour_min_sec(span_node[:end])}"
-              end
+            clone.tap do |s|
+              s.media_fragment = "t=#{parse_hour_min_sec(span_node[:begin])},#{parse_hour_min_sec(span_node[:end])}"
+            end
           ]
-      )
-    end
+        )
+      end
 
-    def parse_hour_min_sec s
-      return nil if s.nil?
-      smh = s.split(':').reverse
-      (Float(smh[0]) rescue 0) + 60*(Float(smh[1]) rescue 0) + 3600*(Float(smh[2]) rescue 0)
-    end
+      def parse_hour_min_sec(s)
+        return nil if s.nil?
+        smh = s.split(':').reverse
+        (Float(smh[0]) rescue 0) + 60*(Float(smh[1]) rescue 0) + 3600*(Float(smh[2]) rescue 0)
+      end
 
-    # Note that the method returns empty Nokogiri Document instead of nil when structure_tesim doesn't exist or is empty.
-    def structure_ng_xml
-      # TODO The XML parser should handle invalid XML files, for ex, if a non-leaf node has no valid "Div" or "Span" children,
-      # in which case SyntaxError shall be prompted to the user during file upload.
-      # This can be done by defining some XML schema to require that at least one Div/Span child node exists
-      # under root or each Div node, otherwise Nokogiri::XML parser will report error, and raise exception here.
-      @structure_ng_xml ||= (s = solr_document['structure_tesim']) == nil ? Nokogiri::XML(nil) : Nokogiri::XML(s.first)
-    end
-
+      # Note that the method returns empty Nokogiri Document instead of nil when structure_tesim doesn't exist or is empty.
+      def structure_ng_xml
+        # TODO: The XML parser should handle invalid XML files, for ex, if a non-leaf node has no valid "Div" or "Span" children,
+        # in which case SyntaxError shall be prompted to the user during file upload.
+        # This can be done by defining some XML schema to require that at least one Div/Span child node exists
+        # under root or each Div node, otherwise Nokogiri::XML parser will report error, and raise exception here.
+        @structure_ng_xml ||= (s = solr_document['structure_tesim']).nil? ? Nokogiri::XML(nil) : Nokogiri::XML(s.first)
+      end
   end
-  
 end

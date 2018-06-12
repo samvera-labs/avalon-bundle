@@ -176,28 +176,13 @@ RSpec.describe Hyrax::AVFileSetPresenter do
   end
 
   describe '#range' do
+    subject { presenter.range }
     let(:structure_tesim) { nil }
     let(:solr_document) { SolrDocument.new(id: id, structure_tesim: [structure_tesim]) }
 
     it 'responds to #range' do
       expect(presenter.respond_to?(:range)).to be true
     end
-
-    context 'with invalid structure' do
-      let(:structure_tesim) do
-        '<?xml version="1.0" encoding="UTF-8"?>
-<Item label="Test Label">
-</Item>'
-      end
-      let(:error) { Nokogiri::XML::SyntaxError }
-      let(:errmsg) { "Empty root or Div node: Test Label" }
-
-      it 'raises SyntaxError' do
-        expect { presenter.range }.to raise_error(error, errmsg)
-      end
-    end
-
-    subject { presenter.range }
 
     context 'without structure' do
       let(:solr_document) { SolrDocument.new(id: id, structure_tesim: nil) }
@@ -216,6 +201,20 @@ RSpec.describe Hyrax::AVFileSetPresenter do
       it 'returns a simple range' do
         expect(subject.label['@none'.to_sym].first).to eq first_title
         expect(subject.items.first.media_fragment).to eq media_fragment
+      end
+    end
+
+    context 'with invalid structure' do
+      let(:structure_tesim) do
+        '<?xml version="1.0" encoding="UTF-8"?>
+<Item label="Test Label">
+</Item>'
+      end
+      let(:error) { Nokogiri::XML::SyntaxError }
+      let(:errmsg) { "Empty root or Div node: Test Label" }
+
+      it 'raises SyntaxError' do
+        expect { subject }.to raise_error(error, errmsg)
       end
     end
 
