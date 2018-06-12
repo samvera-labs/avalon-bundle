@@ -177,29 +177,47 @@ RSpec.describe Hyrax::AVFileSetPresenter do
 
   describe '#range' do
     let(:structure_tesim) { nil }
-    let(:solr_document) { SolrDocument.new(id: id, structure_tesim: structure_tesim) }
+    let(:solr_document) { SolrDocument.new(id: id, structure_tesim: [structure_tesim]) }
 
     it 'responds to #range' do
       expect(presenter.respond_to?(:range)).to be true
     end
 
+    context 'with invalid structure' do
+      let(:structure_tesim) do
+        '<?xml version="1.0" encoding="UTF-8"?>
+<Item label="Test Label">
+</Item>'
+      end
+      let(:error) { Nokogiri::XML::SyntaxError }
+      let(:errmsg) { "Empty root or Div node: Test Label" }
+
+      it 'raises SyntaxError' do
+        expect { presenter.range }.to raise_error(error, errmsg)
+      end
+    end
+
     subject { presenter.range }
 
     context 'without structure' do
+      let(:solr_document) { SolrDocument.new(id: id, structure_tesim: nil) }
       let(:media_fragment) { 't=0,' }
+
       it 'returns a simple range' do
         expect(subject.label['@none'.to_sym].first).to eq first_title
         expect(subject.items.first.media_fragment).to eq media_fragment
       end
     end
 
-    # TODO
-#     context 'with empty structure' do
-#       let(:structure_tesim) do
-#         '<?xml version="1.0" encoding="UTF-8"?>
-# <Item label="Test Label">
-# </Item>'
-#     end
+    context 'with empty structure' do
+      let(:structure_tesim) { '' }
+      let(:media_fragment) { 't=0,' }
+
+      it 'returns a simple range' do
+        expect(subject.label['@none'.to_sym].first).to eq first_title
+        expect(subject.items.first.media_fragment).to eq media_fragment
+      end
+    end
 
     context 'with valid structure' do
       let(:structure_tesim) do
