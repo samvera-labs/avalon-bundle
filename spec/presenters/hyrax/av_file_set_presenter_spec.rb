@@ -89,6 +89,27 @@ RSpec.describe Hyrax::AVFileSetPresenter do
         # rubocop:enable RSpec/ExampleLength
       end
 
+      context 'when the file is an audio derivative with metadata' do
+        let(:files_metadata) do
+          [
+            { id: '1', label: 'high', external_file_uri: 'http://test.com/high.mp3' },
+            { id: '2', label: 'medium', external_file_uri: 'http://test.com/medium.mp3' }
+          ]
+        end
+        let(:solr_document) { SolrDocument.new(id: '12345', duration_tesim: 1000, files_metadata_ssi: files_metadata.to_json) }
+
+        before do
+          allow(solr_document).to receive(:audio?).and_return(true)
+        end
+
+        it 'creates an array of content objects with metadata' do
+          expect(subject).to all(be_instance_of IIIFManifest::V3::DisplayContent)
+          expect(subject.length).to eq 2
+          expect(subject.map(&:label)).to match_array(['high', 'medium'])
+          expect(subject.map(&:url)).to match_array(['http://test.com/high.mp3', 'http://test.com/medium.mp3'])
+        end
+      end
+
       context "when the file is an image" do
         before do
           allow(solr_document).to receive(:image?).and_return(true)
