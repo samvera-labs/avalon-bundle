@@ -94,4 +94,28 @@ RSpec.describe Hyrax::AudiovisualWorkPresenter do
       expect(presenter.manifest_metadata.all? { |v| !v['label'].include?("translation missing: ") }).to be true
     end
   end
+
+  describe '#ranges' do
+    subject { presenter.ranges }
+    let(:first_title) { 'Work Title' }
+    let(:title) { [first_title] }
+    let(:file_set_presenter) { instance_double("Hyrax::AVFileSetPresenter") }
+    let(:range) { instance_double("Avalon::ManifestRange") }
+
+    before do
+      allow(presenter).to receive(:title).and_return(title)
+      allow(presenter).to receive(:file_set_presenters).and_return([file_set_presenter, file_set_presenter])
+      allow(file_set_presenter).to receive(:range).and_return(range)
+    end
+
+    it 'responds to #ranges' do
+      expect(presenter.respond_to?(:ranges)).to be true
+    end
+
+    it 'returns an array of top level ManifestRanges from its File Set Presenters' do
+      expect(subject.size).to eq 1
+      expect(subject.first.label['@none'.to_sym]).to eq first_title
+      expect(subject.first.items).to eq [range, range]
+    end
+  end
 end

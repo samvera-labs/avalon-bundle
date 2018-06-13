@@ -15,6 +15,8 @@
 # limitations under the License.
 # ---  END LICENSE_HEADER BLOCK  ---
 
+require 'avalon/manifest_range'
+
 module Hyrax
   # This gets mixed into a work presenter in order to handle
   # iiif related methods
@@ -55,6 +57,15 @@ module Hyrax
       else
         IIIF_DEFAULT_VERSION
       end
+    end
+
+    def ranges
+      [
+        Avalon::ManifestRange.new(
+          label: { '@none'.to_sym => title.first },
+          items: file_set_presenters.collect(&:range)
+        )
+      ]
     end
 
     private

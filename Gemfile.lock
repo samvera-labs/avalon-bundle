@@ -11,7 +11,8 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/iiif_manifest.git
-  revision: 93fa3c2e38e3a8b0f1b5472250aa0113e0ff0662
+  revision: 5ecbb379b6378de4157bfad11b9c78346449345d
+  branch: v3_range_improvements
   specs:
     iiif_manifest (0.4.0)
       activesupport (>= 4)

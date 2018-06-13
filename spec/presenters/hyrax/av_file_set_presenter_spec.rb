@@ -18,17 +18,20 @@
 require 'rails_helper'
 
 RSpec.describe Hyrax::AVFileSetPresenter do
-  let(:solr_document) { SolrDocument.new(id: '12345') }
+  let(:id) { '12345' }
+  let(:solr_document) { SolrDocument.new(id: id) }
   let(:request) { instance_double("Request", base_url: 'http://test.host') }
   let(:ability) { instance_double("Ability") }
   let(:presenter) { described_class.new(solr_document, ability, request) }
   let(:read_permission) { true }
-  let(:id) { solr_document.id }
   let(:parent_presenter) { instance_double("Hyrax::GenericWorkPresenter", iiif_version: 2) }
+  let(:first_title) { 'File Set Title' }
+  let(:title) { [first_title] }
 
   before do
     allow(ability).to receive(:can?).with(:read, solr_document.id).and_return(read_permission)
     allow(presenter).to receive(:parent).and_return(parent_presenter)
+    allow(presenter).to receive(:title).and_return(title)
   end
 
   describe '#display_content' do
@@ -168,6 +171,74 @@ RSpec.describe Hyrax::AVFileSetPresenter do
             expect(subject.url).to eq "http://test.host/images/#{id}/full/600,/0/default.jpg"
           end
         end
+      end
+    end
+  end
+
+  describe '#range' do
+    subject { presenter.range }
+    let(:structure_tesim) { nil }
+    let(:solr_document) { SolrDocument.new(id: id, structure_tesim: [structure_tesim]) }
+
+    it 'responds to #range' do
+      expect(presenter.respond_to?(:range)).to be true
+    end
+
+    context 'without structure' do
+      let(:solr_document) { SolrDocument.new(id: id, structure_tesim: nil) }
+      let(:media_fragment) { 't=0,' }
+
+      it 'returns a simple range' do
+        expect(subject.label['@none'.to_sym].first).to eq first_title
+        expect(subject.items.first.media_fragment).to eq media_fragment
+      end
+    end
+
+    context 'with empty structure' do
+      let(:structure_tesim) { '' }
+      let(:media_fragment) { 't=0,' }
+
+      it 'returns a simple range' do
+        expect(subject.label['@none'.to_sym].first).to eq first_title
+        expect(subject.items.first.media_fragment).to eq media_fragment
+      end
+    end
+
+    context 'with invalid structure' do
+      let(:structure_tesim) do
+        '<?xml version="1.0" encoding="UTF-8"?>
+<Item label="Test Label">
+</Item>'
+      end
+      let(:error) { Nokogiri::XML::SyntaxError }
+      let(:errmsg) { "Empty root or Div node: Test Label" }
+
+      it 'raises SyntaxError' do
+        expect { subject }.to raise_error(error, errmsg)
+      end
+    end
+
+    context 'with valid structure' do
+      let(:structure_tesim) do
+        '<?xml version="1.0" encoding="UTF-8"?>
+<Item label="Root 0">
+    <Span label="Span 0.1" begin="0:00:00" end="0:01:00"/>
+    <Div label="Div 0.2">
+        <Span label="Span 0.2.1" begin="0:01:01" end="0:02:00"/>
+        <Span label="Span 0.2.2" begin="0:02:01" end="0:03:00"/>
+    </Div>
+</Item>'
+      end
+
+      it 'returns a hierarchy of ranges/canvases' do
+        expect(subject.label['@none'.to_sym].first).to eq 'Root 0'
+        expect(subject.items.first.label['@none'.to_sym].first).to eq 'Span 0.1'
+        expect(subject.items.first.items.first.media_fragment).to eq 't=0.0,60.0'
+        expect(subject.items.second.label['@none'.to_sym].first).to eq 'Div 0.2'
+        expect(subject.items.second.items.first.label['@none'.to_sym].first).to eq 'Span 0.2.1'
+        expect(subject.items.second.items.first.items.first.media_fragment).to eq 't=61.0,120.0'
+        expect(subject.items.second.items.second.label['@none'.to_sym].first).to eq 'Span 0.2.2'
+        expect(subject.items.second.items.second.items.first.media_fragment).to eq 't=121.0,180.0'
       end
     end
   end
