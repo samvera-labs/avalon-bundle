@@ -4,6 +4,7 @@ Metrics/BlockLength:
     - 'spec/**/*.rb'
 
 RSpec/ExampleLength:
+  Max: 10
   Exclude:
     - 'spec/features/create_generic_work_spec.rb'
     - 'spec/features/create_audiovisual_work_spec.rb'
