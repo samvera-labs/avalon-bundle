@@ -25,6 +25,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Ensure sprockets ~> 3.7.2 due to CVE-2018-3760
+gem 'sprockets', '~> 3.7.2'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
