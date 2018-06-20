@@ -75,10 +75,16 @@ module Hyrax
         )
       end
 
+      FLOAT_PATTERN = Regexp.new(/^\d+([.]\d*)?$/).freeze
+
       def parse_hour_min_sec(s)
         return nil if s.nil?
         smh = s.split(':').reverse
-        (Float(smh[0]) rescue 0) + 60*(Float(smh[1]) rescue 0) + 3600*(Float(smh[2]) rescue 0)
+        (0..2).each do |i|
+          # Use Regexp.match? when we drop ruby 2.3 support
+          smh[i] = smh[i] =~ FLOAT_PATTERN ? Float(smh[i]) : 0
+        end
+        smh[0] + (60 * smh[1]) + (3600 * smh[2])
       end
 
       # Note that the method returns empty Nokogiri Document instead of nil when structure_tesim doesn't exist or is empty.
