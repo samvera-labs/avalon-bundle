@@ -61,7 +61,8 @@ class SolrDocument
   attribute :music_publisher, Solr::Array, 'music_publisher_tesim'
   attribute :video_recording_identifier, Solr::Array, 'video_recording_identifier_tesim'
   attribute :table_of_contents, Solr::String, 'table_of_contents_tesim'
-  attribute :note, Solr::Array, 'note_tesim'
+  attribute :note, Solr::Array, 'note_ssm'
+  attribute :formatted_note, Solr::Array, 'formatted_note_tesim'
   attribute :terms_of_use, Solr::Array, 'terms_of_use_tesim'
 
   # Hyrax fix

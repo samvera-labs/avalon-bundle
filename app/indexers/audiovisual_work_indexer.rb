@@ -15,6 +15,8 @@
 # limitations under the License.
 # ---  END LICENSE_HEADER BLOCK  ---
 
+require 'json'
+
 # Generated via
 #  `rails generate hyrax:work AudiovisualWork`
 class AudiovisualWorkIndexer < Hyrax::WorkIndexer
@@ -32,4 +34,11 @@ class AudiovisualWorkIndexer < Hyrax::WorkIndexer
   #    solr_doc['my_custom_field_ssim'] = object.my_custom_property
   #  end
   # end
+  def generate_solr_document
+    super.tap do |solr_doc|
+      solr_doc['formatted_note_tesim'] = JSON.parse(object.note).collect do |n|
+        "#{n['type']}: #{n['note_body']}"
+      end
+    end
+  end
 end

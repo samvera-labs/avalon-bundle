@@ -95,8 +95,8 @@ class AudiovisualWork < ActiveFedora::Base
 
   # This property will put together type and note content in a parsable string
   # Also covers statement of responsibility
-  property :note, predicate: ::RDF::Vocab::SKOS.note do |index|
-    index.as :stored_searchable
+  property :note, predicate: ::RDF::Vocab::SKOS.note, multiple: false do |index|
+    index.as :displayable
   end
 
   property :terms_of_use, predicate: ::RDF::Vocab::DC.accessRights do |index|

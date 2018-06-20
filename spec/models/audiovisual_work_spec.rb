@@ -98,10 +98,11 @@ RSpec.describe AudiovisualWork do
        :music_publisher_tesim,
        :video_recording_identifier_tesim,
        :table_of_contents_tesim,
-       :note_tesim,
+       :note_ssm,
        :rights_statement_tesim,
        :license_tesim,
-       :terms_of_use_tesim]
+       :terms_of_use_tesim,
+       :formatted_note_tesim]
     end
 
     it 'has solr fields' do
@@ -112,6 +113,10 @@ RSpec.describe AudiovisualWork do
 
     it 'has human readable type' do
       expect(solr_doc.fetch('human_readable_type_tesim')).to eq 'Audiovisual Work'
+    end
+
+    it 'has a formatted note' do
+      expect(solr_doc.fetch('formatted_note_tesim')).to eq ['Statement of Responsibility: Jane Doe / Title']
     end
   end
 end
