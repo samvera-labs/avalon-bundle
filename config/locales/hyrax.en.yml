@@ -2,6 +2,36 @@ en:
   blacklight:
     search:
       fields:
+        audiovisual_work:
+          show:
+            abstract: Summary
+            bibliographic_id: Bibliographic ID
+            contributor: Contributor(s)
+            creator: Main Contributor(s)
+            date_created: Creation Date
+            date_issued: Publication Date
+            genre: Genre(s)
+            geographic_subject: Location(s)
+            issue_number: Issue Number
+            language: Language
+            lccn: LCCN
+            license: License
+            local: Local Identifier
+            matrix_number: Matrix Number
+            music_publisher: Music Publisher/Label
+            note: Note(s)
+            oclc: OCLC
+            permalink: Permalink
+            physical_description: Physical Description
+            publisher: Publisher
+            related_item: Related Item(s)
+            rights_statement: Right Statement
+            table_of_contents: Table of Contents
+            temporal_subject: Time Period(s)
+            terms_of_use: Terms of Use
+            title: Title
+            topical_subject: Subject(s)
+            video_recording_identifier: Video Recording Identifier
         facet:
           based_near_label_sim: Location
           creator_sim: Creator
