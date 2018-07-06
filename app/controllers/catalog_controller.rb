@@ -77,7 +77,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("contributor", :facetable), label: "Contributor", limit: 5
     config.add_facet_field solr_name("language", :facetable), limit: 5
     config.add_facet_field solr_name("genre", :facetable), label: "Genre", limit: 5, helper_method: :capitalize_value
-    config.add_facetdocker_field solr_name("file_format", :facetable), limit: 5
+    config.add_facet_field solr_name("file_format", :facetable), limit: 5
     config.add_facet_field solr_name('member_of_collections', :symbol), limit: 5, label: 'Collections'
     config.add_facet_field solr_name('workflow_state_name', :symbol), limit: 5, label: 'Workflow State', helper_method: :capitalize_value
 
