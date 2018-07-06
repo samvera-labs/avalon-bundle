@@ -19,4 +19,9 @@ module HyraxHelper
   include ::BlacklightHelper
   include Hyrax::BlacklightOverride
   include Hyrax::HyraxHelperBehavior
+
+  def capitalize_value(value)
+    return value.capitalize
+  end
+
 end
