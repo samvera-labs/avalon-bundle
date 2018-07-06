@@ -68,16 +68,18 @@ class CatalogController < ApplicationController
     # config.add_facet_field solr_name("publisher", :facetable), limit: 5 # TODO: issue#133:
     # config.add_facet_field solr_name("file_format", :facetable), limit: 5
     # config.add_facet_field solr_name('member_of_collections', :symbol), limit: 5, label: 'Collections'
-    # TODO: issue#133: publication date, unit, published, external group, date digitized, date ingested
 
-    config.add_facet_field solr_name("date_issued", :facetable), limit: 5
+    # TODO: issue#133: skip these fields: unit, external group, date digitized
+    config.add_facet_field solr_name("date_issued", :facetable), label: "Publication Date", limit: 5
     config.add_facet_field solr_name("date_created", :facetable), limit: 5
+    config.add_facet_field solr_name("date_uploaded", :facetable), limit: 5 # aka date_ingested
     config.add_facet_field solr_name("creator", :facetable), limit: 5
     config.add_facet_field solr_name("contributor", :facetable), label: "Contributor", limit: 5
     config.add_facet_field solr_name("language", :facetable), limit: 5
     config.add_facet_field solr_name("genre", :facetable), limit: 5
     config.add_facet_field solr_name("file_format", :facetable), limit: 5
     config.add_facet_field solr_name('member_of_collections', :symbol), limit: 5, label: 'Collections'
+    config.add_facet_field solr_name('workflow_state_name', :symbol), limit: 5, label: 'Workflow State'
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
@@ -104,7 +106,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("date_uploaded", :stored_sortable, type: :date), itemprop: 'datePublished', helper_method: :human_readable_date
     config.add_index_field solr_name("date_modified", :stored_sortable, type: :date), itemprop: 'dateModified', helper_method: :human_readable_date
     config.add_index_field solr_name("date_created", :stored_searchable), itemprop: 'dateCreated'
-    config.add_index_field solr_name("rights_statement", :stored_searchable), helper_method: :rights_statement_links
+    config.add_index_field solr_name("rights_staement", :stored_searchable), helper_method: :rights_statement_links
     config.add_index_field solr_name("license", :stored_searchable), helper_method: :license_links
     config.add_index_field solr_name("resource_type", :stored_searchable), label: "Resource Type", link_to_search: solr_name("resource_type", :facetable)
     config.add_index_field solr_name("file_format", :stored_searchable), link_to_search: solr_name("file_format", :facetable)
