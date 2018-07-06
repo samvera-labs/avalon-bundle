@@ -21,7 +21,7 @@ module HyraxHelper
   include Hyrax::HyraxHelperBehavior
 
   def capitalize_value(value)
-    return value.capitalize
+    value.capitalize
   end
 
 end
