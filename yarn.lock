@@ -3138,8 +3138,8 @@ hoek@2.x.x:
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
 
 hoist-non-react-statics@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.0.tgz#d2ca2dfc19c5a91c5a6615ce8e564ef0347e2a40"
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
 
 home-or-tmp@^2.0.0:
   version "2.0.0"
@@ -5931,9 +5931,9 @@ react-dom@^16.4.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-iiif-media-player@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-iiif-media-player/-/react-iiif-media-player-1.1.0.tgz#29c239284f7b3e164de63f5f932df8fde0a4ab9c"
+react-iiif-media-player@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-iiif-media-player/-/react-iiif-media-player-1.1.2.tgz#0f57146218f86e96edd0cf9562c71f54e573482e"
   dependencies:
     mediaelement "^4.2.9"
     react-redux "^5.0.7"
