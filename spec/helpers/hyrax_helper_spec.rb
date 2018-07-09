@@ -15,12 +15,13 @@
 # limitations under the License.
 # ---  END LICENSE_HEADER BLOCK  ---
 
-module HyraxHelper
-  include ::BlacklightHelper
-  include Hyrax::BlacklightOverride
-  include Hyrax::HyraxHelperBehavior
+require 'rails_helper'
 
-  def titleize_value(value)
-    value.titleize
+RSpec.describe HyraxHelper do
+  describe "#titleize_value" do
+    let(:value) { 'test state' }
+    it "returns a string with the value titleized" do
+      expect(helper.titleize_value(value)).to eq('Test State')
+    end
   end
 end
