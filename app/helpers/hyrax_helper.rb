@@ -20,7 +20,7 @@ module HyraxHelper
   include Hyrax::BlacklightOverride
   include Hyrax::HyraxHelperBehavior
 
-  def capitalize_value(value)
-    value.capitalize
+  def titleize_value(value)
+    value.titleize
   end
 end
