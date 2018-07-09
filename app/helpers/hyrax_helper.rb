@@ -23,5 +23,4 @@ module HyraxHelper
   def capitalize_value(value)
     value.capitalize
   end
-
 end
