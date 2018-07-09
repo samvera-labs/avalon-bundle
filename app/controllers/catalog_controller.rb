@@ -57,17 +57,31 @@ class CatalogController < ApplicationController
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
-    config.add_facet_field solr_name("human_readable_type", :facetable), label: "Type", limit: 5
-    config.add_facet_field solr_name("resource_type", :facetable), label: "Resource Type", limit: 5
+    # config.add_facet_field solr_name("human_readable_type", :facetable), label: "Type", limit: 5  # TODO: issue#133:
+    # config.add_facet_field solr_name("resource_type", :facetable), label: "Resource Type", limit: 5 # TODO: issue#133:
+    # config.add_facet_field solr_name("creator", :facetable), limit: 5
+    # config.add_facet_field solr_name("contributor", :facetable), label: "Contributor", limit: 5
+    # config.add_facet_field solr_name("keyword", :facetable), limit: 5 # TODO: issue#133:
+    # config.add_facet_field solr_name("subject", :facetable), limit: 5 # TODO: issue#133:
+    # config.add_facet_field solr_name("language", :facetable), limit: 5
+    # config.add_facet_field solr_name("based_near_label", :facetable), limit: 5  # TODO: issue#133:
+    # config.add_facet_field solr_name("publisher", :facetable), limit: 5 # TODO: issue#133:
+    # config.add_facet_field solr_name("file_format", :facetable), limit: 5
+    # config.add_facet_field solr_name('member_of_collections', :symbol), limit: 5, label: 'Collections'
+
+    # TODO: issue#133: these fields are skipped but need review to make sure they are not needed: unit, external group, date digitized
+    config.add_facet_field solr_name("date_issued", :facetable), label: "Publication Date", limit: 5
+    config.add_facet_field solr_name("date_created", :facetable), limit: 5
+    config.add_facet_field solr_name("date_uploaded", :facetable), limit: 5, # aka date_ingested
+                                                                   if: proc { |context| Ability.new(context.current_user).can_create_any_work? }
     config.add_facet_field solr_name("creator", :facetable), limit: 5
     config.add_facet_field solr_name("contributor", :facetable), label: "Contributor", limit: 5
-    config.add_facet_field solr_name("keyword", :facetable), limit: 5
-    config.add_facet_field solr_name("subject", :facetable), limit: 5
     config.add_facet_field solr_name("language", :facetable), limit: 5
-    config.add_facet_field solr_name("based_near_label", :facetable), limit: 5
-    config.add_facet_field solr_name("publisher", :facetable), limit: 5
+    config.add_facet_field solr_name("genre", :facetable), label: "Genre", limit: 5, helper_method: :titleize_value
     config.add_facet_field solr_name("file_format", :facetable), limit: 5
     config.add_facet_field solr_name('member_of_collections', :symbol), limit: 5, label: 'Collections'
+    config.add_facet_field solr_name('workflow_state_name', :symbol), limit: 5, label: 'Workflow State', helper_method: :titleize_value,
+                                                                      if: proc { |context| Ability.new(context.current_user).can_create_any_work? }
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
