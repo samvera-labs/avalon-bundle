@@ -30,5 +30,9 @@ module Hyrax
 
     # Transient fields to make SimpleForm happy
     attr_accessor :note_type, :note_body
+    def notes_with_types
+      # TODO: parse json from note
+      []
+    end
   end
 end
