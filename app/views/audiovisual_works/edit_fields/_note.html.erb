@@ -7,3 +7,18 @@ f.input :notes_with_types,
             required: f.object.required?(key),
             label: 'Note'
 %>
+
+<%# TODO: Move this into the asset pipeline? %>
+<script>
+  function note_object(){
+    return {
+             note_type: $(this).find('select').val(),
+             note_body: $(this).find('input').val()
+           }
+  }
+
+  $('.edit_audiovisual_work').submit(function(){
+    let note_object_array = $('li.note_with_type').map(note_object).get();
+    $('#audiovisual_work_note').val(JSON.stringify(note_object_array));
+  });
+</script>

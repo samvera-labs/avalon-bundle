@@ -1,4 +1,13 @@
   class NoteWithTypeInput < MultiValueInput
+    # Override to include note_with_type class
+    def inner_wrapper
+      <<-HTML
+        <li class="field-wrapper note_with_type">
+          #{yield}
+        </li>
+      HTML
+    end
+
     def build_field(value, index)
       select_input_html_options = input_html_options.dup.merge({
         name: "#{@builder.object_name}[note_type][]"
@@ -14,6 +23,10 @@
       select_input_html_options.delete(:required)
       select_input_html_options[:class].delete(:required)
       text_input_html_options[:class] << "multi-text-field"
+
+      # Remove ids to avoid id collisions
+      select_input_html_options[:id] = nil
+      text_input_html_options[:id] = nil
 
       if(text_input_html_options[:note_body].blank?)
         if(@rendered_first_element)

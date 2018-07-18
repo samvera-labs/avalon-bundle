@@ -37,7 +37,7 @@ class AudiovisualWorkIndexer < Hyrax::WorkIndexer
   def generate_solr_document
     super.tap do |solr_doc|
       solr_doc['formatted_note_tesim'] = JSON.parse(object.note).collect do |n|
-        "#{n['type']}: #{n['note_body']}"
+        "#{Hyrax::NoteTypesService.label(n['note_type'])}: #{n['note_body']}"
       end
     end
   end
