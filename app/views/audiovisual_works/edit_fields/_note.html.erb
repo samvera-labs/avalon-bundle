@@ -4,8 +4,7 @@ f.input :notes_with_types,
             as: :note_with_type,
             wrapper_html: { class: 'multi_value' },
             input_html: { class: 'form-control' },
-            required: f.object.required?(key),
-            label: 'Note'
+            required: f.object.required?(key)
 %>
 
 <%# TODO: Move this into the asset pipeline? %>

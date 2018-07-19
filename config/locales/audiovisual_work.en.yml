@@ -76,7 +76,7 @@ en:
           Matrix Number, which is the code on the run-out groove area of a gramophone record, should be used as an external record identifier that can connect the Avalon item to a catalog record or other record for the original item. This identifier differs from Bibliographic Identifier in that it is not used to retrieve a record from another system. Type specifies the type of external record identifier.
         music_publisher: |
           Music Publisher/Label should be used as an external record identifier that can connect the Avalon item to a catalog record or other record for the original item. This identifier differs from Bibliographic Identifier in that it is not used to retrieve a record from another system. Type specifies the type of external record identifier.
-        note: |
+        notes_with_types: |
           Note is used to describe aspects of the resource not accounted for in any of the other fields, such as creation or production credits, performers, venue, historical or biographical information, language details, awards given to the performance or the work performed. Recommended use is to provide a separate Contributor field for each person or body associated with the creation of the content and to use a Note to provide more information about such contributions or to provide information about secondary persons or bodies associated with the creation of the content. Type specifies the type of note and is used as a label in the user interface.<br><br>Statement of Responsibility is used to provide information about primary persons or bodies associated with the creation of the content, along with details about their roles. This information can be transcribed from the credits  listed in the resource itself or on its packaging. Recommended use is to provide a separate Contributor field for each person or body listed in the Statement of Responsibility. Statement of Responsibility may be left empty if the use of Contributor fields alone is preferred. Statement of Responsibility is displayed in the user interface appended to the Title field, following a ' / '.
         oclc: |
            Identifier assigned by Online Computer Library Center, Incorporated should be used as an external record identifier that can connect the Avalon item to a catalog record or other record for the original item. This identifier differs from Bibliographic Identifier in that it is not used to retrieve a record from another system. Type specifies the type of external record identifier.
@@ -130,7 +130,7 @@ en:
         local: Local Identifier
         matrix_number: Matrix Number
         music_publisher: Music Publisher/Label
-        note: Note(s)
+        notes_with_types: Note(s)
         oclc: OCLC
         permalink: Permalink
         physical_description: Physical Description
