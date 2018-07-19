@@ -40,7 +40,7 @@ module Hyrax
     def related_items_with_labels
       # Parse json from related_item
       return [] if related_item.blank?
-      JSON.parse(related_item).collect { |ri| [ri['related_item_url'], ri['related_item_label']] }
+      JSON.parse(related_item).collect { |ri| [ri['related_item_label'], ri['related_item_url']] }
     end
   end
 end

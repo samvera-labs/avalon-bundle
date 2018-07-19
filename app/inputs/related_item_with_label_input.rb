@@ -13,6 +13,7 @@ class RelatedItemWithLabelInput < MultiValueInput
     options[:class] ||= []
     options[:class] += ["#{input_dom_id} form-control multi-text-field"]
     options[:'aria-labelledby'] = label_id
+    options[:style] = 'width:50%'
     options
   end
 
@@ -21,6 +22,7 @@ class RelatedItemWithLabelInput < MultiValueInput
       name: "#{@builder.object_name}[related_item_url][]",
       id: nil,
       required: nil,
+      placeholder: 'URL',
       value: value
     )
   end
@@ -30,14 +32,15 @@ class RelatedItemWithLabelInput < MultiValueInput
       name: "#{@builder.object_name}[related_item_label][]",
       id: nil,
       required: nil,
+      placeholder: 'Label',
       value: value
     )
   end
 
   def build_field(value, _index)
     @rendered_first_element = true
-    output = @builder.text_field(:related_item_url, url_input_html_options(value[0]))
-    output += @builder.text_field(:related_item_label, label_input_html_options(value[1]))
+    output = @builder.text_field(:related_item_label, label_input_html_options(value[0]))
+    output += @builder.text_field(:related_item_url, url_input_html_options(value[1]))
     output
   end
 end

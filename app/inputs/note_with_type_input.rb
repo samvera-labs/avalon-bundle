@@ -24,7 +24,7 @@ class NoteWithTypeInput < MultiValueInput
     )
   end
 
-  def text_input_html_options(value)
+  def text_area_input_html_options(value)
     common_field_options.dup.merge(
       name: "#{@builder.object_name}[note_body][]",
       id: nil,
@@ -37,7 +37,7 @@ class NoteWithTypeInput < MultiValueInput
     @rendered_first_element = true
     note_type_choices = Hyrax::NoteTypesService.select_options
     output = @builder.select(:note_type, note_type_choices, { selected: value[0] }, select_input_html_options)
-    output += @builder.text_field(:note_body, text_input_html_options(value[1]))
+    output += @builder.text_area(:note_body, text_area_input_html_options(value[1]))
     output
   end
 end
