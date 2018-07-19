@@ -45,7 +45,6 @@ RSpec.describe Hyrax::AudiovisualWorkPresenter do
      :temporal_subject,
      :geographic_subject,
      :permalink,
-     :related_item,
      :bibliographic_id,
      :local,
      :oclc,
@@ -68,7 +67,7 @@ RSpec.describe Hyrax::AudiovisualWorkPresenter do
     end
 
     it "#related_item" do
-      expect(solr_document).to receive(:related_item)
+      expect(solr_document).to receive(:formatted_related_item)
       presenter.send(:related_item)
     end
 

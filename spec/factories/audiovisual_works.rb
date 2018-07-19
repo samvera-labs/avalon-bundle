@@ -31,7 +31,7 @@ FactoryBot.define do
     temporal_subject { ['1960s'] }
     geographic_subject { ['Bloomington, Ind.'] }
     permalink { ['a1b2c3'] }
-    related_item { ['http://example.com/another-resource'] }
+    related_item { '[{"related_item_url": "http://example.com/another-resource", "related_item_label": "Another Resource"}]' }
     bibliographic_id { 'ABC1234' }
     local { ['ABC1234'] }
     oclc { ['ocn12345'] }
