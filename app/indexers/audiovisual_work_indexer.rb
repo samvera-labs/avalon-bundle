@@ -36,19 +36,21 @@ class AudiovisualWorkIndexer < Hyrax::WorkIndexer
   # end
   def generate_solr_document
     super.tap do |solr_doc|
-      if object.note.present?
-        solr_doc['formatted_note_tesim'] = JSON.parse(object.note).collect do |n|
-          "#{Hyrax::NoteTypesService.label(n['note_type'])}: #{n['note_body']}"
-        end
-      end
-      if object.related_item.present?
-        solr_doc['formatted_related_item_tesim'] = JSON.parse(object.related_item).collect do |ri|
-          "<a href='#{ri['related_item_url']}' target='_blank'>" +
-            "<span class='glyphicon glyphicon-new-window'></span>&nbsp;" +
-            "#{ri['related_item_label']}" +
-          "</a>"
-        end
-      end
+      solr_doc['formatted_note_tesim'] = JSON.parse(object.note).collect { |n| format_note(n) } if object.note.present?
+      solr_doc['formatted_related_item_tesim'] = JSON.parse(object.related_item).collect { |ri| format_related_item(ri) } if object.related_item.present?
     end
   end
+
+  private
+
+    def format_note(note)
+      "#{Hyrax::NoteTypesService.label(note['note_type'])}: #{note['note_body']}"
+    end
+
+    def format_related_item(related_item)
+      "<a href='#{related_item['related_item_url']}' target='_blank'>" \
+        "<span class='glyphicon glyphicon-new-window'></span>&nbsp;" \
+        "#{related_item['related_item_label']}" \
+        "</a>"
+    end
 end

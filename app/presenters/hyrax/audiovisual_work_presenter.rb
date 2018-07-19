@@ -37,7 +37,6 @@ module Hyrax
       solr_document.formatted_related_item
     end
 
-
     # Override to inject work_type for proper i18n lookup
     def attribute_to_html(field, options = {})
       options[:html_dl] = true
