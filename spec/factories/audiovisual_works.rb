@@ -41,7 +41,7 @@ FactoryBot.define do
     music_publisher { ['M1234'] }
     video_recording_identifier { ['VID1234'] }
     table_of_contents { 'Table of Contents' }
-    note { '[{"type": "Statement of Responsibility", "note_body": "Jane Doe / Title"}]' }
+    note { '[{"note_type": "statement of responsibility", "note_body": "Jane Doe / Title"}]' }
     rights_statement { ['No Known Copyright'] }
     license { ['CC BY-SA-ND'] }
     terms_of_use { ['Terms of use for tests'] }

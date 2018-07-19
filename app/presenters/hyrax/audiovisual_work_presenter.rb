@@ -29,10 +29,9 @@ module Hyrax
              :video_recording_identifier, :table_of_contents, :terms_of_use,
              to: :solr_document
 
-    # These two delegates will probably need to change to real methods as part of
+    # This delegate will probably need to change to a real method as part of
     # https://github.com/samvera-labs/avalon-bundle/issues/119
     delegate :related_item, to: :solr_document
-    # delegate :formatted_note, to: :solr_document
 
     def note
       solr_document.formatted_note
