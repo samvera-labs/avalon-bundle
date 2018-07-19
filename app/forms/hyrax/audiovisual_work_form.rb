@@ -32,7 +32,7 @@ module Hyrax
     attr_accessor :note_type, :note_body
     def notes_with_types
       # Parse json from note
-      JSON.parse(note).collect {|n| [n['note_type'], n['note_body']]}
+      JSON.parse(note).collect { |n| [n['note_type'], n['note_body']] }
     end
   end
 end
