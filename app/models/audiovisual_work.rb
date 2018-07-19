@@ -59,7 +59,7 @@ class AudiovisualWork < ActiveFedora::Base
   end
 
   # Instead of :related_url this property will put together label and url in a parsable string
-  property :related_item, predicate: ::RDF::Vocab::DC.relation do |index|
+  property :related_item, predicate: ::RDF::Vocab::DC.relation, multiple: false do |index|
     index.as :stored_searchable
   end
 

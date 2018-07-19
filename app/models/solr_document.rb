@@ -52,6 +52,7 @@ class SolrDocument
   attribute :geographic_subject, Solr::Array, 'geographic_subject_tesim'
   attribute :permalink, Solr::String, 'permalink_tesim'
   attribute :related_item, Solr::Array, 'related_item_tesim'
+  attribute :formatted_related_item, Solr::Array, 'formatted_related_item_tesim'
   attribute :bibliographic_id, Solr::String, 'bibliographic_id_tesim'
   attribute :local, Solr::Array, 'local_tesim'
   attribute :oclc, Solr::Array, 'oclc_tesim'

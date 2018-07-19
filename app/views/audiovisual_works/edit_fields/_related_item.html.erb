@@ -1,0 +1,8 @@
+<%= f.input :related_item, as: :hidden %>
+<%=
+f.input :related_items_with_labels,
+            as: :related_item_with_label,
+            wrapper_html: { class: 'multi_value' },
+            input_html: { class: 'form-control' },
+            required: f.object.required?(key)
+%>

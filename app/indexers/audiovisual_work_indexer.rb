@@ -36,8 +36,18 @@ class AudiovisualWorkIndexer < Hyrax::WorkIndexer
   # end
   def generate_solr_document
     super.tap do |solr_doc|
-      solr_doc['formatted_note_tesim'] = JSON.parse(object.note).collect do |n|
-        "#{Hyrax::NoteTypesService.label(n['note_type'])}: #{n['note_body']}"
+      if object.note.present?
+        solr_doc['formatted_note_tesim'] = JSON.parse(object.note).collect do |n|
+          "#{Hyrax::NoteTypesService.label(n['note_type'])}: #{n['note_body']}"
+        end
+      end
+      if object.related_item.present?
+        solr_doc['formatted_related_item_tesim'] = JSON.parse(object.related_item).collect do |ri|
+          "<a href='#{ri['related_item_url']}' target='_blank'>" +
+            "<span class='glyphicon glyphicon-new-window'></span>&nbsp;" +
+            "#{ri['related_item_label']}" +
+          "</a>"
+        end
       end
     end
   end
