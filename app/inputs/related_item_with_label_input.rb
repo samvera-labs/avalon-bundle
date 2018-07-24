@@ -11,7 +11,7 @@ class RelatedItemWithLabelInput < MultiValueInput
   def common_field_options
     options = {}
     options[:class] ||= []
-    options[:class] += ["#{input_dom_id} form-control multi-text-field"]
+    options[:class] += ["#{input_dom_id} form-control multi-text-field multi_value"]
     options[:'aria-labelledby'] = label_id
     options[:style] = 'width:50%'
     options

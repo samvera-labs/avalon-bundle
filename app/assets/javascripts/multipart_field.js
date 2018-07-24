@@ -30,4 +30,10 @@ $(document).ready(function() {
     populateHiddenMultiPartField('#audiovisual_work_note', 'li.note_with_type');
     populateHiddenMultiPartField('#audiovisual_work_related_item', 'li.related_item_with_label');
   });
+
+  // Try again to focus on the first input field for related item.
+  // FIXME: This isn't working and the second input field gets focus
+  $('div.audiovisual_work_related_items_with_labels').bind('managed_field:add', function(e, newElement) {
+    $(newElement).focus();
+  });
 });
