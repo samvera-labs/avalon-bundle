@@ -20,7 +20,7 @@
 require 'rails_helper'
 
 RSpec.describe Hyrax::AudiovisualWorkForm do
-  let(:work) { AudiovisualWork.new }
+  let(:work) { build(:audiovisual_work) }
   let(:form) { described_class.new(work, nil, nil) }
 
   let(:required_fields) { [:title, :date_issued] }
@@ -51,4 +51,17 @@ RSpec.describe Hyrax::AudiovisualWorkForm do
 
     it { is_expected.to eq optional_fields }
   end
+
+  describe "#notes_with_types" do
+    subject { form.notes_with_types }
+
+    it { is_expected.to eq [["statement of responsibility", "Jane Doe / Title"]] }
+  end
+
+  describe "#related_items_with_labels" do
+    subject { form.related_items_with_labels }
+
+    it { is_expected.to eq [["Another Resource", "http://example.com/another-resource"]] }
+  end
+
 end

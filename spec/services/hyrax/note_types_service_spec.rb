@@ -15,19 +15,21 @@
 # limitations under the License.
 # ---  END LICENSE_HEADER BLOCK  ---
 
-module Hyrax
-  module NoteTypesService
-    mattr_accessor :authority
-    self.authority = Qa::Authorities::Local.subauthority_for('note_types')
+require 'rails_helper'
 
-    def self.select_options
-      authority.all.map do |element|
-        [element[:label], element[:id]]
-      end
-    end
+RSpec.describe Hyrax::NoteTypesService do
+  describe "select_options" do
+    subject { described_class.select_options }
 
-    def self.label(id)
-      authority.find(id).fetch('term')
+    it "has a select list" do
+      expect(subject.first).to eq ["General Note", "general"]
+      expect(subject.size).to eq 9
     end
+  end
+
+  describe "label" do
+    subject { described_class.label("awards") }
+
+    it { is_expected.to eq 'Awards' }
   end
 end
