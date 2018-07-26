@@ -63,5 +63,4 @@ RSpec.describe Hyrax::AudiovisualWorkForm do
 
     it { is_expected.to eq [["Another Resource", "http://example.com/another-resource"]] }
   end
-
 end

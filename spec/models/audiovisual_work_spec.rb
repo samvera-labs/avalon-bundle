@@ -120,7 +120,8 @@ RSpec.describe AudiovisualWork do
     end
 
     it 'has a formatted related_item' do
-      expect(solr_doc.fetch('formatted_related_item_tesim')).to eq ["<a href='http://example.com/another-resource' target='_blank'><span class='glyphicon glyphicon-new-window'></span>&nbsp;Another Resource</a>"]
+      expect(solr_doc.fetch('formatted_related_item_tesim')).to eq(
+        ["<a href='http://example.com/another-resource' target='_blank'><span class='glyphicon glyphicon-new-window'></span>&nbsp;Another Resource</a>"] )
     end
   end
 end
