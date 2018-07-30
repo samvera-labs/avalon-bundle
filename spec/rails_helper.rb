@@ -39,7 +39,6 @@ require 'hyrax'
 require 'factory_bot'
 require 'database_cleaner'
 require 'active_fedora/cleaner'
-require 'capybara/rails'
 require File.expand_path('spec/support/features/session_helpers', Hyrax::Engine.root)
 
 require "selenium/webdriver"

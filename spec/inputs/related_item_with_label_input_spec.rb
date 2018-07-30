@@ -20,23 +20,18 @@
 
 require 'rails_helper'
 
-RSpec.describe 'NoteWithTypeInput', type: :input do
+RSpec.describe 'RelatedItemWithLabelInput', type: :input do
   let(:work) { build(:audiovisual_work) }
   let(:builder) { SimpleForm::FormBuilder.new(:audiovisual_work, work, ActionView::Base.new, {}) }
-  let(:input) { NoteWithTypeInput.new(builder, :note, nil, :note_with_type, {}) }
+  let(:input) { RelatedItemWithLabelInput.new(builder, :related_item, nil, :related_item_with_label_input, {}) }
 
   describe '#build_field' do
     subject { input.send(:build_field, value, 0) }
-    let(:value) { ["statement of responsibility", "Jane Doe / Title"] }
+    let(:value) { ["Another Resource", "http://example.com/another-resource"]  }
 
-    it 'renders note input form' do
-      expect(subject).to have_select('audiovisual_work[note_type][]',
-        class: 'audiovisual_work_note form-control multi-text-field multi_value',
-        # aria-labelledby: 'audiovisual_work_note_label',
-        with_options: ['General Note', 'Awards'],
-        selected: 'Statement of Responsibility'
-      )
-      expect(subject).to have_field('audiovisual_work[note_body][]', type: 'textarea', with: 'Jane Doe / Title')
+    it 'renders related_item input form' do
+      expect(subject).to have_field('audiovisual_work[related_item_label][]', type: 'text', with: 'Another Resource')
+      expect(subject).to have_field('audiovisual_work[related_item_url][]', type: 'text', with: 'http://example.com/another-resource')
     end
   end
 end
