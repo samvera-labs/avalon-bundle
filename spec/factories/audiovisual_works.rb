@@ -31,7 +31,7 @@ FactoryBot.define do
     temporal_subject { ['1960s'] }
     geographic_subject { ['Bloomington, Ind.'] }
     permalink { ['a1b2c3'] }
-    related_item { ['http://example.com/another-resource'] }
+    related_item { '[{"related_item_url": "http://example.com/another-resource", "related_item_label": "Another Resource"}]' }
     bibliographic_id { 'ABC1234' }
     local { ['ABC1234'] }
     oclc { ['ocn12345'] }
@@ -41,7 +41,7 @@ FactoryBot.define do
     music_publisher { ['M1234'] }
     video_recording_identifier { ['VID1234'] }
     table_of_contents { 'Table of Contents' }
-    note { ['Statement of Responsibility: Jane Doe / Title'] }
+    note { '[{"note_type": "statement of responsibility", "note_body": "Jane Doe / Title"}]' }
     rights_statement { ['No Known Copyright'] }
     license { ['CC BY-SA-ND'] }
     terms_of_use { ['Terms of use for tests'] }

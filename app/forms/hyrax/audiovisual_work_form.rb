@@ -27,5 +27,20 @@ module Hyrax
                   :bibliographic_id, :local, :oclc, :lccn, :issue_number, :matrix_number, :music_publisher, :video_recording_identifier,
                   :table_of_contents, :note, :rights_statement, :license, :terms_of_use]
     self.required_fields = [:title, :date_issued]
+
+    # Transient fields to make SimpleForm happy
+    attr_accessor :note_type, :note_body
+    def notes_with_types
+      # Parse json from note
+      return [] if note.blank?
+      JSON.parse(note).collect { |n| [n['note_type'], n['note_body']] }
+    end
+
+    attr_accessor :related_item_url, :related_item_label
+    def related_items_with_labels
+      # Parse json from related_item
+      return [] if related_item.blank?
+      JSON.parse(related_item).collect { |ri| [ri['related_item_label'], ri['related_item_url']] }
+    end
   end
 end

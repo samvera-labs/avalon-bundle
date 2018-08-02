@@ -1,0 +1,19 @@
+terms:
+  - id: general
+    term: General Note
+  - id: awards
+    term: Awards
+  - id: biographical/historical
+    term: Bibliographical/Historical Note
+  - id: creation/production credits
+    term: Creation/Production Credits
+  - id: language
+    term: Language Note
+  - id: local
+    term: Local Note
+  - id: performers
+    term: Performers
+  - id: statement of responsibility
+    term: Statement of Responsibility
+  - id: venue
+    term: Venue/Event Date

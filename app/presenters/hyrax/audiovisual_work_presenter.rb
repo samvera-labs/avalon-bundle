@@ -29,10 +29,20 @@ module Hyrax
              :video_recording_identifier, :table_of_contents, :terms_of_use,
              to: :solr_document
 
-    # These two delegates will probably need to change to real methods as part of
-    # https://github.com/samvera-labs/avalon-bundle/issues/119
-    delegate :related_item, to: :solr_document
-    delegate :note, to: :solr_document
+    def note
+      solr_document.formatted_note
+    end
+
+    def related_item
+      solr_document.formatted_related_item
+    end
+
+    # Override to inject work_type for proper i18n lookup
+    def attribute_to_html(field, options = {})
+      options[:html_dl] = true
+      options[:work_type] = 'audiovisual_work'
+      super
+    end
 
     IIIF_METADATA_FIELDS = [
       :title, :creator, :rights_statement, :date_issued, :date_created, :contributor, :publisher, :abstract,

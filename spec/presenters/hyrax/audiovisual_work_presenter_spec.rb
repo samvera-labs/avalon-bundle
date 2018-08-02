@@ -45,7 +45,6 @@ RSpec.describe Hyrax::AudiovisualWorkPresenter do
      :temporal_subject,
      :geographic_subject,
      :permalink,
-     :related_item,
      :bibliographic_id,
      :local,
      :oclc,
@@ -55,7 +54,6 @@ RSpec.describe Hyrax::AudiovisualWorkPresenter do
      :music_publisher,
      :video_recording_identifier,
      :table_of_contents,
-     :note,
      :rights_statement,
      :license,
      :terms_of_use]
@@ -68,13 +66,13 @@ RSpec.describe Hyrax::AudiovisualWorkPresenter do
       end
     end
 
-    it "#related_itme" do
-      expect(solr_document).to receive(:related_item)
+    it "#related_item" do
+      expect(solr_document).to receive(:formatted_related_item)
       presenter.send(:related_item)
     end
 
     it "#note" do
-      expect(solr_document).to receive(:note)
+      expect(solr_document).to receive(:formatted_note)
       presenter.send(:note)
     end
   end
