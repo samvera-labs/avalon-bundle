@@ -20,7 +20,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'NoteWithTypeInput', type: :input do
+RSpec.describe NoteWithTypeInput, type: :input do
   let(:work) { build(:audiovisual_work) }
   let(:builder) { SimpleForm::FormBuilder.new(:audiovisual_work, work, ActionView::Base.new, {}) }
   let(:input) { NoteWithTypeInput.new(builder, :note, nil, :note_with_type, {}) }
@@ -31,11 +31,10 @@ RSpec.describe 'NoteWithTypeInput', type: :input do
 
     it 'renders note input form' do
       expect(subject).to have_select('audiovisual_work[note_type][]',
-        class: 'audiovisual_work_note form-control multi-text-field multi_value',
-        # aria-labelledby: 'audiovisual_work_note_label',
-        with_options: ['General Note', 'Awards'],
-        selected: 'Statement of Responsibility'
-      )
+                                     class: 'audiovisual_work_note form-control multi-text-field multi_value',
+                                     # aria-labelledby: 'audiovisual_work_note_label',
+                                     with_options: ['General Note', 'Awards'],
+                                     selected: 'Statement of Responsibility')
       expect(subject).to have_field('audiovisual_work[note_body][]', type: 'textarea', with: 'Jane Doe / Title')
     end
   end

@@ -20,14 +20,14 @@
 
 require 'rails_helper'
 
-RSpec.describe 'RelatedItemWithLabelInput', type: :input do
+RSpec.describe RelatedItemWithLabelInput, type: :input do
   let(:work) { build(:audiovisual_work) }
   let(:builder) { SimpleForm::FormBuilder.new(:audiovisual_work, work, ActionView::Base.new, {}) }
   let(:input) { RelatedItemWithLabelInput.new(builder, :related_item, nil, :related_item_with_label_input, {}) }
 
   describe '#build_field' do
     subject { input.send(:build_field, value, 0) }
-    let(:value) { ["Another Resource", "http://example.com/another-resource"]  }
+    let(:value) { ["Another Resource", "http://example.com/another-resource"] }
 
     it 'renders related_item input form' do
       expect(subject).to have_field('audiovisual_work[related_item_label][]', type: 'text', with: 'Another Resource')
