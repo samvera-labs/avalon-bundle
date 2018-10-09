@@ -31,7 +31,7 @@ class FileSet < ActiveFedora::Base
     end
   end
 
-  # def files_metadata
+  # def derivatives_metadata
   #   files.collect { |f| { id: f.id, label: f.label.first, external_file_uri: f.external_file_uri.first } }
   # end
 
