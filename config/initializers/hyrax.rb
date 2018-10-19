@@ -273,6 +273,3 @@ Qa::Authorities::Local.register_subauthority('genres', 'Qa::Authorities::Local::
 
 require 'active_fedora/with_metadata/file_format_schema'
 ActiveFedora::WithMetadata::DefaultMetadataClassFactory.file_metadata_schemas += [ActiveFedora::WithMetadata::FileFormatSchema]
-
-require 'active_fedora/with_metadata/external_file_uri_schema'
-ActiveFedora::WithMetadata::DefaultMetadataClassFactory.file_metadata_schemas += [ActiveFedora::WithMetadata::ExternalFileUriSchema]

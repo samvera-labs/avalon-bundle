@@ -23,17 +23,11 @@ class FileSet < ActiveFedora::Base
 
   directly_contains_one :structure, through: :files, type: ::RDF::URI('http://pcdm.org/use#IntermediateFile'), class_name: 'Hydra::PCDM::File'
 
-  self.indexer = FileSetIndexer
-
   def build_structure
     super.tap do |file|
       file.file_format = ::RDF::URI.new("http://pcdm.org/file-format-types#StructuredText")
     end
   end
-
-  # def derivatives_metadata
-  #   files.collect { |f| { id: f.id, label: f.label.first, external_file_uri: f.external_file_uri.first } }
-  # end
 
   def to_solr(solr_doc = {})
     super(solr_doc).tap do |doc|
