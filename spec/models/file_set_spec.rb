@@ -54,28 +54,4 @@ RSpec.describe FileSet do
       end
     end
   end
-
-  describe '#derivatives_metadata', clean_repo: true do
-    let(:file_set) { described_class.create }
-    let(:file_1) { Hydra::PCDM::File.new }
-    let(:derivatives_metadata) { [{ id: 'an_id', label: 'high', external_file_uri: 'http://test.file' }] }
-
-    context 'when derivative files are present' do
-      before do
-        file_1.id = 'an_id'
-        file_1.label = 'high'
-        file_1.external_file_uri = 'http://test.file'
-        file_set.files << file_1
-      end
-      it 'can be saved without errors' do
-        expect(file_set.save).to be_truthy
-      end
-      it 'responds to derivatives_metadata' do
-        expect(file_set.derivatives_metadata).to eq(derivatives_metadata)
-      end
-      it 'responds to to_solr' do
-        expect(file_set.to_solr['derivatives_metadata_ssi']).to eq(derivatives_metadata.to_json)
-      end
-    end
-  end
 end
