@@ -82,7 +82,7 @@ Hyrax.config do |config|
   # config.redis_namespace = "hyrax"
 
   # Path to the file characterization tool
-  # config.fits_path = "fits.sh"
+  config.fits_path = "fits.sh"
 
   # Path to the file derivatives creation tool
   # config.libreoffice_path = "soffice"
@@ -273,6 +273,3 @@ Qa::Authorities::Local.register_subauthority('genres', 'Qa::Authorities::Local::
 
 require 'active_fedora/with_metadata/file_format_schema'
 ActiveFedora::WithMetadata::DefaultMetadataClassFactory.file_metadata_schemas += [ActiveFedora::WithMetadata::FileFormatSchema]
-
-require 'active_fedora/with_metadata/external_file_uri_schema'
-ActiveFedora::WithMetadata::DefaultMetadataClassFactory.file_metadata_schemas += [ActiveFedora::WithMetadata::ExternalFileUriSchema]

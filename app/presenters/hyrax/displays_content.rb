@@ -74,9 +74,9 @@ module Hyrax
 
       def video_content
         # @see https://github.com/samvera-labs/iiif_manifest
-        if solr_document['files_metadata_ssi'].present?
-          files_metadata = JSON.parse(solr_document['files_metadata_ssi'])
-          external_files = files_metadata.select { |f| f['external_file_uri'].present? }
+        if solr_document['derivatives_metadata_ssi'].present?
+          derivatives_metadata = JSON.parse(solr_document['derivatives_metadata_ssi'])
+          external_files = derivatives_metadata.select { |f| f['external_file_uri'].present? }
           return external_files.map { |f| video_display_content(f['external_file_uri'], f['label']) } unless external_files.empty?
         end
         [video_display_content(download_path('mp4'), 'mp4'), video_display_content(download_path('webm'), 'webm')]
@@ -92,9 +92,9 @@ module Hyrax
       end
 
       def audio_content
-        if solr_document['files_metadata_ssi'].present?
-          files_metadata = JSON.parse(solr_document['files_metadata_ssi'])
-          external_files = files_metadata.select { |f| f['external_file_uri'].present? }
+        if solr_document['derivatives_metadata_ssi'].present?
+          derivatives_metadata = JSON.parse(solr_document['derivatives_metadata_ssi'])
+          external_files = derivatives_metadata.select { |f| f['external_file_uri'].present? }
           return external_files.map { |f| audio_display_content(f['external_file_uri'], f['label']) } unless external_files.empty?
         end
         [audio_display_content(download_path('ogg'), 'ogg'), audio_display_content(download_path('mp3'), 'mp3')]

@@ -93,13 +93,13 @@ RSpec.describe Hyrax::AVFileSetPresenter do
       end
 
       context 'when the file is an audio derivative with metadata' do
-        let(:files_metadata) do
+        let(:derivatives_metadata) do
           [
             { id: '1', label: 'high', external_file_uri: 'http://test.com/high.mp3' },
             { id: '2', label: 'medium', external_file_uri: 'http://test.com/medium.mp3' }
           ]
         end
-        let(:solr_document) { SolrDocument.new(id: '12345', duration_tesim: 1000, files_metadata_ssi: files_metadata.to_json) }
+        let(:solr_document) { SolrDocument.new(id: '12345', duration_tesim: 1000, derivatives_metadata_ssi: derivatives_metadata.to_json) }
 
         before do
           allow(solr_document).to receive(:audio?).and_return(true)
