@@ -2,7 +2,6 @@ version: '3.2'
 
 volumes:
   streaming:
-  database:
   fedora:
   solr:
   bundle:
@@ -13,25 +12,12 @@ networks:
   internal:
     
 services:
-  db:
-    image: avalonmediasystem/db:fedora4
-    volumes:
-      - database:/data
-    environment:
-      - AVALON_DB_PASSWORD
-      - FEDORA_DB_PASSWORD
-      - PGDATA=/data
-      - POSTGRES_USER=postgres
-    networks:
-      internal:
   fedora:
     image: avalonmediasystem/fedora:4.7.5
-    depends_on:
-      - db
     volumes:
       - fedora:/data
     environment:
-      - JAVA_OPTIONS=${JAVA_OPTIONS} -Dfcrepo.postgresql.password=${FEDORA_DB_PASSWORD} -Dfcrepo.postgresql.username=fedora -Dfcrepo.postgresql.host=db -Dfcrepo.modeshape.configuration=classpath:/config/jdbc-postgresql/repository.json
+      - JAVA_OPTIONS=${JAVA_OPTIONS} -Dfcrepo.modeshape.configuration=classpath:/config/file-simple/repository.json
     networks:
       internal:
   solr:
@@ -67,13 +53,11 @@ services:
     user: ${AVALON_UID}:${AVALON_GID}
     command: "/rails_init-dev.sh"
     depends_on:
-      - db
       - fedora
       - solr
       - redis
     environment:
       - REDIS_HOST=redis
-      - DATABASE_URL=postgresql://postgres@db/postgres         
       - FEDORA_URL=http://fedora:8080/fedora/rest
       - SOLR_URL=http://solr:8983/solr/avalon
     volumes:
