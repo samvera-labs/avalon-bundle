@@ -5,6 +5,8 @@ volumes:
   database:
   fedora:
   solr:
+  bundle:
+  npms:
 
 networks:
   external:
@@ -57,6 +59,11 @@ services:
       internal:
   avalon:
     image: avalonmediasystem/avalon:7.0-dev
+    build:
+      context: ./docker
+      args:
+        - AVALON_BRANCH=master
+        - SECRET_KEY_BASE=3fe397575565365108556c3e5549f139e8078a8ec8fd2675a83de96289b30550a266ac04488d7086322efbe573738e7b3ae005b2e3d9afd718aa337fa5e329cf
     user: ${AVALON_UID}:${AVALON_GID}
     command: "/rails_init-dev.sh"
     depends_on:
@@ -71,6 +78,8 @@ services:
       - SOLR_URL=http://solr:8983/solr/avalon
     volumes:
       - .:/home/app/avalon
+      - bundle:/usr/local/bundle
+      - npms:/home/app/node_modules
     ports:
       - 3000:3000 
     networks:
