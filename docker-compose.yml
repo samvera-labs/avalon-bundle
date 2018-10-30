@@ -60,12 +60,14 @@ services:
       - REDIS_HOST=redis
       - FEDORA_URL=http://fedora:8080/fedora/rest
       - SOLR_URL=http://solr:8983/solr/avalon
+      - NODE_PATH=/home/app/node_modules
     volumes:
       - .:/home/app/avalon
       - bundle:/usr/local/bundle
       - npms:/home/app/node_modules
     ports:
       - 3000:3000 
+      - 8080:8080 
     networks:
       external:
       internal:
