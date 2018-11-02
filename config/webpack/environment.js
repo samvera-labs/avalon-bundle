@@ -12,7 +12,8 @@ const eslintLoader = {
     query: {
       fix: true
     }
-  }]
+  }],
+  exclude: /node_modules/
 }
 // Ensure linting happens on pre-transpiled code
 environment.loaders.insert('eslint', eslintLoader, { before: 'babel'} )
