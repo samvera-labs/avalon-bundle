@@ -19,7 +19,7 @@
 #  `rails generate hyrax:work AudiovisualWork`
 module Hyrax
   class AudiovisualWorkPresenter < Hyrax::WorkShowPresenter
-    include DisplaysIIIF
+    include Hyrax::IiifAv::DisplaysIiifAv
     Hyrax::MemberPresenterFactory.file_presenter_class = Hyrax::AVFileSetPresenter
 
     delegate :date_issued,
