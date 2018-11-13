@@ -15,8 +15,6 @@
 # limitations under the License.
 # ---  END LICENSE_HEADER BLOCK  ---
 
-require 'avalon/manifest_range'
-
 module Hyrax
   class AVFileSetPresenter < Hyrax::IiifAv::IiifFileSetPresenter
     include Hyrax::IiifAv::DisplaysContent

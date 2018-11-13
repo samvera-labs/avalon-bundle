@@ -19,8 +19,7 @@
 #  `rails generate hyrax:work GenericWork`
 module Hyrax
   class GenericWorkPresenter < Hyrax::WorkShowPresenter
-    include DisplaysIIIF
-
+    include Hyrax::IiifAv::DisplaysIiifAv
     Hyrax::MemberPresenterFactory.file_presenter_class = Hyrax::AVFileSetPresenter
   end
 end
