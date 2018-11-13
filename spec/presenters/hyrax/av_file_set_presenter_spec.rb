@@ -19,6 +19,15 @@ require 'rails_helper'
 require 'hyrax/iiif_av/spec/shared_specs'
 
 RSpec.describe Hyrax::AVFileSetPresenter do
+  # HACK: To deal with inconsistencies between hyrax-iiif_av's expected generated urls and avalon-bundle's configured generator
+  around do |example|
+    original_builder = Hyrax.config.iiif_image_url_builder
+    default_builder = ->(file_id, base_url, size) { "#{base_url}/#{file_id}/full/#{size}/0/default.jpg" }
+    Hyrax.config.iiif_image_url_builder = default_builder
+    example.run
+    Hyrax.config.iiif_image_url_builder = original_builder
+  end
+
   it_behaves_like 'IiifAv::DisplaysContent'
 
   let(:id) { '12345' }
