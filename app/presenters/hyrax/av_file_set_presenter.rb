@@ -15,13 +15,9 @@
 # limitations under the License.
 # ---  END LICENSE_HEADER BLOCK  ---
 
-require 'avalon/manifest_range'
-
 module Hyrax
-  class AVFileSetPresenter < Hyrax::FileSetPresenter
-    include DisplaysContent
-
-    Hyrax::MemberPresenterFactory.file_presenter_class = Hyrax::AVFileSetPresenter
+  class AVFileSetPresenter < Hyrax::IiifAv::IiifFileSetPresenter
+    include Hyrax::IiifAv::DisplaysContent
 
     attr_accessor :media_fragment
 
@@ -33,7 +29,7 @@ module Hyrax
 
       def simple_iiif_range
         # TODO: embed_title?
-        Avalon::ManifestRange.new(
+        Hyrax::IiifAv::ManifestRange.new(
           label: { '@none'.to_sym => [title.first] },
           items: [
             clone.tap { |s| s.media_fragment = 't=0,' }
@@ -58,14 +54,14 @@ module Hyrax
         # raise an exception here as this error shall have been caught and handled by the parser and shall never happen here
         raise Nokogiri::XML::SyntaxError, "Empty root or Div node: #{div_node[:label]}" if items.empty?
 
-        Avalon::ManifestRange.new(
+        Hyrax::IiifAv::ManifestRange.new(
           label: { '@none'.to_sym => [div_node[:label]] },
           items: items
         )
       end
 
       def span_to_iiif_range(span_node)
-        Avalon::ManifestRange.new(
+        Hyrax::IiifAv::ManifestRange.new(
           label: { '@none'.to_sym => [span_node[:label]] },
           items: [
             clone.tap do |s|

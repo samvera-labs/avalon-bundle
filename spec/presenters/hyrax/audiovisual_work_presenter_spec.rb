@@ -18,10 +18,10 @@
 # Generated via
 #  `rails generate hyrax:work AudiovisualWork`
 require 'rails_helper'
-require 'support/shared_examples/concerns/displays_iiif_spec'
+require 'hyrax/iiif_av/spec/shared_specs'
 
 RSpec.describe Hyrax::AudiovisualWorkPresenter do
-  it_behaves_like "DisplaysIIIF"
+  it_behaves_like "IiifAv::DisplaysIiifAv"
 
   let(:solr_document) { SolrDocument.new(id: '12345') }
   let(:request) { instance_double("Request", base_url: 'http://test.host') }

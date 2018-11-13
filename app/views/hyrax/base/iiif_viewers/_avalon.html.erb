@@ -16,8 +16,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ---  END LICENSE_HEADER BLOCK  ---
 %>
-<%= javascript_pack_tag 'react-iiif-media-player-pack' %>
-<%= stylesheet_pack_tag 'react-iiif-media-player-pack' %>
-
-<div id="iiif-manifest-url" data-manifest-url="<%= main_app.polymorphic_path [main_app, :manifest, presenter], { locale: nil } %>"></div>
-<div id="react-mounter"></div>
+<% content_for(:head) do %>
+  <%= javascript_pack_tag 'application' %>
+  <%= stylesheet_pack_tag 'application' %>
+<% end %>
+<%= react_component("AvalonIiifPlayer", { manifestUrl: main_app.polymorphic_url([main_app, :manifest, presenter], { locale: nil }) }) %>

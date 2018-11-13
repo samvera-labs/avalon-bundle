@@ -84,7 +84,5 @@ jobs:
       - run:
           command: |
             bundle exec rake db:migrate
-
-            yarn test
             COVERAGE=true bundle exec rspec
             ./cc-test-reporter after-build -t simplecov --exit-code $?

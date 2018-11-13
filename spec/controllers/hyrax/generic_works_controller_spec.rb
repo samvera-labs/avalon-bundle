@@ -18,8 +18,8 @@
 # Generated via
 #  `rails generate hyrax:work GenericWork`
 require 'rails_helper'
-require 'support/shared_examples/concerns/iiif_controller_behavior_spec'
+require 'hyrax/iiif_av/spec/shared_specs'
 
 RSpec.describe Hyrax::GenericWorksController do
-  it_behaves_like 'IIIFControllerBehavior'
+  it_behaves_like 'IiifAv::ControllerBehavior'
 end
