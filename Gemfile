@@ -101,3 +101,5 @@ gem 'riiif', '~> 1.1'
 gem 'license_header'
 gem 'hyrax-active_encode'
 gem 'hyrax-iiif_av'
+
+gem 'react-rails'

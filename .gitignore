@@ -42,3 +42,8 @@ yarn-error.log*
 /gems
 /vendor/gems
 /public/assets
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity
