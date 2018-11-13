@@ -98,8 +98,8 @@ gem 'hydra-works', github: 'avalonmediasystem/hydra-works', branch: 'av_characte
 gem 'iiif_manifest', github: 'samvera-labs/iiif_manifest'
 gem 'riiif', '~> 1.1'
 
-gem 'license_header'
 gem 'hyrax-active_encode'
 gem 'hyrax-iiif_av'
+gem 'license_header'
 
 gem 'react-rails'
