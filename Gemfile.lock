@@ -10,6 +10,14 @@ GIT
       om (~> 3.1)
 
 GIT
+  remote: https://github.com/samvera-labs/hyrax-active_encode.git
+  revision: 1872d4770324953f15f7b730b6eb74888730f478
+  specs:
+    hyrax-active_encode (0.1.1)
+      active_encode (~> 0.4)
+      hyrax (~> 2.1)
+
+GIT
   remote: https://github.com/samvera-labs/iiif_manifest.git
   revision: 23857a194c9c3c4137c83f166c39d68882612826
   specs:
@@ -407,9 +415,6 @@ GEM
       signet
       simple_form (~> 3.2, <= 3.5.0)
       tinymce-rails (~> 4.1)
-    hyrax-active_encode (0.1.0)
-      active_encode (~> 0.4)
-      hyrax (~> 2.1)
     hyrax-iiif_av (0.2.0)
       blacklight
       hyrax (~> 2.4)
@@ -874,7 +879,7 @@ DEPENDENCIES
   fcrepo_wrapper
   hydra-works!
   hyrax (= 2.4)
-  hyrax-active_encode
+  hyrax-active_encode!
   hyrax-iiif_av
   iiif_manifest!
   jbuilder (~> 2.5)
@@ -904,4 +909,4 @@ DEPENDENCIES
   xray-rails
 
 BUNDLED WITH
-   1.16.3
+   1.16.6

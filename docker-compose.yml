@@ -10,7 +10,7 @@ volumes:
 networks:
   external:
   internal:
-    
+
 services:
   fedora:
     image: avalonmediasystem/fedora:4.7.5
@@ -32,9 +32,9 @@ services:
     networks:
       internal:
   hls:
-    image: avalonmediasystem/nginx
+    image: avalonmediasystem/nginx:avalon-7.0
     volumes:
-      - streaming:/data
+      - ./tmp/derivatives:/data
     ports:
        - "8880:80"
     networks:
@@ -66,8 +66,8 @@ services:
       - bundle:/usr/local/bundle
       - npms:/home/app/node_modules
     ports:
-      - 3000:3000 
-      - 8080:8080 
+      - 3000:3000
+      - 8080:8080
     networks:
       external:
       internal:

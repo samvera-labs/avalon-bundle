@@ -5916,9 +5916,9 @@ react-dom@^16.6.3:
     prop-types "^15.6.2"
     scheduler "^0.11.2"
 
-react-iiif-media-player@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/react-iiif-media-player/-/react-iiif-media-player-1.1.3.tgz#b18411a6695dbb7c53ffcbbc3518b3c3c7b5e354"
+"react-iiif-media-player@https://github.com/avalonmediasystem/react-iiif-media-player.git#typeless":
+  version "1.1.2"
+  resolved "https://github.com/avalonmediasystem/react-iiif-media-player.git#a4f8c909eaac46a1449675f7887ff1ff34bafb78"
   dependencies:
     mediaelement "^4.2.9"
     react-redux "^5.0.7"
