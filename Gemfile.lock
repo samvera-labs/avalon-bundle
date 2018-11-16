@@ -18,6 +18,15 @@ GIT
       hyrax (~> 2.1)
 
 GIT
+  remote: https://github.com/samvera-labs/hyrax-batch_ingest.git
+  revision: 7b87ee4321b3f3dd99011f2eaa4ab14e703da231
+  specs:
+    hyrax-batch_ingest (0.1.0)
+      hyrax (~> 2.2)
+      rails (~> 5.1.6)
+      roo (~> 2.7.0)
+
+GIT
   remote: https://github.com/samvera-labs/hyrax-iiif_av.git
   revision: 7b9642243313105696e8dd4d6914acc54414c28a
   specs:
@@ -701,6 +710,9 @@ GEM
     riiif (1.7.1)
       deprecation (>= 1.0.0)
       railties (>= 4.2, < 6)
+    roo (2.7.1)
+      nokogiri (~> 1)
+      rubyzip (~> 1.1, < 2.0.0)
     rsolr (2.2.1)
       builder (>= 2.1.2)
       faraday (>= 0.9.0)
@@ -885,6 +897,7 @@ DEPENDENCIES
   hydra-works!
   hyrax (= 2.4)
   hyrax-active_encode!
+  hyrax-batch_ingest!
   hyrax-iiif_av!
   iiif_manifest!
   jbuilder (~> 2.5)
