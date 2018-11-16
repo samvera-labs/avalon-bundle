@@ -83,7 +83,7 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
-gem 'webpacker', '~> 3.0'
+gem 'webpacker', '~> 4.0.0.pre.3'
 
 group :test do
   gem 'codeclimate-test-reporter'

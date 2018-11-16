@@ -9,7 +9,7 @@ class FfmpegOptionService
       [{ outputs:
                   [
                     { label: 'high', extension: 'mp4', ffmpeg_opt: "-ac 2 -ab 192k -ar 44100 -acodec #{audio_encoder.audio_encoder}" },
-                    { label: 'medium', extension: 'mp4', ffmpeg_opt: "-ac 2 -ab 96k -ar 44100 -acodec #{audio_encoder.audio_encoder}" }
+                    { label: 'medium', extension: 'mp4', ffmpeg_opt: "-ac 2 -ab 128k -ar 44100 -acodec #{audio_encoder.audio_encoder}" }
                   ]
       }]
     elsif file_set.video?

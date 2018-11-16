@@ -277,9 +277,5 @@ ActiveFedora::WithMetadata::DefaultMetadataClassFactory.file_metadata_schemas +=
 Hyrax::ActiveEncode::ActiveEncodeDerivativeService.default_options_service_class = FfmpegOptionService
 Hyrax::IiifAv.config.iiif_av_url_builder = lambda do |file_location_uri, _base_url|
   path = file_location_uri.sub(/^#{Hyrax.config.derivatives_path}/, '')
-  # id_path, file_path = path.split('-', 2)
-  # file_set_id = id_path.delete('/')
-  # filename = file_path[0, file_path.size / 2]
-  #Hyrax::Engine.routes.url_helpers.download_path(file_set_id, file: filename)
   "#{Settings.streaming.base_url}#{path}/index.m3u8"
 end
