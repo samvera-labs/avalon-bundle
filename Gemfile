@@ -83,7 +83,7 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
-gem 'webpacker', '~> 3.0'
+gem 'webpacker', '~> 4.0.0.pre.3'
 
 group :test do
   gem 'codeclimate-test-reporter'
@@ -98,8 +98,9 @@ gem 'hydra-works', github: 'avalonmediasystem/hydra-works', branch: 'av_characte
 gem 'iiif_manifest', github: 'samvera-labs/iiif_manifest'
 gem 'riiif', '~> 1.1'
 
-gem 'hyrax-active_encode'
-gem 'hyrax-iiif_av'
+gem 'hyrax-active_encode', github: 'samvera-labs/hyrax-active_encode'
+
+gem 'hyrax-iiif_av', github: 'samvera-labs/hyrax-iiif_av'
 gem 'license_header'
 
 gem 'react-rails'

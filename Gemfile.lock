@@ -10,6 +10,24 @@ GIT
       om (~> 3.1)
 
 GIT
+  remote: https://github.com/samvera-labs/hyrax-active_encode.git
+  revision: 1872d4770324953f15f7b730b6eb74888730f478
+  specs:
+    hyrax-active_encode (0.1.1)
+      active_encode (~> 0.4)
+      hyrax (~> 2.1)
+
+GIT
+  remote: https://github.com/samvera-labs/hyrax-iiif_av.git
+  revision: 7b9642243313105696e8dd4d6914acc54414c28a
+  specs:
+    hyrax-iiif_av (0.2.0)
+      blacklight
+      hyrax (~> 2.4)
+      iiif_manifest (~> 0.5)
+      rails (~> 5.1)
+
+GIT
   remote: https://github.com/samvera-labs/iiif_manifest.git
   revision: 23857a194c9c3c4137c83f166c39d68882612826
   specs:
@@ -407,14 +425,6 @@ GEM
       signet
       simple_form (~> 3.2, <= 3.5.0)
       tinymce-rails (~> 4.1)
-    hyrax-active_encode (0.1.0)
-      active_encode (~> 0.4)
-      hyrax (~> 2.1)
-    hyrax-iiif_av (0.2.0)
-      blacklight
-      hyrax (~> 2.4)
-      iiif_manifest (~> 0.5)
-      rails (~> 5.1)
     i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -839,7 +849,7 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webpacker (3.5.5)
+    webpacker (4.0.0.pre.3)
       activesupport (>= 4.2)
       rack-proxy (>= 0.6.1)
       railties (>= 4.2)
@@ -874,8 +884,8 @@ DEPENDENCIES
   fcrepo_wrapper
   hydra-works!
   hyrax (= 2.4)
-  hyrax-active_encode
-  hyrax-iiif_av
+  hyrax-active_encode!
+  hyrax-iiif_av!
   iiif_manifest!
   jbuilder (~> 2.5)
   jquery-rails
@@ -900,8 +910,8 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
-  webpacker (~> 3.0)
+  webpacker (~> 4.0.0.pre.3)
   xray-rails
 
 BUNDLED WITH
-   1.16.3
+   1.16.6

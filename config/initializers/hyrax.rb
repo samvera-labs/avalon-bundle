@@ -273,3 +273,9 @@ Qa::Authorities::Local.register_subauthority('genres', 'Qa::Authorities::Local::
 
 require 'active_fedora/with_metadata/file_format_schema'
 ActiveFedora::WithMetadata::DefaultMetadataClassFactory.file_metadata_schemas += [ActiveFedora::WithMetadata::FileFormatSchema]
+
+Hyrax::ActiveEncode::ActiveEncodeDerivativeService.default_options_service_class = FfmpegOptionService
+Hyrax::IiifAv.config.iiif_av_url_builder = lambda do |file_location_uri, _base_url|
+  path = file_location_uri.sub(/^#{Hyrax.config.derivatives_path}/, '')
+  "#{Settings.streaming.base_url}#{path}/index.m3u8"
+end
