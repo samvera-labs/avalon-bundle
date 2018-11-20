@@ -100,7 +100,7 @@ gem 'riiif', '~> 1.1'
 
 gem 'hyrax-active_encode', github: 'samvera-labs/hyrax-active_encode'
 
-gem 'hyrax-iiif_av'
+gem 'hyrax-iiif_av', github: 'samvera-labs/hyrax-iiif_av'
 gem 'license_header'
 
 gem 'react-rails'

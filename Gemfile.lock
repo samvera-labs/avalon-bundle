@@ -18,6 +18,16 @@ GIT
       hyrax (~> 2.1)
 
 GIT
+  remote: https://github.com/samvera-labs/hyrax-iiif_av.git
+  revision: 7b9642243313105696e8dd4d6914acc54414c28a
+  specs:
+    hyrax-iiif_av (0.2.0)
+      blacklight
+      hyrax (~> 2.4)
+      iiif_manifest (~> 0.5)
+      rails (~> 5.1)
+
+GIT
   remote: https://github.com/samvera-labs/iiif_manifest.git
   revision: 23857a194c9c3c4137c83f166c39d68882612826
   specs:
@@ -415,11 +425,6 @@ GEM
       signet
       simple_form (~> 3.2, <= 3.5.0)
       tinymce-rails (~> 4.1)
-    hyrax-iiif_av (0.2.0)
-      blacklight
-      hyrax (~> 2.4)
-      iiif_manifest (~> 0.5)
-      rails (~> 5.1)
     i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -880,7 +885,7 @@ DEPENDENCIES
   hydra-works!
   hyrax (= 2.4)
   hyrax-active_encode!
-  hyrax-iiif_av
+  hyrax-iiif_av!
   iiif_manifest!
   jbuilder (~> 2.5)
   jquery-rails
