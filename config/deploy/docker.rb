@@ -1,5 +1,6 @@
 server ENV['APP_HOST'], roles: %w{app}, user: fetch(:user)
 append :linked_files, "docker-compose.local.yml"
+append :linked_dirs, %w{config/settings tmp}
 
 namespace :docker do
   task :up do
