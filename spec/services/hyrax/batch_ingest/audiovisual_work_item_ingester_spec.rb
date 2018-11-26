@@ -21,15 +21,19 @@ describe Hyrax::BatchIngest::AudiovisualWorkItemIngester, clean_repo: true do
 
   let(:admin_set) { create(:admin_set) }
   let(:permission_template) { create(:permission_template, source_id: admin_set.id) }
-  let!(:workflow) { create(:workflow, allows_access_grant: true, active: true, permission_template_id: permission_template.id) }
-  let!(:deposit_action) { create(:workflow_action, workflow_id: workflow.id) }
+  let(:workflow) { create(:workflow, allows_access_grant: true, active: true, permission_template_id: permission_template.id) }
+
+  before do
+    create(:workflow_action, workflow_id: workflow.id)
+  end
 
   it_behaves_like 'a Hyrax::BatchIngest::BatchItemIngester'
 
   describe '#attributes' do
+    subject(:attributes) { ingester.attributes }
+
     let(:ingester) { described_class.new(batch_item) }
     let(:allowed_attributes) { AudiovisualWork.properties.keys + ['admin_set_id'] }
-    subject(:attributes) { ingester.attributes }
 
     its(['date_issued']) { is_expected.to eq '1990' }
     its(['title']) { is_expected.to eq ['lroom'] }
@@ -42,8 +46,8 @@ describe Hyrax::BatchIngest::AudiovisualWorkItemIngester, clean_repo: true do
     # TODO: test for other identifier
 
     it 'has only allowed attributes' do
-      attributes.keys.each do |attr|
-        expect(allowed_attributes.include? attr).to eq true
+      attributes.each_key do |attr|
+        expect(allowed_attributes.include?(attr)).to eq true
       end
     end
   end
