@@ -1,6 +1,6 @@
 server ENV['APP_HOST'], roles: %w{app}, user: fetch(:user)
-append :linked_files, "docker-compose.local.yml"
-append :linked_dirs, %w{config/settings tmp}
+append :linked_files, "docker-compose.local.yml", "db/development.sqlite3"
+append :linked_dirs, "config/settings", "tmp"
 
 namespace :docker do
   task :up do
