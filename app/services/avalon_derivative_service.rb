@@ -14,7 +14,11 @@ class AvalonDerivativeService < Hyrax::ActiveEncode::ActiveEncodeDerivativeServi
   # The destination_name parameter has to match up with the file parameter
   # passed to the DownloadsController
   def derivative_url(destination_name)
-    path = Hyrax::DerivativePath.derivative_path_for_reference(file_set, destination_name)
-    URI("file://#{path}").to_s
+    if destination_name.to_s == 'thumbnail' || destination_name.to_s == 'poster'
+      path = Hyrax::DerivativePath.derivative_path_for_reference(file_set, destination_name)
+      URI("file://#{path}").to_s
+    else
+      super
+    end
   end
 end
