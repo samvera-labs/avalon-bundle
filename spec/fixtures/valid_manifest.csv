@@ -1,0 +1,7 @@
+Batch Manifest 5,archivist1@example.com,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Bibliographic ID Label,Bibliographic ID,Other Identifier Type,Other Identifier,Title,Creator,Contributor,Genre,Publisher,Date Created,Date Issued,Abstract,Language,Physical Description,Related Item Label,Related Item URL,Topical Subject,Geographic Subject,Temporal Subject,Terms of Use,Table of Contents,Note Type,Note,Note Type,Note,Publish,Hidden,File,Label,Offset,Skip Transcoding,Absolute Location
+Catalog Key,3671440,OCLC,39096003,lroom,I,saidulla,,lroompubs,,1990,,,,,,Social engineering,,,,,,,,,Yes,No,assets/lunchroom_manners.mp4,lunchroom,,Yes,
+,,Catalog Key,BGU7855BT,pop,me,saidulla,,ppubs,,1991,,,,,,,,,,,,,,,No,Yes,assets/Popeye_forPresident.mp4,popeye,,Yes,
+,,Catalog Key,3671440,eb1,myself,saidulla,,spubs,,1992,"Recorded on May 2, 2010, Auer Concert Hall, Indiana University, Bloomington.",,,,,Organ music,,,,,,,,,Yes,No,assets/electricbeat-1.mp4,electricbeat1,,Yes,
+,,Collection Identifier,74-120d-F ATL 7567 --7569,eb2,,saidulla,,spubs,,1992,,,,,,Organ music,,,,,,,,,No,No,assets/electricbeat-2.mp4,electricbeat2,,No,
+,,OCLC,ocm20574051,eb3,,saidulla,,spubs,,1992,,,,,,Organ music,,,,,,,,,No,No,assets/electricbeat-3.mp4,electricbeat3,,No,

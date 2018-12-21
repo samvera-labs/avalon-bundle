@@ -1,0 +1,6 @@
+---
+ingest_types:
+  avalon_ingest_type:
+    label: "Avalon Ingest Type"
+    reader: "Hyrax::BatchIngest::AvalonBatchReader"
+    ingester: "Hyrax::BatchIngest::AudiovisualWorkItemIngester"

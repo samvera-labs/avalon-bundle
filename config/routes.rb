@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  mount Hyrax::BatchIngest::Engine, at: '/'
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
   mount Blacklight::Engine => '/'
   
