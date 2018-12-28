@@ -32,8 +32,6 @@ gem 'sprockets', '~> 3.7.2'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  # Use sqlite3 as the database in development
-  gem 'sqlite3'
   # Use Puma as the app server
   gem 'puma', '~> 3.7'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -57,7 +55,7 @@ group :development do
   gem 'xray-rails'
 end
 
-group :production do
+group :production, :development do
   # Use Postgres by default
   gem 'pg', '~> 0.18'
 end
@@ -86,6 +84,8 @@ end
 gem 'webpacker', '~> 4.0.0.pre.3'
 
 group :test do
+  # Use sqlite3 as the database in test
+  gem 'sqlite3'
   gem 'codeclimate-test-reporter'
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 3.1'

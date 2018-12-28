@@ -1,6 +1,7 @@
 version: '3.2'
 
 volumes:
+  db-avalon:
   streaming:
   fedora:
   solr:
@@ -12,6 +13,16 @@ networks:
   internal:
 
 services:
+  db-avalon:
+    image: postgres
+    volumes:
+      - db-avalon:/data
+    environment:
+      - PGDATA=/data
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=avalon
+    networks:
+      internal:
   fedora:
     image: avalonmediasystem/fedora:4.7.5
     volumes:
@@ -57,6 +68,7 @@ services:
       - solr
       - redis
     environment:
+      - DATABASE_URL=postgresql://postgres@db-avalon/avalon
       - REDIS_HOST=redis
       - FEDORA_URL=http://fedora:8080/fedora/rest
       - SOLR_URL=http://solr:8983/solr/avalon
