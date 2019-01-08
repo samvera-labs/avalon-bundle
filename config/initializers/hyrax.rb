@@ -279,3 +279,4 @@ Hyrax::IiifAv.config.iiif_av_url_builder = lambda do |file_location_uri, _base_u
   path = file_location_uri.sub(/^#{Hyrax.config.derivatives_path}/, '')
   "#{Settings.streaming.base_url}#{path}/index.m3u8"
 end
+# Hyrax::Admin::AdminSetsController.admin_set_create_service = Hyrax::AvalonAdminSetCreateService
