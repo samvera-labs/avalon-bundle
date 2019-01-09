@@ -15,17 +15,21 @@
 # limitations under the License.
 # ---  END LICENSE_HEADER BLOCK  ---
 
-class ApplicationController < ActionController::Base
-  helper Openseadragon::OpenseadragonHelper
-  # Adds a few additional behaviors into the application controller
-  include Blacklight::Controller
-  include Hydra::Controller::ControllerBehavior
+module AdminSetDropbox
+  extend ActiveSupport::Concern
 
-  # Adds Hyrax behaviors into the application controller
-  include Hyrax::Controller
-  include Hyrax::ThemedLayoutController
-  include Hyrax::Admin::AdminSetsController
-  with_themed_layout '1_column'
+  included do
+    property :dropbox_directory_name, predicate: ::RDF::URI.new('http://avalonmediasystem.org/rdf/vocab/collection#dropbox_directory_name'), multiple: false do |index|
+      index.as :symbol
+    end
+    before_create :create_dropbox_directory!
+  end
 
-  protect_from_forgery with: :exception
+  def dropbox
+    Avalon::Dropbox.new( dropbox_absolute_path, self )
+  end
+
+  def dropbox_absolute_path( name = nil )
+    File.join(Settings.dropbox.path, name || dropbox_directory_name)
+  end
 end

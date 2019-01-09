@@ -1,11 +1,11 @@
 # Copyright 2011-2018, The Trustees of Indiana University and Northwestern
 #   University.  Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
-# 
+#
 # You may obtain a copy of the License at
-# 
+#
 # http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software distributed
 #   under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
 #   CONDITIONS OF ANY KIND, either express or implied. See the License for the
@@ -13,16 +13,16 @@
 # ---  END LICENSE_HEADER BLOCK  ---
 require 'rails_helper'
 
-RSpec.describe AdminSet, type: :model do
+RSpec.describe Hyrax::AvalonAdminSetCreateService do
   describe '#create_dropbox_directory!' do
     let(:title) { '' }
-    let(:admin_set){ described_class.new(title: [title]) }
+    let(:admin_set){ AdminSet.new(title: [title]) }
 
     context 'with clean admin_set title' do
       let(:title) { 'african art' }
       it 'sets dropbox_directory_name using the admin_set title on admin_set' do
         allow(Dir).to receive(:mkdir)
-        admin_set.send(:create_dropbox_directory!)
+        described_class.create_dropbox_directory!(admin_set)
         expect(admin_set.dropbox_directory_title).to eq(title)
       end
     end
@@ -32,7 +32,7 @@ RSpec.describe AdminSet, type: :model do
       it 'sanitizes admin_set title for dropbox_directory_name ' do
         expect(Dir).to receive(:mkdir).with( File.join(Settings.dropbox.path, '______secret_rb') )
         allow(Dir).to receive(:mkdir)
-        admin_set.send(:create_dropbox_directory!)
+        described_class.create_dropbox_directory!(admin_set)
       end
     end
 
@@ -43,7 +43,7 @@ RSpec.describe AdminSet, type: :model do
         FileUtils.mkdir_p(File.join(Settings.dropbox.path, title))
         FileUtils.mkdir_p(File.join(Settings.dropbox.path, "#{title}_2"))
         expect(Dir).to receive(:mkdir).with(File.join(Settings.dropbox.path, "#{title}_3"))
-        admin_set.send(:create_dropbox_directory!)
+        described_class.create_dropbox_directory!(admin_set)
         FakeFS.deactivate!
       end
     end

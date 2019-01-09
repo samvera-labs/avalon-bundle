@@ -9,47 +9,64 @@ module Hyrax
     # @raise [RuntimeError] if you attempt to create a default admin set via this mechanism
     def self.call(admin_set:, creating_user:, **kwargs)
       super
-      create_dropbox_directory!
+      create_dropbox_directory!( admin_set )
     end
 
-    private
-
-    def create_dropbox_directory!
+    def self.create_dropbox_directory!( admin_set )
       if Settings.dropbox.path =~ %r(^s3://)
-        # do nothing here, s3 case is handled elsewhere
+        create_s3_dropbox_directory!( admin_set )
       else
-        create_fs_dropbox_directory!
+        create_fs_dropbox_directory!( admin_set )
       end
     end
 
-    def create_fs_dropbox_directory!
-      name = calculate_dropbox_directory_name do |n|
-        File.exist? dropbox_absolute_path(n)
+    class << self
+      private
+
+      def create_s3_dropbox_directory!( admin_set )
+        # do nothing for now, s3 case is handled elsewhere
+
+        # base_uri = Addressable::URI.parse(Settings.dropbox.path)
+        # name = calculate_dropbox_directory_name( admin_set ) do |n|
+        #   obj = FileLocator::S3File.new(base_uri.join(n).to_s + '/').object
+        #   obj.exists?
+        # end
+        # absolute_path = base_uri.join(name).to_s + '/'
+        # obj = FileLocator::S3File.new(absolute_path).object
+        # Aws::S3::Client.new.put_object(bucket: obj.bucket_name, key: obj.key)
+        # admin_set.dropbox_directory_name = name
       end
 
-      absolute_path = dropbox_absolute_path(name)
-
-      unless File.directory?(absolute_path)
-        begin
-          Dir.mkdir(absolute_path)
-        rescue Exception => e
-          Rails.logger.error "Could not create directory (#{absolute_path}): #{e.inspect}"
+      def create_fs_dropbox_directory!( admin_set )
+        name = calculate_dropbox_directory_name( admin_set ) do |n|
+          File.exist? admin_set.dropbox_absolute_path(n)
         end
+
+        absolute_path = admin_set.dropbox_absolute_path(name)
+
+        unless File.directory?(absolute_path)
+          begin
+            Dir.mkdir(absolute_path)
+          rescue Exception => e
+            Rails.logger.error "Could not create directory (#{absolute_path}): #{e.inspect}"
+          end
+        end
+        admin_set.dropbox_directory_name = name
       end
-      self.dropbox_directory_name = name
-    end
 
-    def calculate_dropbox_directory_name
-      name = self.dropbox_directory_name
+      def calculate_dropbox_directory_name( admin_set )
+        name = admin_set.dropbox_directory_name
 
-      if name.blank?
-        name = Avalon::Sanitizer.sanitize(self.name)
-        iter = 2
-        original_name = name.dup.freeze
-        while yield(name)
-          name = "#{original_name}_#{iter}"
-          iter += 1
+        if name.blank?
+          name = Avalon::Sanitizer.sanitize(admin_set.title)
+          iter = 2
+          original_name = name.dup.freeze
+          while yield(name)
+            name = "#{original_name}_#{iter}"
+            iter += 1
+          end
         end
+        name
       end
     end
   end

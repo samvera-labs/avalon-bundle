@@ -280,5 +280,7 @@ Hyrax::IiifAv.config.iiif_av_url_builder = lambda do |file_location_uri, _base_u
   "#{Settings.streaming.base_url}#{path}/index.m3u8"
 end
 
-# Hyrax::Admin::AdminSetsController.admin_set_create_service = Hyrax::AvalonAdminSetCreateService
-# require "#{Rails.root}/app/models/admins_set"
+Hyrax::Admin::AdminSetsController.admin_set_create_service = Hyrax::AvalonAdminSetCreateService
+AdminSet.class_eval do
+  include AdminSetDropbox
+end
