@@ -15,12 +15,15 @@
 # limitations under the License.
 # ---  END LICENSE_HEADER BLOCK  ---
 
-class AdminSet < ActiveFedora::Base
-  property :dropbox_directory_name, predicate: Avalon::RDFVocab::Collection.dropbox_directory_name, multiple: false do |index|
-    index.as :stored_sortable
-  end
+module AdminSetDropbox
+  extend ActiveSupport::Concern
 
-  before_create :create_dropbox_directory!
+  included do
+    property :dropbox_directory_name, predicate: ::RDF::URI.new('http://avalonmediasystem.org/rdf/vocab/collection#dropbox_directory_name'), multiple: false do |index|
+      index.as :symbol
+    end
+    before_create :create_dropbox_directory!
+  end
 
   def dropbox
     Avalon::Dropbox.new( dropbox_absolute_path, self )
