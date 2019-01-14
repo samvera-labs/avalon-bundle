@@ -24,7 +24,6 @@ class ApplicationController < ActionController::Base
   # Adds Hyrax behaviors into the application controller
   include Hyrax::Controller
   include Hyrax::ThemedLayoutController
-  include Hyrax::Admin::AdminSetsController
   with_themed_layout '1_column'
 
   protect_from_forgery with: :exception

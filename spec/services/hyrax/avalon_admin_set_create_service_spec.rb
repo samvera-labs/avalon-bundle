@@ -12,6 +12,7 @@
 #   specific language governing permissions and limitations under the License.
 # ---  END LICENSE_HEADER BLOCK  ---
 require 'rails_helper'
+require 'cancan/matchers'
 
 RSpec.describe Hyrax::AvalonAdminSetCreateService do
   describe '#create_dropbox_directory!' do
@@ -19,11 +20,20 @@ RSpec.describe Hyrax::AvalonAdminSetCreateService do
     let(:admin_set){ AdminSet.new(title: [title]) }
 
     context 'with clean admin_set title' do
-      let(:title) { 'african art' }
+      let(:title) { 'africanArt' }
       it 'sets dropbox_directory_name using the admin_set title on admin_set' do
         allow(Dir).to receive(:mkdir)
         described_class.create_dropbox_directory!(admin_set)
-        expect(admin_set.dropbox_directory_title).to eq(title)
+        expect(admin_set.dropbox_directory_name).to eq(title)
+      end
+    end
+
+    context 'with space in admin_set title' do
+      let(:title) { 'african art' }
+      it 'replace space with underscore in admin_set title for dropbox_directory_name' do
+        allow(Dir).to receive(:mkdir)
+        described_class.create_dropbox_directory!(admin_set)
+        expect(admin_set.dropbox_directory_name).to eq('african_art')
       end
     end
 
@@ -37,7 +47,7 @@ RSpec.describe Hyrax::AvalonAdminSetCreateService do
     end
 
     context 'with conflicting/existing dropbox directory' do
-      let(:title) { 'african art' }
+      let(:title) { 'african_art' }
       it 'adds a sequence number to the dropbox_directory_name' do
         FakeFS.activate!
         FileUtils.mkdir_p(File.join(Settings.dropbox.path, title))

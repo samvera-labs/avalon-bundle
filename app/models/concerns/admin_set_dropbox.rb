@@ -19,10 +19,11 @@ module AdminSetDropbox
   extend ActiveSupport::Concern
 
   included do
+    # TODO: issue #258 change URI to avalon-bundel?
     property :dropbox_directory_name, predicate: ::RDF::URI.new('http://avalonmediasystem.org/rdf/vocab/collection#dropbox_directory_name'), multiple: false do |index|
       index.as :symbol
     end
-    before_create :create_dropbox_directory!
+    # before_create :create_dropbox_directory!
   end
 
   def dropbox

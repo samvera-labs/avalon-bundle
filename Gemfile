@@ -90,6 +90,7 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov'
+  gem 'fakefs', require: 'fakefs/safe'
 end
 
 gem 'config'
@@ -99,7 +100,7 @@ gem 'iiif_manifest', github: 'samvera-labs/iiif_manifest'
 gem 'riiif', '~> 1.1'
 
 gem 'hyrax-active_encode', github: 'samvera-labs/hyrax-active_encode'
-gem 'hyrax-batch_ingest', github: 'samvera-labs/hyrax-batch_ingest'
+gem 'hyrax-batch_ingest', path: '/home/yingfeng/Projects/hyrax-batch_ingest'
 gem 'hyrax-iiif_av', github: 'samvera-labs/hyrax-iiif_av'
 gem 'license_header'
 
