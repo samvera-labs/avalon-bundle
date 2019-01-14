@@ -25,6 +25,10 @@ module Hyrax
       structure_ng_xml.root.blank? ? simple_iiif_range : structure_to_iiif_range
     end
 
+    def encode_record
+      ::ActiveEncode::EncodeRecord.where(global_id: solr_document["encode_global_id_ssim"]).first if solr_document["encode_global_id_ssim"]
+    end
+
     private
 
       def simple_iiif_range

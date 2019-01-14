@@ -20,4 +20,5 @@ limitations under the License.
   <%= javascript_pack_tag 'application' %>
   <%= stylesheet_pack_tag 'application' %>
 <% end %>
+<%= render 'encode_progress', file_set_presenters: presenter.file_set_presenters %>
 <%= react_component("AvalonIiifPlayer", { manifestUrl: main_app.polymorphic_url([main_app, :manifest, presenter], { locale: nil }) }) %>

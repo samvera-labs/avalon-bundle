@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181212170748) do
+ActiveRecord::Schema.define(version: 20190111234734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_encode_encode_records", id: :serial, force: :cascade do |t|
+    t.string "global_id"
+    t.string "state"
+    t.string "adapter"
+    t.string "title"
+    t.text "raw_object"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "bookmarks", id: :serial, force: :cascade do |t|
     t.integer "user_id", null: false

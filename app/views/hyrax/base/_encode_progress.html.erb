@@ -1,0 +1,30 @@
+<%# Later turn this into a react component that will request the status
+    from the mounted endpoint instead of looking it up via ActiveRecord %>
+<div class='table-responsive'>
+  <table class='table table-condensed'>
+    <thead>
+      <tr>
+        <th scope="col">File Set</th>
+        <th scope="col">State</th>
+        <th scope="col">Progress</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% file_set_presenters.each do |file_set_presenter| %>
+      <% if file_set_presenter.encode_record %>
+      <tr>
+        <td><%= file_set_presenter.id %></td>
+        <td><%= file_set_presenter.encode_record.state %></td>
+        <td><%= JSON.parse(file_set_presenter.encode_record.raw_object)["percent_complete"] %>%</td>
+      </tr>
+      <% else %>
+      <tr>
+        <td><%= file_set_presenter.id %></td>
+        <td>Not available</td>
+        <td>Not available</td>
+      </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
