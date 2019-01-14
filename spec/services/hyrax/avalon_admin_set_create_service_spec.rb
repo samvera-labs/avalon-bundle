@@ -20,7 +20,7 @@ RSpec.describe Hyrax::AvalonAdminSetCreateService do
     let(:admin_set){ AdminSet.new(title: [title]) }
 
     context 'with clean admin_set title' do
-      let(:title) { 'africanArt' }
+      let(:title) { 'americanArt' }
       it 'sets dropbox_directory_name using the admin_set title on admin_set' do
         allow(Dir).to receive(:mkdir)
         described_class.create_dropbox_directory!(admin_set)
@@ -47,13 +47,14 @@ RSpec.describe Hyrax::AvalonAdminSetCreateService do
     end
 
     context 'with conflicting/existing dropbox directory' do
-      let(:title) { 'african_art' }
+      let(:title) { 'asianArt' }
       it 'adds a sequence number to the dropbox_directory_name' do
         FakeFS.activate!
         FileUtils.mkdir_p(File.join(Settings.dropbox.path, title))
         FileUtils.mkdir_p(File.join(Settings.dropbox.path, "#{title}_2"))
-        expect(Dir).to receive(:mkdir).with(File.join(Settings.dropbox.path, "#{title}_3"))
+        # expect(Dir).to receive(:mkdir).with(File.join(Settings.dropbox.path, "#{title}_3"))
         described_class.create_dropbox_directory!(admin_set)
+        expect(admin_set.dropbox_directory_name).to eq("#{title}_3")
         FakeFS.deactivate!
       end
     end
