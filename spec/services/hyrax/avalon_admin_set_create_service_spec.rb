@@ -18,7 +18,7 @@ require 'cancan/matchers'
 RSpec.describe Hyrax::AvalonAdminSetCreateService do
   describe '#create_dropbox_directory!' do
     let(:title) { '' }
-    let(:admin_set){ AdminSet.new(title: [title]) }
+    let(:admin_set) { AdminSet.new(title: [title]) }
 
     context 'with clean admin_set title' do
       let(:title) { 'americanArt' }
@@ -41,7 +41,7 @@ RSpec.describe Hyrax::AvalonAdminSetCreateService do
     context 'with disallowed characters in admin_set title' do
       let(:title) { '../../secret.rb' }
       it 'sanitizes admin_set title for dropbox_directory_name ' do
-        expect(Dir).to receive(:mkdir).with( File.join(Settings.dropbox.path, '______secret_rb') )
+        expect(Dir).to receive(:mkdir).with(File.join(Settings.dropbox.path, '______secret_rb'))
         allow(Dir).to receive(:mkdir)
         described_class.create_dropbox_directory!(admin_set)
       end

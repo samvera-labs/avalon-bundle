@@ -27,10 +27,10 @@ module AdminSetDropbox
   end
 
   def dropbox
-    Avalon::Dropbox.new( dropbox_absolute_path, self )
+    Avalon::Dropbox.new(dropbox_absolute_path, self)
   end
 
-  def dropbox_absolute_path( name = nil )
+  def dropbox_absolute_path(name = nil)
     File.join(Settings.dropbox.path, name || dropbox_directory_name)
   end
 end

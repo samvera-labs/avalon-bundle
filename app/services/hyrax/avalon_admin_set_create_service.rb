@@ -28,21 +28,21 @@ module Hyrax
     # @raise [RuntimeError] if you attempt to create a default admin set via this mechanism
     def self.call(admin_set:, creating_user:, **kwargs)
       super
-      create_dropbox_directory!( admin_set )
+      create_dropbox_directory!(admin_set)
     end
 
-    def self.create_dropbox_directory!( admin_set )
-      if Settings.dropbox.path =~ %r(^s3://)
-        create_s3_dropbox_directory!( admin_set )
+    def self.create_dropbox_directory!(admin_set)
+      if Settings.dropbox.path =~ %r{^s3://}
+        create_s3_dropbox_directory!(admin_set)
       else
-        create_fs_dropbox_directory!( admin_set )
+        create_fs_dropbox_directory!(admin_set)
       end
     end
 
     class << self
       private
 
-      def create_s3_dropbox_directory!( admin_set )
+      def create_s3_dropbox_directory!(admin_set)
         # do nothing for now, s3 case is handled elsewhere
 
         # base_uri = Addressable::URI.parse(Settings.dropbox.path)
@@ -56,8 +56,8 @@ module Hyrax
         # admin_set.dropbox_directory_name = name
       end
 
-      def create_fs_dropbox_directory!( admin_set )
-        name = calculate_dropbox_directory_name( admin_set ) do |n|
+      def create_fs_dropbox_directory!(admin_set)
+        name = calculate_dropbox_directory_name(admin_set) do |n|
           File.exist? admin_set.dropbox_absolute_path(n)
         end
 
@@ -73,7 +73,7 @@ module Hyrax
         admin_set.dropbox_directory_name = name
       end
 
-      def calculate_dropbox_directory_name( admin_set )
+      def calculate_dropbox_directory_name(admin_set)
         name = admin_set.dropbox_directory_name
 
         if name.blank?
