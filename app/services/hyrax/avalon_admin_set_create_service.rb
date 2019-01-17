@@ -58,7 +58,7 @@ module Hyrax
 
       def create_fs_dropbox_directory!( admin_set )
         name = calculate_dropbox_directory_name( admin_set ) do |n|
-          File.exist? (n)
+          File.exist? admin_set.dropbox_absolute_path(n)
         end
 
         absolute_path = admin_set.dropbox_absolute_path(name)
