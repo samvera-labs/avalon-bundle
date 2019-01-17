@@ -11,6 +11,7 @@
 #   CONDITIONS OF ANY KIND, either express or implied. See the License for the
 #   specific language governing permissions and limitations under the License.
 # ---  END LICENSE_HEADER BLOCK  ---
+
 require 'rails_helper'
 require 'cancan/matchers'
 
@@ -52,7 +53,6 @@ RSpec.describe Hyrax::AvalonAdminSetCreateService do
         FakeFS.activate!
         FileUtils.mkdir_p(File.join(Settings.dropbox.path, title))
         FileUtils.mkdir_p(File.join(Settings.dropbox.path, "#{title}_2"))
-        # expect(Dir).to receive(:mkdir).with(File.join(Settings.dropbox.path, "#{title}_3"))
         described_class.create_dropbox_directory!(admin_set)
         expect(admin_set.dropbox_directory_name).to eq("#{title}_3")
         FakeFS.deactivate!

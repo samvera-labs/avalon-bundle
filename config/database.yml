@@ -13,7 +13,6 @@ development:
   <<: *default
   adapter: postgresql
   database: avalon
-  url: postgresql://postgres@localhost/avalon
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
