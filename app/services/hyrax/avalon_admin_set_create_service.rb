@@ -66,7 +66,7 @@ module Hyrax
         unless File.directory?(absolute_path)
           begin
             Dir.mkdir(absolute_path)
-          rescue Exception => e
+          rescue SystemCallError => e
             Rails.logger.error "Could not create directory (#{absolute_path}): #{e.inspect}"
           end
         end
