@@ -1,2 +1,5 @@
 streaming:
   base_url: http://localhost:8880/avalon
+dropbox:
+  path: /srv/avalon/dropbox
+  upload_uri: sftp://avalon.example.edu
