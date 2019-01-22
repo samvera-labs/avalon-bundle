@@ -6,9 +6,9 @@ namespace :batch do
     require 'avalon/batch/ingest'
 
     WithLocking.run(name: 'batch_ingest') do
-      logger.info "<< Scanning for new batch packages in existing collections >>"
-      Admin::Collection.all.each do |collection|
-        Avalon::Batch::Ingest.new(collection).scan_for_packages
+      logger.info "<< Scanning for new batch packages in existing admin sets >>"
+      AdminSet.all.each do |admin_set|
+        Hyrax::BatchScanner.new(admin_set).scan
       end
     end
   end
