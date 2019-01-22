@@ -16,11 +16,21 @@ require 'digest/md5'
 
 module Avalon
   class Dropbox
+    MANIFEST_EXTENSIONS = ['csv','xls','xlsx','ods']
+
     attr_reader :base_directory, :admin_set
 
     def initialize(root, admin_set)
       @base_directory = root
       @admin_set = admin_set
+    end
+
+    def manifests
+      Dir[File.join(base_directory, "**/*.{#{MANIFEST_EXTENSIONS.join(',')}}")]
+    end
+
+    def delete_manifest(manifest)
+      FileUtils.rm(manifest, force: true)
     end
   end
 end
