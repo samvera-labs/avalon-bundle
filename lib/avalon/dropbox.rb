@@ -25,12 +25,22 @@ module Avalon
       @admin_set = admin_set
     end
 
+    # Returns all unprocessed manifests within this dropbox
     def manifests
+      # TODO: handle s3 case, and use URI for source_location (need to change across batch ingest gem as well)
       Dir[File.join(base_directory, "**/*.{#{MANIFEST_EXTENSIONS.join(',')}}")]
     end
 
-    def delete_manifest(manifest)
-      FileUtils.rm(manifest, force: true)
-    end
+    # # Returns the source location of the specified manifest
+    # def manifest_location(manifest)
+    #   # TODO: handle s3 case, and use URI for source_location (need to change across batch ingest gem as well)
+    #   manifest.absolute_path
+    # end
+
+    # # Deletes the specified manifest file from its source location.
+    # def delete_manifest(manifest)
+    #   # TODO: handle s3 case
+    #   FileUtils.rm(manifest, force: true)
+    # end
   end
 end
