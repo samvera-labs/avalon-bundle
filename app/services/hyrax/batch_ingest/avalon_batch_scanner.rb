@@ -19,34 +19,12 @@
 module Hyrax
   module BatchIngest
     class AvalonBatchScanner < Hyrax::BatchIngest::BatchScanner
-      # attr_reader :admin_set
-
-      # def initialize(admin_set)
-      #   @admin_set = admin_set
-      # end
-
-      # # Scans dropboxes of all admin sets for new batch manifests, creates batches and run them.
-      # def scan
-      #   manifests = admin_set.dropbox.manifests
-      #   logger.info "<< Found #{manifests.count} new manifests for admin_set #{@admin_set.title.first} >>" if manifests.count > 0
-      #   manifests.each do |manifest|
-      #     logger.info "<< Processing manifest #{manifest.absolute_path} for admin set #{admin_set.id} >>"
-      #     # submitter_email will be populated later by batch reader
-      #     Hyrax::BatchIngest::BatchRunner.new(ingest_type: 'Avalon Ingest Type', source_location: manifest.absolute_path, admin_set_id: admin_set.id).run
-      #   end
-      # end
-
       protected
 
       # Scans all sub-folders within this admin set's dropbox and returns all unprocessed manifests.
       def unprocessed_manifests
         admin_set.dropbox.manifests
       end
-
-      # # Returns the source location of the specified manifest.
-      # def manifest_location(manifest)
-      #   admin_set.dropbox.manifest_location(manifest)
-      # end
     end
   end
 end
