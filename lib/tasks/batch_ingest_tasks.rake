@@ -8,7 +8,7 @@ namespace :batch do
     WithLocking.run(name: 'batch_ingest') do
       logger.info "<< Scanning for new batch packages in existing admin sets >>"
       AdminSet.all.each do |admin_set|
-        Hyrax::BatchScanner.new(admin_set).scan
+        Hyrax::BatchIngest::AvalonBatchScanner.new(admin_set).scan
       end
     end
   end
