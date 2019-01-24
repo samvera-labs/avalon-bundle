@@ -24,7 +24,7 @@ module Hyrax
         end
 
       # Deletes the batch manifest file from its source location.
-      def delete_manifest()
+      def delete_manifest
         # TODO: handle s3 case, and use URI for source_location (need to change across batch ingest gem as well)
         FileUtils.rm(@source_location, force: true)
       end
