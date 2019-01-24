@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'rails_helper'
+require 'cancan/matchers'
 require 'hyrax/batch_ingest/spec/shared_specs'
 
 describe Hyrax::BatchIngest::AvalonBatchReader do
@@ -36,6 +37,25 @@ describe Hyrax::BatchIngest::AvalonBatchReader do
 
     it 'includes all files' do
       expect(source_data["files"]).to eq files
+    end
+  end
+
+  describe '#delete_manifest' do
+    let(:source_location) { 'dropbox/TestAdminSet/manifest.csv' }
+    let(:reader) { described_class.new(source_location) }
+
+    before do
+      FakeFS.activate!
+      FileUtils.touch(source_location)
+    end
+
+    after do
+      FakeFS.deactivate!
+    end
+
+    it 'deletes the manifest file' do
+      reader.delete_manifest
+      expect(File.exist?(source_location)).to be false
     end
   end
 end
