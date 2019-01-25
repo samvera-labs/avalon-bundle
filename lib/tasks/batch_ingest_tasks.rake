@@ -6,7 +6,7 @@ namespace :batch do
     require 'avalon/batch/ingest'
 
     WithLocking.run(name: 'batch_ingest') do
-      logger.info "<< Scanning for unprocessed batch manifests for existing admin sets >>"
+      logger.info "<< Scanning for unprocessed batch manifests for all admin sets >>"
       AdminSet.all.each do |admin_set|
         Hyrax::BatchIngest::AvalonBatchScanner.new(admin_set).scan
       end

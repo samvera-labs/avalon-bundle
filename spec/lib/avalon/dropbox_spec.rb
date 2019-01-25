@@ -16,16 +16,15 @@ require 'rails_helper'
 require 'avalon/dropbox'
 
 describe Avalon::Dropbox do
-
   describe "#manifests" do
-    let(:base_directory) { 'dropbox/TestAdminSet/' }
-    let(:admin_set){ AdminSet.new(title: ['TestAdminSet']) }
+    let(:base_directory) { '/dropbox/TestAdminSet/' }
+    let(:admin_set) { double("AdmineSet") }
     let(:dropbox) { described_class.new(base_directory, admin_set)}
     let(:files) { ['manifest.csv', 'manifest.xls', 'test/manifest.xlsx', 'foo.txt'] }
 
     before do
       FakeFS.activate!
-      # FileUtils.touch(files)
+      FileUtils.mkdir_p(File.join(base_directory, 'test'))
       files.collect { |file| FileUtils.touch(File.join(base_directory, file)) }
     end
 
@@ -35,13 +34,12 @@ describe Avalon::Dropbox do
 
     subject { dropbox.manifests }
 
-    it 'returns all manifests files under the base dreictory' do
+    it 'returns all manifests files under the base directory' do
       subject.should include(File.join(base_directory, files[0]), File.join(base_directory, files[1]), File.join(base_directory, files[2]))
     end
 
-    it 'does not return any file with invalid file extension' do
+    it 'does not return any file with invalid manifest extension' do
       subject.should_not include(File.join(base_directory, files[3]))
     end
   end
-
 end

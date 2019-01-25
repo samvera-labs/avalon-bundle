@@ -20,9 +20,8 @@ require 'rails_helper'
 require 'hyrax/batch_ingest/spec/shared_specs'
 
 describe Hyrax::BatchIngest::AvalonBatchScanner do
-  let(:scannerer_class) { described_class }
+  let(:scanner_class) { described_class }
   let(:admin_set){ AdminSet.new(title: ['TestAdminSet']) }
 
   it_behaves_like 'a Hyrax::BatchIngest::BatchScanner'
-
 end
