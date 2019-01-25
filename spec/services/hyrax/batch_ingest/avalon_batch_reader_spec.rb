@@ -46,6 +46,7 @@ describe Hyrax::BatchIngest::AvalonBatchReader do
 
     before do
       FakeFS.activate!
+      FileUtils.mkdir_p(File.dirname(source_location))
       FileUtils.touch(source_location)
     end
 
