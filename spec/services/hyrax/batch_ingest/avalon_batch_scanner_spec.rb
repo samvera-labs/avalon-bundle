@@ -21,7 +21,15 @@ require 'hyrax/batch_ingest/spec/shared_specs'
 
 describe Hyrax::BatchIngest::AvalonBatchScanner do
   let(:scanner_class) { described_class }
-  let(:admin_set){ AdminSet.new(title: ['TestAdminSet']) }
+  let(:admin_set) { AdminSet.new }
+  let(:manifests) { ['/dropbox/TestAdminSet/manifest1.csv', '/dropbox/TestAdminSet/manifest2.csv'] }
+  let(:dropbox) { double('Dropbox') }
+
+  before do
+    # allow(admin_set).to receive(:id).and_return(0)
+    allow(admin_set).to receive(:dropbox).and_return(dropbox)
+    allow(dropbox).to receive(:manifests).and_return(manifests)
+  end
 
   it_behaves_like 'a Hyrax::BatchIngest::BatchScanner'
 end
