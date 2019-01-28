@@ -42,6 +42,36 @@ RSpec.describe Hyrax::AVFileSetPresenter do
     allow(presenter).to receive(:title).and_return(title)
   end
 
+  describe '#encode_record' do
+    subject { presenter.encode_record }
+    let(:encode_global_id) { 'gid://ActiveEncode/ActiveEncode::Base/1' }
+    let(:solr_document) { SolrDocument.new(id: id, encode_global_id_ssim: [encode_global_id]) }
+
+    it 'responds to #encode_record' do
+      expect(presenter.respond_to?(:encode_record)).to be true
+    end
+
+    context 'without global id' do
+      let(:solr_document) { SolrDocument.new(id: id, encode_global_id_ssim: nil) }
+
+      it { is_expected.to be_nil }
+    end
+
+    context 'when encode record does not exist' do
+      let(:encode_global_id) { 'gid://ActiveEncode/ActiveEncode::Base/non-existant' }
+
+      it { is_expected.to be_nil }
+    end
+
+    context 'when encode record exists' do
+      before do
+        ActiveEncode::EncodeRecord.create(global_id: encode_global_id)
+      end
+
+      it { is_expected.to be_a ActiveEncode::EncodeRecord }
+    end
+  end
+
   describe '#range' do
     subject { presenter.range }
     let(:structure_tesim) { nil }
