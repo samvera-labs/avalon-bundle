@@ -23,7 +23,7 @@ describe Hyrax::BatchIngest::AvalonBatchScanner do
   let(:scanner_class) { described_class }
   let(:admin_set) { AdminSet.new }
   let(:manifests) { ['/dropbox/TestAdminSet/manifest1.csv', '/dropbox/TestAdminSet/manifest2.csv'] }
-  let(:dropbox) { double('Dropbox') }
+  let(:dropbox) { instance_double('Dropbox') }
 
   before do
     # allow(admin_set).to receive(:id).and_return(0)

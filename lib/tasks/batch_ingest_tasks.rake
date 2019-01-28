@@ -2,7 +2,7 @@
 
 namespace :batch do
   desc "Starts Scanning for Avalon batch ingest"
-  task :hyrax_batch_ingest => :environment do
+  task hyrax_batch_ingest: :environment do
     require 'avalon/batch/ingest'
 
     WithLocking.run(name: 'batch_ingest') do

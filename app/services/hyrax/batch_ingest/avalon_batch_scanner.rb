@@ -21,10 +21,10 @@ module Hyrax
     class AvalonBatchScanner < Hyrax::BatchIngest::BatchScanner
       protected
 
-      # Scans all sub-folders within this admin set's dropbox and returns all unprocessed manifests.
-      def unprocessed_manifests
-        admin_set.dropbox.manifests
-      end
+        # Scans all sub-folders within this admin set's dropbox and returns all unprocessed manifests.
+        def unprocessed_manifests
+          admin_set.dropbox.manifests
+        end
     end
   end
 end
