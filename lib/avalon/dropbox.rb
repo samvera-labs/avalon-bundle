@@ -16,7 +16,7 @@ require 'digest/md5'
 
 module Avalon
   class Dropbox
-    MANIFEST_EXTENSIONS = ['csv','xls','xlsx','ods']
+    MANIFEST_EXTENSIONS = ['csv', 'xls', 'xlsx', 'ods'].freeze
 
     attr_reader :base_directory, :admin_set
 

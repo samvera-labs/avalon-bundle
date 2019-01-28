@@ -1,11 +1,11 @@
 # Copyright 2011-2018, The Trustees of Indiana University and Northwestern
 #   University.  Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
-# 
+#
 # You may obtain a copy of the License at
-# 
+#
 # http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software distributed
 #   under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
 #   CONDITIONS OF ANY KIND, either express or implied. See the License for the
@@ -17,9 +17,10 @@ require 'avalon/dropbox'
 
 describe Avalon::Dropbox do
   describe "#manifests" do
+    subject { dropbox.manifests }
     let(:base_directory) { '/dropbox/TestAdminSet/' }
-    let(:admin_set) { double("AdmineSet") }
-    let(:dropbox) { described_class.new(base_directory, admin_set)}
+    let(:admin_set) { instance_double("AdmineSet") }
+    let(:dropbox) { described_class.new(base_directory, admin_set) }
     let(:files) { ['manifest.csv', 'manifest.xls', 'test/manifest.xlsx', 'foo.txt'] }
 
     before do
@@ -31,8 +32,6 @@ describe Avalon::Dropbox do
     after do
       FakeFS.deactivate!
     end
-
-    subject { dropbox.manifests }
 
     it 'returns all manifests files under the base directory' do
       subject.should include(File.join(base_directory, files[0]), File.join(base_directory, files[1]), File.join(base_directory, files[2]))
