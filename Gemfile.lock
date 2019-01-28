@@ -11,8 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/hyrax-active_encode.git
-  revision: 89decacb2f762651e0dde816d248190ee08c41ce
-  branch: encode_global_id
+  revision: f850f639faed0771087fbfcbe17999e4520a60db
   specs:
     hyrax-active_encode (0.1.1)
       active_encode (~> 0.4)
@@ -305,6 +304,7 @@ GEM
     factory_bot_rails (4.11.1)
       factory_bot (~> 4.11.1)
       railties (>= 3.0.0)
+    fakefs (0.18.1)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     faraday-encoding (0.0.4)
@@ -897,6 +897,7 @@ DEPENDENCIES
   devise
   devise-guests (~> 0.6)
   factory_bot_rails
+  fakefs
   fcrepo_wrapper
   hydra-works!
   hyrax (= 2.4)
