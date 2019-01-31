@@ -103,5 +103,4 @@ gem 'hyrax-active_encode', github: 'samvera-labs/hyrax-active_encode'
 gem 'hyrax-batch_ingest', github: 'samvera-labs/hyrax-batch_ingest'
 gem 'hyrax-iiif_av', github: 'samvera-labs/hyrax-iiif_av'
 gem 'license_header'
-
 gem 'react-rails'

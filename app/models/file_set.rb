@@ -21,8 +21,8 @@
 require 'avalon_derivative_service'
 
 class FileSet < ActiveFedora::Base
-  include ::Hyrax::FileSetBehavior
   include Hyrax::ActiveEncode::FileSetBehavior
+  include ::Hyrax::FileSetBehavior
   self.indexer = Hyrax::ActiveEncode::ActiveEncodeIndexer
 
   directly_contains_one :structure, through: :files, type: ::RDF::URI('http://pcdm.org/use#IntermediateFile'), class_name: 'Hydra::PCDM::File'
