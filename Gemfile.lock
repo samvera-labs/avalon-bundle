@@ -10,13 +10,6 @@ GIT
       om (~> 3.1)
 
 GIT
-  remote: https://github.com/javan/whenever.git
-  revision: 81fc0c675c3d8f69a4220f3453c16e3a0d92b8d4
-  specs:
-    whenever (0.10.0)
-      chronic (>= 0.6.3)
-
-GIT
   remote: https://github.com/samvera-labs/hyrax-active_encode.git
   revision: f850f639faed0771087fbfcbe17999e4520a60db
   specs:
@@ -216,7 +209,6 @@ GEM
     chromedriver-helper (2.1.0)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
-    chronic (0.10.2)
     clipboard-rails (1.7.1)
     codeclimate-test-reporter (1.0.8)
       simplecov (<= 0.13)
@@ -880,7 +872,6 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
-    with_locking (1.0.2)
     xml-simple (1.1.5)
     xpath (3.1.0)
       nokogiri (~> 1.8)
@@ -938,8 +929,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
   webpacker (~> 4.0.0.pre.3)
-  whenever!
-  with_locking
   xray-rails
 
 BUNDLED WITH

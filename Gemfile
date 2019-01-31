@@ -104,6 +104,3 @@ gem 'hyrax-batch_ingest', github: 'samvera-labs/hyrax-batch_ingest'
 gem 'hyrax-iiif_av', github: 'samvera-labs/hyrax-iiif_av'
 gem 'license_header'
 gem 'react-rails'
-
-gem 'whenever', git: "https://github.com/javan/whenever.git", require: false
-gem 'with_locking'
