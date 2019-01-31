@@ -26,7 +26,6 @@ describe Hyrax::BatchIngest::AvalonBatchScanner do
   let(:dropbox) { instance_double('Dropbox') }
 
   before do
-    # allow(admin_set).to receive(:id).and_return(0)
     allow(admin_set).to receive(:dropbox).and_return(dropbox)
     allow(dropbox).to receive(:manifests).and_return(manifests)
   end
