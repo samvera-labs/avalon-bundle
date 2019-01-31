@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/hyrax-batch_ingest.git
-  revision: ef763d9742943bff7491af220de5523348280b3c
+  revision: d0c69e2b26a7e189d2cc545349bc4c93ef108209
   specs:
     hyrax-batch_ingest (0.1.0)
       hyrax (~> 2.2)
@@ -304,6 +304,7 @@ GEM
     factory_bot_rails (4.11.1)
       factory_bot (~> 4.11.1)
       railties (>= 3.0.0)
+    fakefs (0.18.1)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     faraday-encoding (0.0.4)
@@ -893,6 +894,7 @@ DEPENDENCIES
   devise
   devise-guests (~> 0.6)
   factory_bot_rails
+  fakefs
   fcrepo_wrapper
   hydra-works!
   hyrax (= 2.4)
