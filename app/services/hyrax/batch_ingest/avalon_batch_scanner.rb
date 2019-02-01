@@ -15,21 +15,16 @@
 # limitations under the License.
 # ---  END LICENSE_HEADER BLOCK  ---
 
-module AdminSetDropbox
-  extend ActiveSupport::Concern
+# frozen_string_literal: true
+module Hyrax
+  module BatchIngest
+    class AvalonBatchScanner < Hyrax::BatchIngest::BatchScanner
+      protected
 
-  included do
-    # TODO: issue #258 change URI to avalon-bundle?
-    property :dropbox_directory_name, predicate: ::RDF::URI.new('http://avalonmediasystem.org/rdf/vocab/collection#dropbox_directory_name'), multiple: false do |index|
-      index.as :symbol
+        # Scans all sub-folders within this admin set's dropbox and returns all unprocessed manifests.
+        def unprocessed_manifests
+          admin_set.dropbox.manifests
+        end
     end
-  end
-
-  def dropbox
-    @dropbox ||= Avalon::Dropbox.new(dropbox_absolute_path, self)
-  end
-
-  def dropbox_absolute_path(name = nil)
-    File.join(Settings.dropbox.path, name || dropbox_directory_name)
   end
 end

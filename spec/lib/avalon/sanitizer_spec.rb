@@ -12,23 +12,21 @@
 #   specific language governing permissions and limitations under the License.
 # ---  END LICENSE_HEADER BLOCK  ---
 
-require 'digest/md5'
+require 'rails_helper'
+require 'avalon/sanitizer'
 
-module Avalon
-  class Dropbox
-    MANIFEST_EXTENSIONS = ['csv', 'xls', 'xlsx', 'ods'].freeze
-
-    attr_reader :base_directory, :admin_set
-
-    def initialize(root, admin_set)
-      @base_directory = root
-      @admin_set = admin_set
+describe Avalon::Sanitizer do
+  describe '#sanitize' do
+    it 'replaces blacklisted characters' do
+      expect(described_class.sanitize('abcdefg&', ['&', '_'])).to eq('abcdefg_')
     end
 
-    # Returns all unprocessed manifests within this dropbox
-    def manifests
-      # TODO: handle s3 case, and use URI for source_location (need to change across batch ingest gem as well)
-      Dir[File.join(base_directory, "**/*.{#{MANIFEST_EXTENSIONS.join(',')}}")]
+    it 'replaces multiple blacklisted characters' do
+      expect(described_class.sanitize('avalon*media&system', ['*&', '__'])).to eq('avalon_media_system')
+    end
+
+    it 'does not modify a string without any blacklisted characters' do
+      expect(described_class.sanitize('avalon_media_system', ['*&', '__'])).to eq('avalon_media_system')
     end
   end
 end

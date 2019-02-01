@@ -15,21 +15,20 @@
 # limitations under the License.
 # ---  END LICENSE_HEADER BLOCK  ---
 
-module AdminSetDropbox
-  extend ActiveSupport::Concern
+# frozen_string_literal: true
+require 'rails_helper'
+require 'hyrax/batch_ingest/spec/shared_specs'
 
-  included do
-    # TODO: issue #258 change URI to avalon-bundle?
-    property :dropbox_directory_name, predicate: ::RDF::URI.new('http://avalonmediasystem.org/rdf/vocab/collection#dropbox_directory_name'), multiple: false do |index|
-      index.as :symbol
-    end
+describe Hyrax::BatchIngest::AvalonBatchScanner do
+  let(:scanner_class) { described_class }
+  let(:admin_set) { AdminSet.new }
+  let(:manifests) { ['/dropbox/TestAdminSet/manifest1.csv', '/dropbox/TestAdminSet/manifest2.csv'] }
+  let(:dropbox) { instance_double('Dropbox') }
+
+  before do
+    allow(admin_set).to receive(:dropbox).and_return(dropbox)
+    allow(dropbox).to receive(:manifests).and_return(manifests)
   end
 
-  def dropbox
-    @dropbox ||= Avalon::Dropbox.new(dropbox_absolute_path, self)
-  end
-
-  def dropbox_absolute_path(name = nil)
-    File.join(Settings.dropbox.path, name || dropbox_directory_name)
-  end
+  it_behaves_like 'a Hyrax::BatchIngest::BatchScanner'
 end
