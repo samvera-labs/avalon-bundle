@@ -85,12 +85,12 @@ gem 'webpacker', '~> 4.0.0.pre.3'
 
 group :test do
   # Use sqlite3 as the database in test
-  gem 'sqlite3'
   gem 'codeclimate-test-reporter'
   gem 'database_cleaner'
+  gem 'fakefs', require: 'fakefs/safe'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov'
-  gem 'fakefs', require: 'fakefs/safe'
+  gem 'sqlite3'
 end
 
 gem 'config'
