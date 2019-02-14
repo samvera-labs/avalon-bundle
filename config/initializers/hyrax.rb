@@ -274,6 +274,15 @@ Qa::Authorities::Local.register_subauthority('genres', 'Qa::Authorities::Local::
 require 'active_fedora/with_metadata/file_format_schema'
 ActiveFedora::WithMetadata::DefaultMetadataClassFactory.file_metadata_schemas += [ActiveFedora::WithMetadata::FileFormatSchema]
 
+## Use the following config for Elastic Transcoder
+# Hyrax::ActiveEncode::WatchedEncode.engine_adapter = :elastic_transcoder
+# Hyrax::ActiveEncode::ActiveEncodeDerivativeService.default_options_service_class = ElasticTranscoderOptionService
+# Hyrax::ActiveEncode::ActiveEncodeDerivativeService.default_encode_class = Hyrax::ActiveEncode::WatchedEncode
+# Hyrax::ActiveEncode::ActiveEncodeDerivativeService.default_local_streaming = false # Stop hyrax-active_encode from moving  derivatives
+# Hyrax::IiifAv.config.iiif_av_url_builder = lambda do |file_location_uri, _base_url|
+#  path = file_location_uri.sub(/s3:\/\/[\w-]+\//, '')
+#  "#{Settings.streaming.base_url}#{path}"
+# end
 Hyrax::ActiveEncode::ActiveEncodeDerivativeService.default_options_service_class = FfmpegOptionService
 Hyrax::ActiveEncode::ActiveEncodeDerivativeService.default_encode_class = Hyrax::ActiveEncode::WatchedEncode
 Hyrax::IiifAv.config.iiif_av_url_builder = lambda do |file_location_uri, _base_url|

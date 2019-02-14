@@ -104,3 +104,8 @@ gem 'hyrax-batch_ingest', github: 'samvera-labs/hyrax-batch_ingest'
 gem 'hyrax-iiif_av', github: 'samvera-labs/hyrax-iiif_av'
 gem 'license_header'
 gem 'react-rails'
+
+# Install the bundle --with aws if using any AWS service
+group :aws, optional: true do
+  gem 'aws-sdk', require: false
+end

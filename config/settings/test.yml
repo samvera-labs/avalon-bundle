@@ -1,0 +1,4 @@
+aws:
+  pipeline_id: my_pipeline_id
+  masterfile_bucket: my_bucket_id
+
