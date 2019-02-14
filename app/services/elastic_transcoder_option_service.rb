@@ -1,3 +1,19 @@
+# Copyright 2011-2019, The Trustees of Indiana University and Northwestern
+# University. Additional copyright may be held by others, as reflected in
+# the commit history.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# ---  END LICENSE_HEADER BLOCK  ---
 require 'aws-sdk'
 
 class ElasticTranscoderOptionService
@@ -47,10 +63,6 @@ class ElasticTranscoderOptionService
     result
   end
 
-  def self.read_preset(id)
-    client.read_preset(id: id).preset
-  end
-
   def self.create_preset(container, format, quality)
     client.create_preset(preset_settings(container, format, quality)).preset
   end
@@ -60,7 +72,7 @@ class ElasticTranscoderOptionService
   end
 
   def self.preset_settings(container, format, quality)
-    templates = YAML.safe_load(File.read(Rails.root.join('config', 'encoding_presets.yml')))
+    templates = YAML.safe_load(File.read(Rails.root.join('config', 'encoding_presets.yml')), [Symbol])
     template = templates[:templates][format.to_sym].deep_dup.deep_merge(templates[:settings][format.to_sym][quality.to_sym])
     container_description = container == 'ts' ? 'hls' : container
     template.merge!(name: "avalon-#{format}-#{quality}-#{container_description}",
