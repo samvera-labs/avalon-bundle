@@ -23,12 +23,13 @@ RUN         apt-get update && apt-get upgrade -y build-essential nodejs \
             unzip \
             openjdk-8-jre-headless \
             ca-certificates-java \
-         && rm -rf /var/lib/apt/lists/* \
-         && mkdir -p /tmp/phantomjs \
+         && rm -rf /var/lib/apt/lists/* 
+
+RUN         mkdir -p /tmp/phantomjs \
          && curl -L https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 | tar -xj --strip-components=1 -C /tmp/phantomjs \
          && mv /tmp/phantomjs/bin/phantomjs /usr/local/bin \
          && mkdir -p /tmp/ffmpeg && cd /tmp/ffmpeg \
-         && curl https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz | tar xJ \
+         && curl https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz | tar xJ \
          && cp `find . -type f -executable` /usr/bin/ \
          && ln -s /usr/bin/lsof /usr/sbin/
 
@@ -38,10 +39,11 @@ RUN         curl -fSL -o fits-${FITS_VER}.zip http://projects.iq.harvard.edu/fil
          && chmod +X /usr/local/bin/fits-${FITS_VER}/fits.sh
 ENV         PATH "$PATH:/usr/local/bin/fits-${FITS_VER}"
 
-RUN         mkdir -p /home/app/avalon \
-         && mkdir -p /home/app/node_modules && chmod 777 /home/app/node_modules
+RUN         mkdir -p /home/app/node_modules && chmod 777 /home/app/node_modules
 
+ADD         . /home/app/avalon
 WORKDIR     /home/app/avalon
 
 ENV         RAILS_ENV=development
-ADD         rails_init-dev.sh /
+ADD         docker/rails_init-dev.sh /
+
