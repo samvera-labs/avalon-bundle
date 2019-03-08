@@ -14,6 +14,8 @@ services:
     user: $UID:$GID
     volumes:
       - .:/home/app/avalon
+    command: >
+      bash -c "/rails_init-dev.sh && bundle exec puma -b tcp://0.0.0.0:3000"
     ports:
       - 3000:3000
       - 8080:8080
