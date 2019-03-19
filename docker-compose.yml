@@ -2,7 +2,6 @@ version: '3.2'
 
 volumes:
   db-avalon:
-  streaming:
   fedora:
   solr:
   bundle:
@@ -28,7 +27,7 @@ services:
     volumes:
       - fedora:/data
     environment:
-      - JAVA_OPTIONS=${JAVA_OPTIONS} -Dfcrepo.modeshape.configuration=classpath:/config/file-simple/repository.json
+      - JAVA_OPTIONS=${JAVA_OPTIONS} -Dfcrepo.modeshape.configuration=classpath:/config/file-simple/repository.json -Dfcrepo.home=/data
     networks:
       internal:
   solr:
@@ -44,10 +43,6 @@ services:
       internal:
   hls:
     image: avalonmediasystem/nginx:avalon-7.0
-    volumes:
-      - ./tmp/derivatives:/data
-    ports:
-       - "8880:80"
     networks:
       external:
   redis:
@@ -55,15 +50,13 @@ services:
     networks:
       internal:
   avalon:
-    image: avalonmediasystem/avalon:7.0-dev
+    image: avalonmediasystem/avalon:7.0
     build:
-      context: ./docker
-      args:
-        - AVALON_BRANCH=master
-        - SECRET_KEY_BASE=3fe397575565365108556c3e5549f139e8078a8ec8fd2675a83de96289b30550a266ac04488d7086322efbe573738e7b3ae005b2e3d9afd718aa337fa5e329cf
-    user: ${AVALON_UID}:${AVALON_GID}
+      context: .
+      dockerfile: docker/Dockerfile
     command: "/rails_init-dev.sh"
     depends_on:
+      - db-avalon
       - fedora
       - solr
       - redis
@@ -74,14 +67,8 @@ services:
       - SOLR_URL=http://solr:8983/solr/avalon
       - WEBPACKER_NODE_MODULES_BIN_PATH=/home/app/node_modules/.bin
     volumes:
-      - .:/home/app/avalon
       - bundle:/usr/local/bundle
       - npms:/home/app/node_modules
-    ports:
-      - 3000:3000
-      - 8080:8080
     networks:
       external:
       internal:
-    stdin_open: true
-    tty: true

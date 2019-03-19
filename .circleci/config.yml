@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
     # Primary container image where all steps run.
-     - image: avalonmediasystem/avalon:7.0-test
+     - image: avalonmediasystem/avalon:7.0
        environment:
         - DATABASE_URL=postgresql://postgres@localhost:5432/postgres
         - FEDORA_URL=http://localhost:8080/fedora/rest
@@ -28,6 +28,10 @@ jobs:
     working_directory: /home/app/avalon
 
     steps:
+      - run:
+          name: Clean out existing code
+          command: rm -rf .[!.]* *
+
       - checkout
 
       - restore_cache:
@@ -38,7 +42,7 @@ jobs:
 
       - run:
           command: |
-            bundle check --path=vendor/bundle || bundle install --with aws --path=vendor/bundle --jobs=4 --retry=3
+            bundle install --with aws development test --without production --path=vendor/bundle --jobs=4 --retry=3
             bundle exec rake db:migrate
 
       - save_cache:

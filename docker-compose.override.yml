@@ -1,0 +1,23 @@
+version: '3.2'
+
+services:
+  solr:
+    image: solr:6.6.4-alpine
+    volumes:
+      - ./solr/config:/opt/solr/avalon_conf
+  hls:
+    volumes:
+      - ./tmp/derivatives:/data
+    ports:
+       - "8880:80"
+  avalon:
+    user: $UID:$GID
+    volumes:
+      - .:/home/app/avalon
+    command: >
+      bash -c "/rails_init-dev.sh && bundle exec puma -b tcp://0.0.0.0:3000"
+    ports:
+      - 3000:3000
+      - 8080:8080
+    stdin_open: true
+    tty: true
