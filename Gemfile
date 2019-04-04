@@ -111,3 +111,5 @@ gem 'react-rails'
 group :aws, optional: true do
   gem 'aws-sdk', require: false
 end
+
+gem 'rack-cors'

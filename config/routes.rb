@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     end
   end
 
+  mount Hyrax::IiifAv::Engine, at: '/'
   mount ActiveEncode::Engine, at: '/'
   mount Hyrax::BatchIngest::Engine, at: '/'
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
