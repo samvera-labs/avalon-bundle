@@ -1,14 +1,14 @@
-FROM        ruby:2.4.4-jessie
+FROM        ruby:2.5.5-stretch
 MAINTAINER  Phuong Dinh <pdinh@indiana.edu>
 
 RUN         curl -sS http://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
          && echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
          && curl -sL http://deb.nodesource.com/setup_8.x | bash - \
-         && echo "deb http://ftp.uk.debian.org/debian jessie-backports main" >> /etc/apt/sources.list \
+         && echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list \
          && wget https://mediaarea.net/repo/deb/repo-mediaarea_1.0-6_all.deb && dpkg -i repo-mediaarea_1.0-6_all.deb 
 
 RUN         apt-get update && apt-get upgrade -y build-essential nodejs \
-         && apt-get install -y --force-yes -t jessie-backports \
+         && apt-get install -y \
             mediainfo \
             x264 \
             cmake \
