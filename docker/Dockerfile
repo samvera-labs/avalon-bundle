@@ -33,12 +33,12 @@ RUN         mkdir -p /tmp/phantomjs \
          && cp `find . -type f -executable` /usr/bin/ \
          && ln -s /usr/bin/lsof /usr/sbin/
 
-ARG         FITS_VER=1.2.0
-RUN         curl -fSL -o fits-${FITS_VER}.zip http://projects.iq.harvard.edu/files/fits/files/fits-${FITS_VER}.zip \
-         && unzip fits-${FITS_VER}.zip -d /usr/local/bin/ \
+ARG         FITS_VER=1.4.1
+RUN         curl -fSL -o fits-${FITS_VER}.zip https://github.com/harvard-lts/fits/releases/download/${FITS_VER}/fits-${FITS_VER}.zip \
+         && mkdir /usr/local/bin/fits-${FITS_VER} \
+         && unzip fits-${FITS_VER}.zip -d /usr/local/bin/fits-${FITS_VER} \
          && chmod +X /usr/local/bin/fits-${FITS_VER}/fits.sh \
-         && cp /usr/lib/x86_64-linux-gnu/libzen.so.0 /usr/local/bin/fits-${FITS_VER}/tools/mediainfo/linux/ \
-         && cp /usr/lib/x86_64-linux-gnu/libmediainfo.so.0 /usr/local/bin/fits-${FITS_VER}/tools/mediainfo/linux/
+         && ln -s /usr/local/bin/fits-${FITS_VER}/tools/mediainfo/linux/libzen.so.0 /usr/local/bin/fits-${FITS_VER}/tools/mediainfo/linux/`basename /usr/lib/x86_64-linux-gnu/libzen.so.0.*`
 ENV         PATH "$PATH:/usr/local/bin/fits-${FITS_VER}"
 
 RUN         mkdir -p /home/app/node_modules && chmod 777 /home/app/node_modules
