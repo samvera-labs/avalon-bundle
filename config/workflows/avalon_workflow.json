@@ -1,0 +1,29 @@
+{
+    "workflows": [
+        {
+            "name": "avalon_deposit",
+            "label": "Avalon deposit workflow",
+            "description": "A single-step workflow for creating and publishing avalon works.",
+            "allows_access_grant": false,
+            "actions": [
+                {
+                    "name": "publish",
+                    "from_states": [{"names": ["unpublished"], "roles": ["depositing", "managing", "approving"]}],
+                    "transition_to": "published",
+                    "methods": [
+                        "Hyrax::Workflow::ActivateObject",
+                        "Hyrax::Workflow::RevokeEditFromDepositor"
+                    ]
+                }, {
+                    "name": "unpublish",
+                    "from_states": [{"names": ["published"], "roles": ["approving"]}],
+                    "transition_to": "unpublished",
+                    "methods": [
+                        "Hyrax::Workflow::DeactivateObject",
+                        "Hyrax::Workflow::GrantEditToDepositor"
+                    ]
+                },
+            ]
+        }
+    ]
+}
