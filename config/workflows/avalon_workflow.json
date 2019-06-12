@@ -4,7 +4,7 @@
             "name": "avalon_deposit",
             "label": "Avalon deposit workflow",
             "description": "A single-step workflow for creating and publishing avalon works.",
-            "allows_access_grant": false,
+            "allows_access_grant": true,
             "actions": [
                 {
                     "name": "publish",
