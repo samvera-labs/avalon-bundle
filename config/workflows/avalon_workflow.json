@@ -22,7 +22,7 @@
                         "Hyrax::Workflow::DeactivateObject",
                         "Hyrax::Workflow::GrantEditToDepositor"
                     ]
-                },
+                }
             ]
         }
     ]
