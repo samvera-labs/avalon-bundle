@@ -7,6 +7,14 @@
             "allows_access_grant": true,
             "actions": [
                 {
+                    "name": "create",
+                    "from_states": [],
+                    "transition_to": "unpublished",
+                    "methods": [
+                        "Hyrax::Workflow::DeactivateObject"
+                    ]
+                },
+                {
                     "name": "publish",
                     "from_states": [{"names": ["unpublished"], "roles": ["depositing", "managing", "approving"]}],
                     "transition_to": "published",
