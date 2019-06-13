@@ -65,10 +65,9 @@ services:
       - REDIS_HOST=redis
       - FEDORA_URL=http://fedora:8080/fedora/rest
       - SOLR_URL=http://solr:8983/solr/avalon
-      - WEBPACKER_NODE_MODULES_BIN_PATH=/home/app/node_modules/.bin
     volumes:
       - bundle:/usr/local/bundle
-      - npms:/home/app/node_modules
+      - npms:/home/app/avalon/node_modules
     networks:
       external:
       internal:

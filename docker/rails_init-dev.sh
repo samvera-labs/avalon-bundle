@@ -14,7 +14,6 @@ bundle install $BUNDLE_FLAGS
 
 echo " `date` : Yarn install"
 # Workaround from https://github.com/yarnpkg/yarn/issues/2782
-yarn config set -- --modules-folder "/home/app/node_modules"
 yarn install
 
 echo " `date` : Remove server pid"
