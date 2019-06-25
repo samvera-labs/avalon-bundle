@@ -1,0 +1,2 @@
+class ActiveEncodeEncodeRecord < ApplicationRecord
+end
