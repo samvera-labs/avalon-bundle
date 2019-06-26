@@ -5,23 +5,24 @@
 <table>
   <thead>
     <tr>
-      <th>Global</th>
-      <th>State</th>
-      <th>Adapter</th>
-      <th>Title</th>
-      <th>Raw object</th>
+      <th>Status</th>
+      <th>ID</th>
+      <th>Progress</th>
+      <th>Filename</th>
+      <th>Job Started</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @active_encode_encode_records.each do |active_encode_encode_record| %>
+      <% encode_presenter = ActiveEncodeEncodePresenter.new(active_encode_encode_record) %>
       <tr>
-        <td><%= active_encode_encode_record.global_id %></td>
-        <td><%= active_encode_encode_record.state %></td>
-        <td><%= active_encode_encode_record.adapter %></td>
-        <td><%= active_encode_encode_record.title %></td>
-        <td><%= active_encode_encode_record.raw_object %></td>
+        <td><%= encode_presenter.status %></td>
+        <td><%= encode_presenter.id %></td>
+        <td><%= encode_presenter.progress %></td>
+        <td><%= encode_presenter.title %></td>
+        <td><%= encode_presenter.started %></td>
         <td><%= link_to 'Show', active_encode_encode_record %></td>
         <td><%= link_to 'Edit', edit_active_encode_encode_record_path(active_encode_encode_record) %></td>
         <td><%= link_to 'Destroy', active_encode_encode_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -29,7 +30,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Active Encode Encode Record', new_active_encode_encode_record_path %>
