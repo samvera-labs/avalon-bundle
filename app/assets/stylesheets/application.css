@@ -33,3 +33,10 @@
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  *= require_self
  */
+
+ .site-footer {
+    bottom: 0;
+    left: 0;
+    font-size: small;
+    width:100%;
+ }

@@ -1,29 +1,48 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Global:</strong>
-  <%= @active_encode_encode_record.global_id %>
-</p>
+<% encode_presenter = ActiveEncodeEncodePresenter.new(@active_encode_encode_record) %>
+<h2>
+  <strong>Job ID:</strong>
+  <%= encode_presenter.id %>
+</h2>
 
-<p>
-  <strong>State:</strong>
-  <%= @active_encode_encode_record.state %>
-</p>
+<section id="job-view">
+  <p>
+    <strong>Status:</strong>
+    <%= encode_presenter.status %>
+  </p>
+  <p>
+    <strong>Job ID:</strong>
+    <%= encode_presenter.id %>
+  </p>
+  <p>
+    <strong>Adapter:</strong>
+    <%= encode_presenter.adapter %>
+  </p>
 
-<p>
-  <strong>Adapter:</strong>
-  <%= @active_encode_encode_record.adapter %>
-</p>
+  <p>
+    <strong>Title:</strong>
+    <%= encode_presenter.title %>
+  </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @active_encode_encode_record.title %>
-</p>
-
-<p>
-  <strong>Raw object:</strong>
-  <%= @active_encode_encode_record.raw_object %>
-</p>
+  <section>
+    <% if !encode_presenter.errors.empty? %>
+      <p>
+        <strong>Error Message:</strong>
+        <%= encode_presenter.errors[0] %>
+      </p>
+    <% end %>
+    <p>
+      <strong>Job Started:</strong>
+      <%= encode_presenter.started %>
+    </p>
+    <p>
+      <strong>Job Terminated:</strong>
+      <%= encode_presenter.ended %>
+    </p>
+  </section>
+  
+</section>
 
 <%= link_to 'Edit', edit_active_encode_encode_record_path(@active_encode_encode_record) %> |
 <%= link_to 'Back', active_encode_encode_records_path %>
