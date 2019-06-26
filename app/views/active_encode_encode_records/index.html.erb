@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Active Encode Encode Records</h1>
+<h1>Transcoding Dashboard</h1>
 
-<table>
+<table id="active_encode_encode_records" class="datatable">
   <thead>
     <tr>
       <th>Status</th>
@@ -10,7 +10,6 @@
       <th>Progress</th>
       <th>Filename</th>
       <th>Job Started</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -19,13 +18,10 @@
       <% encode_presenter = ActiveEncodeEncodePresenter.new(active_encode_encode_record) %>
       <tr>
         <td><%= encode_presenter.status %></td>
-        <td><%= encode_presenter.id %></td>
+        <td><%= link_to encode_presenter.id, active_encode_encode_record %></td>
         <td><%= encode_presenter.progress %></td>
         <td><%= encode_presenter.title %></td>
         <td><%= encode_presenter.started %></td>
-        <td><%= link_to 'Show', active_encode_encode_record %></td>
-        <td><%= link_to 'Edit', edit_active_encode_encode_record_path(active_encode_encode_record) %></td>
-        <td><%= link_to 'Destroy', active_encode_encode_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
