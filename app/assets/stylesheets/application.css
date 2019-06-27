@@ -39,11 +39,10 @@
     left: 0;
     font-size: small;
     width:100%;
-    margin-top: -50px;
  }
 
  .container {
-   min-height: calc(100vh - 70px);
+   min-height: calc(100vh - 280px);
  }
  .footer {
    height: 50px;

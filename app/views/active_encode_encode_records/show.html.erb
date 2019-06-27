@@ -17,11 +17,6 @@
       <%= encode_presenter.id %>
     </p>
     <p>
-      <strong>Adapter:</strong>
-      <%= encode_presenter.adapter %>
-    </p>
-
-    <p>
       <strong>Title:</strong>
       <%= encode_presenter.title %>
     </p>
@@ -45,7 +40,12 @@
 
     <p>
       <strong>Raw Obejct:</strong>
-      <%= encode_presenter.raw_object %>
+      <div class="box box-default">
+        <code>
+            <pre><%= encode_presenter.raw_object %></pre>
+        </code>
+    </div>
+      
     </p>
   </section>
 
