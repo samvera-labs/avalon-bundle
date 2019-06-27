@@ -4,7 +4,7 @@ class ActiveEncodeEncodeRecordsController < ApplicationController
   # GET /active_encode_encode_records
   # GET /active_encode_encode_records.json
   def index
-    @active_encode_encode_records = ActiveEncodeEncodeRecord.all
+    @active_encode_encode_records = ::ActiveEncode::EncodeRecord.all
   end
 
   # GET /active_encode_encode_records/1
@@ -14,7 +14,7 @@ class ActiveEncodeEncodeRecordsController < ApplicationController
 
   # GET /active_encode_encode_records/new
   def new
-    @active_encode_encode_record = ActiveEncodeEncodeRecord.new
+    @active_encode_encode_record = ::ActiveEncode::EncodeRecord.new
   end
 
   # GET /active_encode_encode_records/1/edit
@@ -24,7 +24,7 @@ class ActiveEncodeEncodeRecordsController < ApplicationController
   # POST /active_encode_encode_records
   # POST /active_encode_encode_records.json
   def create
-    @active_encode_encode_record = ActiveEncodeEncodeRecord.new(active_encode_encode_record_params)
+    @active_encode_encode_record = ::ActiveEncode::EncodeRecord.new(active_encode_encode_record_params)
 
     respond_to do |format|
       if @active_encode_encode_record.save
@@ -64,7 +64,7 @@ class ActiveEncodeEncodeRecordsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_active_encode_encode_record
-      @active_encode_encode_record = ActiveEncodeEncodeRecord.find(params[:id])
+      @active_encode_encode_record = ::ActiveEncode::EncodeRecord.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

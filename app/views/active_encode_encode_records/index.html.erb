@@ -18,7 +18,7 @@
       <% encode_presenter = ActiveEncodeEncodePresenter.new(active_encode_encode_record) %>
       <tr>
         <td><%= encode_presenter.status %></td>
-        <td><%= link_to encode_presenter.id, active_encode_encode_record %></td>
+        <td><%= link_to encode_presenter.id, active_encode_encode_record_path(active_encode_encode_record) %></td>
         <td><%= encode_presenter.progress %></td>
         <td><%= encode_presenter.title %></td>
         <td><%= encode_presenter.started %></td>
