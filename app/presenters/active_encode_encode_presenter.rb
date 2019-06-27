@@ -47,7 +47,7 @@ class ActiveEncodeEncodePresenter
   end
 
   def ended
-    DateTime.parse(JSON.parse(@encode_record.raw_object)["updated_at"]).strftime('%D %r')
+    DateTime.parse(JSON.parse(@encode_record.raw_object)["updated_at"]).utc.strftime('%D %r')
   end
 
   def raw_object
@@ -57,5 +57,4 @@ class ActiveEncodeEncodePresenter
   def errors
     JSON.parse(@encode_record.raw_object)["errors"]
   end
-
 end
