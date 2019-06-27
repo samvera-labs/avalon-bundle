@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # Copyright 2011-2018, The Trustees of Indiana University and Northwestern
 # University. Additional copyright may be held by others, as reflected in
 # the commit history.
@@ -42,7 +43,6 @@ class ActiveEncodeEncodePresenter
   end
 
   def started
-    DateTime.parse(JSON.parse(@encode_record.raw_object)["created_at"]).strftime('%D %r')
+    DateTime.parse(JSON.parse(@encode_record.raw_object)["created_at"]).utc.strftime('%D %r')
   end
-
 end
