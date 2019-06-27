@@ -2,8 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-table.dataTable thead .sorting:after,
-table.dataTable thead .sorting_asc:after,
-table.dataTable thead .sorting_desc:after {
-  top: 0px !important;
+#active_encode_encode_records thead .sorting:after,
+#active_encode_encode_records thead .sorting_asc:after,
+#active_encode_encode_records thead .sorting_desc:after {
+  position: relative;
+  display: inline;
+  top: 2px;
+  left: 6px;
 }
