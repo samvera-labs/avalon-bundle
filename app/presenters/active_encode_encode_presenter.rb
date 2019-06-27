@@ -53,9 +53,9 @@ class ActiveEncodeEncodePresenter
     @encode_record.adapter
   end
 
-  # def raw_object
-  #   @encode_record.raw_object
-  # end
+  def raw_object
+    @encode_record.raw_object
+  end
 
   def errors
     JSON.parse(@encode_record.raw_object)["errors"]

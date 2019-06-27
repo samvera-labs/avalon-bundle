@@ -1,31 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Transcoding Dashboard</h1>
+<div class="container">
+  <h1>Transcoding Dashboard</h1>
 
-<table id="active_encode_encode_records" class="datatable">
-  <thead>
-    <tr>
-      <th>Status</th>
-      <th>ID</th>
-      <th>Progress</th>
-      <th>Filename</th>
-      <th>Job Started</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @active_encode_encode_records.each do |active_encode_encode_record| %>
-      <% encode_presenter = ActiveEncodeEncodePresenter.new(active_encode_encode_record) %>
-      <tr class="row-items" data-link="<%= active_encode_encode_record_path(active_encode_encode_record.id) %>" >
-        <td><%= encode_presenter.status %></td>
-        <td><%= encode_presenter.id %></td>
-        <td><progress value=<%= encode_presenter.progress %> max="100"></progress></td>
-        <td><%= encode_presenter.title %></td>
-        <td><%= encode_presenter.started %></td>
+  <table id="active_encode_encode_records" class="datatable">
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th>ID</th>
+        <th>Progress</th>
+        <th>Filename</th>
+        <th>Job Started</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @active_encode_encode_records.each do |active_encode_encode_record| %>
+        <% encode_presenter = ActiveEncodeEncodePresenter.new(active_encode_encode_record) %>
+        <tr class="row-items" data-link="<%= active_encode_encode_record_path(active_encode_encode_record.id) %>" >
+          <td><%= encode_presenter.status %></td>
+          <td><%= encode_presenter.id %></td>
+          <td><progress value=<%= encode_presenter.progress %> max="100"></progress></td>
+          <td><%= encode_presenter.title %></td>
+          <td><%= encode_presenter.started %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <script>
 $("tr[data-link]").click(function() {
