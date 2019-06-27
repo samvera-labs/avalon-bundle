@@ -2,87 +2,46 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#active_encode_encode_records thead .sorting:after,
-#active_encode_encode_records thead .sorting_asc:after,
-#active_encode_encode_records thead .sorting_desc:after {
-  position: relative;
-  display: inline;
-  top: 2px;
-  left: 6px;
-}
+#active_encode_encode_records {
+  width: 100%;
 
-table tr:nth-child(even){background-color: #f2f2f2;}
-table .row-items:hover {background-color: #ddd; cursor: pointer;}
-
-table td, table th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-table {
-    width: 100%;
-}
-
-section {
-    padding: 35px;
-    padding-left: 0px;
-}
-
-#job-view p {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 15px;
-    line-height: 20px;
-}
-
-h2 {
-    font-family: 'Courier New', Courier, monospace;
-}
-
-/* Reference: https://css-tricks.com/html5-progress-element/ */
-progress[value] {
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-progress[value]::-webkit-progress-bar {
-    background-color: #eee;
-    border-radius: 2px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  thead .sorting:after, thead .sorting_asc:after, thead .sorting_desc:after {
+    position: relative;
+    display: inline;
+    top: 2px;
+    left: 6px;
   }
 
-progress[value]::-webkit-progress-value {
-    background-image:
-        -webkit-linear-gradient(-45deg, 
-                                transparent 33%, rgba(0, 0, 0, .1) 33%, 
-                                rgba(0,0, 0, .1) 66%, transparent 66%),
-        -webkit-linear-gradient(top, 
-                                rgba(255, 255, 255, .25), 
-                                rgba(0, 0, 0, .25)),
-        -webkit-linear-gradient(left, #5cb85c, #5cb85c);
+  tr:nth-child(even){background-color: #f2f2f2;}
+  .row-items:hover {background-color: #ddd; cursor: pointer;}
 
-    border-radius: 2px; 
-    background-size: 35px 20px, 100% 100%, 100% 100%;
+  td, th {
+      border: 1px solid #ddd;
+      padding: 8px;
+  }
+  /* Reference: https://css-tricks.com/html5-progress-element/ */
+  progress[value] {
+      -webkit-appearance: none;
+      appearance: none;
+  }
+
+  progress[value]::-webkit-progress-bar {
+      background-color: #eee;
+      border-radius: 2px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+    }
+
+  progress[value]::-webkit-progress-value {
+      background-image:
+          -webkit-linear-gradient(-45deg,
+                                  transparent 33%, rgba(0, 0, 0, .1) 33%,
+                                  rgba(0,0, 0, .1) 66%, transparent 66%),
+          -webkit-linear-gradient(top,
+                                  rgba(255, 255, 255, .25),
+                                  rgba(0, 0, 0, .25)),
+          -webkit-linear-gradient(left, #5cb85c, #5cb85c);
+
+      border-radius: 2px;
+      background-size: 35px 20px, 100% 100%, 100% 100%;
+  }
 }
-
-.accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    transition: 0.4s;
-  }
-  
-  .active, .accordion:hover {
-    background-color: #ccc; 
-  }
-  
-  .panel {
-    padding: 0 18px;
-    display: none;
-    background-color: white;
-    overflow: hidden;
-  }
