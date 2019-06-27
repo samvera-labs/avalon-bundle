@@ -51,7 +51,7 @@ class ActiveEncodeEncodePresenter
   end
 
   def raw_object
-    @encode_record.raw_object
+    JSON.pretty_generate(JSON.parse(@encode_record.raw_object))
   end
 
   def errors
