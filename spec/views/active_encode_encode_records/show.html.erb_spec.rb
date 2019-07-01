@@ -10,10 +10,8 @@ RSpec.describe "active_encode_encode_records/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Global/)
-    expect(rendered).to match(/State/)
-    expect(rendered).to match(/Adapter/)
+    expect(rendered).to match(/1/)
+    expect(rendered).to match(/Running/)
     expect(rendered).to match(/Title/)
-    expect(rendered).to match(/MyText/)
   end
 end
