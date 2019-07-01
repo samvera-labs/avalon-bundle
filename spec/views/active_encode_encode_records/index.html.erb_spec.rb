@@ -5,20 +5,8 @@ require 'rails_helper'
 RSpec.describe "active_encode_encode_records/index", type: :view do
   before do
     assign(:active_encode_encode_records, [
-             ActiveEncodeEncodeRecord.create!(
-               global_id: "Global",
-               state: "State",
-               adapter: "Adapter",
-               title: "Title",
-               raw_object: "MyText"
-             ),
-             ActiveEncodeEncodeRecord.create!(
-               global_id: "Global",
-               state: "State",
-               adapter: "Adapter",
-               title: "Title",
-               raw_object: "MyText"
-             )
+             FactoryBot.create(:active_encode_encode_record),
+             FactoryBot.create(:active_encode_encode_record)
            ])
   end
 

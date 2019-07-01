@@ -5,13 +5,7 @@ require 'rails_helper'
 RSpec.describe "active_encode_encode_records/show", type: :view do
   before do
     @active_encode_encode_record = assign(:active_encode_encode_record,
-                                          ActiveEncodeEncodeRecord.create!(
-                                            global_id: "Global",
-                                            state: "State",
-                                            adapter: "Adapter",
-                                            title: "Title",
-                                            raw_object: "MyText"
-                                          ))
+                                          FactoryBot.create(:active_encode_encode_record))
   end
 
   it "renders attributes in <p>" do

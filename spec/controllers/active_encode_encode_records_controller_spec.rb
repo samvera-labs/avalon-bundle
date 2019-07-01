@@ -30,10 +30,7 @@ RSpec.describe ActiveEncodeEncodeRecordsController, type: :controller do
   # in order to pass any filters (e.g. authentication) defined in
   # ActiveEncodeEncodeRecordsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
-
-  before do
-    let(:active_encode_encode_record) { FactoryBot.create(:active_encode_encode_record) }
-  end
+  let(:active_encode_encode_record) { FactoryBot.create(:active_encode_encode_record) }
 
   describe "GET #index" do
     it "returns a success response" do
