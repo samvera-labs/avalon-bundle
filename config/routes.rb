@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :active_encode_encode_records
   mount ActiveEncode::Engine, at: '/'
   mount Hyrax::BatchIngest::Engine, at: '/'
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
