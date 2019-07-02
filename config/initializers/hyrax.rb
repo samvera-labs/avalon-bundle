@@ -295,3 +295,16 @@ Hyrax::Admin::AdminSetsController.admin_set_create_service = Hyrax::AvalonAdminS
 AdminSet.class_eval do
   include AdminSetDropbox
 end
+
+Hyrax::ActiveEncode::ActiveEncodeDerivativeService.class_eval do
+  def create_derivatives(filename)
+    options = options_service_class.call(@file_set)
+    options.each do |option|
+      option[:file_set_id] = file_set.id
+      option[:work_id] = file_set.parent_id
+      option[:work_type] = file_set.parent.class.name
+      option[:local_streaming] = true if local_streaming?
+    end
+    Hydra::Derivatives::ActiveEncodeDerivatives.create(filename, outputs: options, encode_class: @encode_class)
+  end
+end

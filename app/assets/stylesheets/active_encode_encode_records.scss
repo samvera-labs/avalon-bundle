@@ -13,7 +13,13 @@
   }
 
   tr:nth-child(even){background-color: #f2f2f2;}
-  .row-items:hover {background-color: #ddd; cursor: pointer;}
+
+  td[data-link] {
+    text-decoration: underline;
+    &:hover {
+      background-color: #ddd; cursor: pointer;
+    }
+  }
 
   td, th {
       border: 1px solid #ddd;

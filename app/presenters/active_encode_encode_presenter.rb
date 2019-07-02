@@ -31,7 +31,15 @@ class ActiveEncodeEncodePresenter
   end
 
   def id
+    @encode_record.id
+  end
+
+  def global_id
     @encode_record.global_id.split('/').last
+  end
+
+  def adapter
+    @encode_record.adapter
   end
 
   def progress
@@ -40,6 +48,26 @@ class ActiveEncodeEncodePresenter
 
   def title
     @encode_record.title.split('/').last
+  end
+
+  def file_set_id
+    JSON.parse(@encode_record.create_options)['file_set_id'] rescue nil
+  end
+
+  def file_set_url
+    Rails.application.routes.url_helpers.hyrax_file_set_path(file_set_id) rescue ''
+  end
+
+  def work_id
+    JSON.parse(@encode_record.create_options)['work_id'] rescue nil
+  end
+
+  def work_type
+    JSON.parse(@encode_record.create_options)['work_type'] rescue nil
+  end
+
+  def work_url
+    Rails.application.routes.url_helpers.send(Hyrax::Name.new(work_type.constantize).singular_route_key+'_path', work_id) rescue ''
   end
 
   def started
