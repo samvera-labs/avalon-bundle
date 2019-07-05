@@ -31,11 +31,25 @@ RSpec.describe ActiveEncodeEncodeRecordsController, type: :controller do
   # ActiveEncodeEncodeRecordsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
   let(:active_encode_encode_record) { FactoryBot.create(:active_encode_encode_record) }
+  let(:user) { create(:admin) }
+
+  before do
+    sign_in user
+  end
 
   describe "GET #index" do
     it "returns a success response" do
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
+    end
+
+    context 'when not administrator' do
+      let(:user) { create(:user) }
+
+      it "redirects" do
+        get :index, params: {}, session: valid_session
+        expect(response).to redirect_to(Hyrax::Engine.routes.url_helpers.root_path(locale: 'en'))
+      end
     end
   end
 
@@ -43,6 +57,15 @@ RSpec.describe ActiveEncodeEncodeRecordsController, type: :controller do
     it "returns a success response" do
       get :show, params: { id: active_encode_encode_record.to_param }, session: valid_session
       expect(response).to be_successful
+    end
+
+    context 'when not administrator' do
+      let(:user) { create(:user) }
+
+      it "redirects" do
+        get :index, params: {}, session: valid_session
+        expect(response).to redirect_to(Hyrax::Engine.routes.url_helpers.root_path(locale: 'en'))
+      end
     end
   end
 end

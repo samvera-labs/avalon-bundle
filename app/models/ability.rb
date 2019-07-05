@@ -21,7 +21,7 @@ class Ability
   include Hyrax::Ability
   include Hyrax::BatchIngest::Ability
 
-  self.ability_logic += [:everyone_can_create_curation_concerns]
+  self.ability_logic += [:everyone_can_create_curation_concerns, :encode_dashboard_permissions]
 
   # Define any customized permissions here.
   def custom_permissions
@@ -36,5 +36,9 @@ class Ability
     # if user_groups.include? 'special_group'
     #   can [:create], ActiveFedora::Base
     # end
+  end
+
+  def encode_dashboard_permissions
+    can :read, :encode_dashboard if admin?
   end
 end

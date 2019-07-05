@@ -1,0 +1,5 @@
+<% if can? :read, :encode_dashboard %>
+  <%= menu.nav_link(main_app.active_encode_encode_records_path) do %>
+    <span class="fa fa-tasks" aria-hidden="true"></span> <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.transcoding_jobs') %></span>
+  <% end %>
+<% end %>

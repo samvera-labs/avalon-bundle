@@ -14,8 +14,8 @@
       <% if file_set_presenter.encode_record %>
       <tr>
         <td><%= file_set_presenter.id %></td>
-        <td><%= file_set_presenter.encode_record.state %></td>
-        <td><%= JSON.parse(file_set_presenter.encode_record.raw_object)["percent_complete"] %>%</td>
+        <td><%= file_set_presenter.encode_record.status %></td>
+        <td><%= file_set_presenter.encode_record.progress %>%</td>
       </tr>
       <% else %>
       <tr>

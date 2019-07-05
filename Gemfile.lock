@@ -10,6 +10,13 @@ GIT
       om (~> 3.1)
 
 GIT
+  remote: https://github.com/samvera-labs/active_encode.git
+  revision: 29a6ea6d57dbf2dbf8704e3c58d464cdf2b315ff
+  specs:
+    active_encode (0.5.0)
+      rails
+
+GIT
   remote: https://github.com/samvera-labs/hyrax-active_encode.git
   revision: fd25fdcdd0d9f4753e56e352eff2a91ae3b3b01f
   specs:
@@ -85,8 +92,6 @@ GEM
       activesupport (>= 3.0.0)
       rdf (>= 2.0.2, < 4.0)
       rdf-vocab (>= 2.0, < 4.0)
-    active_encode (0.5.0)
-      rails
     activejob (5.1.6.2)
       activesupport (= 5.1.6.2)
       globalid (>= 0.3.6)
@@ -1564,6 +1569,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_encode!
   aws-sdk
   bixby
   bootsnap

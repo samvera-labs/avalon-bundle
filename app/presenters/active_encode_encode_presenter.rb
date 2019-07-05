@@ -24,6 +24,8 @@ class ActiveEncodeEncodePresenter
 
   def initialize(encode_record)
     @encode_record = encode_record
+    @raw_object = @encode_record.raw_object.present? ? JSON.parse(@encode_record.raw_object) : {}
+    @create_options = @encode_record.create_options.present? ? JSON.parse(@encode_record.create_options) : {}
   end
 
   def status
@@ -31,30 +33,60 @@ class ActiveEncodeEncodePresenter
   end
 
   def id
+    @encode_record.id
+  end
+
+  def global_id
     @encode_record.global_id.split('/').last
   end
 
+  def adapter
+    @encode_record.adapter
+  end
+
   def progress
-    JSON.parse(@encode_record.raw_object)["percent_complete"]
+    @raw_object["percent_complete"]
   end
 
   def title
     @encode_record.title.split('/').last
   end
 
+  def file_set_id
+    @create_options['file_set_id']
+  end
+
+  def file_set_url
+    file_set_id.present? ? Rails.application.routes.url_helpers.hyrax_file_set_path(file_set_id) : ''
+  end
+
+  def work_id
+    @create_options['work_id']
+  end
+
+  def work_type
+    @create_options['work_type']
+  end
+
+  def work_url
+    return '' unless work_id.present? && work_type.present?
+    url_helper_name = Hyrax::Name.new(work_type.constantize).singular_route_key + '_path'
+    Rails.application.routes.url_helpers.send(url_helper_name, work_id)
+  end
+
   def started
-    DateTime.parse(JSON.parse(@encode_record.raw_object)["created_at"]).utc.strftime('%D %r')
+    DateTime.parse(@raw_object["created_at"]).utc.strftime('%D %r')
   end
 
   def ended
-    DateTime.parse(JSON.parse(@encode_record.raw_object)["updated_at"]).utc.strftime('%D %r')
+    DateTime.parse(@raw_object["updated_at"]).utc.strftime('%D %r')
   end
 
   def raw_object
-    JSON.pretty_generate(JSON.parse(@encode_record.raw_object))
+    JSON.pretty_generate(@raw_object)
   end
 
   def errors
-    JSON.parse(@encode_record.raw_object)["errors"]
+    @raw_object["errors"]
   end
 end

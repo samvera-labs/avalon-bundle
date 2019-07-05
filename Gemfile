@@ -99,6 +99,7 @@ gem 'hydra-works', github: 'avalonmediasystem/hydra-works', branch: 'av_characte
 gem 'iiif_manifest', github: 'samvera-labs/iiif_manifest'
 gem 'riiif', '~> 1.1'
 
+gem 'active_encode', github: 'samvera-labs/active_encode'
 gem 'hyrax-active_encode', github: 'samvera-labs/hyrax-active_encode'
 gem 'hyrax-batch_ingest', github: 'samvera-labs/hyrax-batch_ingest'
 gem 'hyrax-iiif_av', github: 'samvera-labs/hyrax-iiif_av'
