@@ -2,6 +2,7 @@
 
 class ActiveEncodeEncodeRecordsController < ApplicationController
   before_action :set_active_encode_encode_record, only: [:show]
+  with_themed_layout 'dashboard'
 
   # GET /active_encode_encode_records
   # GET /active_encode_encode_records.json

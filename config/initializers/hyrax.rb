@@ -308,3 +308,9 @@ Hyrax::ActiveEncode::ActiveEncodeDerivativeService.class_eval do
     Hydra::Derivatives::ActiveEncodeDerivatives.create(filename, outputs: options, encode_class: @encode_class)
   end
 end
+
+Hyrax::DashboardController.class_eval do
+  class_attribute :sidebar_partials
+  self.sidebar_partials = {}
+end
+Hyrax::DashboardController.sidebar_partials[:repository_content] = ['hyrax/dashboard/sidebar/transcoding_jobs']
