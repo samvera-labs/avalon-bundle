@@ -31,14 +31,12 @@ RSpec.describe AvalonDerivativeService, clean_repo: true do
     Object.send(:remove_const, :CustomOptionService)
   end
 
-  let(:valid_file_set) { FileSet.new }
-  let(:valid_mime) { service.send(:supported_mime_types).sample }
-
   before do
-    allow(valid_file_set).to receive(:mime_type).and_return(valid_mime)
+    allow(file_set).to receive(:parent).and_return(work)
   end
 
-  let(:file_set) { FileSet.create }
+  let(:file_set) { create(:file_set) }
+  let(:work) { create(:work) }
   let(:encode_class) { ::ActiveEncode::Base }
   let(:options_service_class) { Hyrax::ActiveEncode::DefaultOptionService }
   let(:service) { described_class.new(file_set, encode_class: encode_class, options_service_class: options_service_class) }
