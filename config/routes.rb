@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
 
-  resources :active_encode_encode_records
+  resources :active_encode_encode_records do
+    collection do
+      post :paged_index
+    end
+  end
+
   mount ActiveEncode::Engine, at: '/'
   mount Hyrax::BatchIngest::Engine, at: '/'
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
   mount Blacklight::Engine => '/'
-  
+
     concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
