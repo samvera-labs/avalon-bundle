@@ -22,8 +22,7 @@ class ActiveEncodeEncodeRecordsController < ApplicationController
     # Encode records for index page are loaded dynamically by jquery datatables javascript which
     # requests the html for only a limited set of rows at a time.
     @encode_records = ::ActiveEncode::EncodeRecord.all
-    recordsTotal = @encode_records.count
-    columns = ['status','id','progress','title','fileset_url','work_url','started']
+    records_total = @encode_records.count
 
     # Create array of records as presented in the UI for sorting and filtering
     @encode_records = @encode_records.collect do |encode|
@@ -48,8 +47,8 @@ class ActiveEncodeEncodeRecordsController < ApplicationController
     end
 
     # Sort: decorate list with sort column then sort and undecorate
-    sort_column = params['order']['0']['column'].to_i rescue 0
-    sort_direction = params['order']['0']['dir'] rescue 'asc'
+    sort_column = params['order']['0']['column'].to_i
+    sort_direction = params['order']['0']['dir']
     decorated = @encode_records.collect { |e| [ e[sort_column], e ] }
     decorated.sort!
     @encode_records = decorated.collect { |e| e[1] }
@@ -60,13 +59,13 @@ class ActiveEncodeEncodeRecordsController < ApplicationController
 
     response = {
       "draw": params['draw'],
-      "recordsTotal": recordsTotal,
+      "recordsTotal": records_total,
       "recordsFiltered": @encode_records.count,
       "data": @encode_records.collect do |encode|
         encode_presenter = encode[7]
         [
           encode_presenter.status,
-          view_context.link_to(encode_presenter.id,  active_encode_encode_record_path(encode_presenter.id)),
+          view_context.link_to(encode_presenter.id, active_encode_encode_record_path(encode_presenter.id)),
           "<progress value=\"#{encode_presenter.progress}\" max=\"100\"></progress>",
           encode_presenter.title,
           view_context.link_to(encode_presenter.file_set_id, encode_presenter.file_set_url),
