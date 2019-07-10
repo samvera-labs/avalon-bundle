@@ -11,7 +11,7 @@ services:
     ports:
        - "8880:80"
   avalon:
-    user: $UID:$GID
+    user: $UID
     volumes:
       - .:/home/app/avalon
     command: >

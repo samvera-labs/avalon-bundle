@@ -10,7 +10,8 @@ Docker provides an alternative way of setting up an Avalon Media System Developm
 * Install [Docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install/)
 * ```git clone https://github.com/samvera-labs/avalon-bundle```
 * ```cd avalon-bundle```
-* ```./bin/start_docker.sh```
+* ```docker-compose pull```
+* ```docker-compose up avalon```
 
 Avalon is served by Puma in development mode so any changes will be picked up automatically. 
 
