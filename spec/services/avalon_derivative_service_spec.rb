@@ -107,7 +107,7 @@ RSpec.describe AvalonDerivativeService, clean_repo: true do
 
       context 'with custom options service class' do
         let(:options_service_class) { CustomOptionService }
-        let(:internal_options) { { file_set_id: file_set.id, local_streaming: true, work_id: 'work-id', work_type: 'GenericWork' } }
+        let(:internal_options) { { file_set_id: file_set.id, local_streaming: true, work_id: parent.id, work_type: 'GenericWork' } }
 
         it 'calls the ActiveEncode runner with the original file, passing the encode class and the provided output options' do
           allow(Hydra::Derivatives::ActiveEncodeDerivatives).to receive(:create).with("sample.mp4", encode_class: encode_class, outputs: outputs)
