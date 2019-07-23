@@ -10,13 +10,18 @@ Docker provides an alternative way of setting up an Avalon Media System Developm
 * Install [Docker](https://docs.docker.com/engine/installation/) and [docker-compose](https://docs.docker.com/compose/install/)
 * ```git clone https://github.com/samvera-labs/avalon-bundle```
 * ```cd avalon-bundle```
-* ```./bin/start_docker.sh```
+* ```docker-compose pull```
+* ```docker-compose up avalon```
 
-Avalon is served by Puma in development mode so any changes will be picked up automatically. Running a Rails command inside the Avalon container is easy, for example, to run tests ```docker-compose exec avalon bash -c "RAILS_ENV=test bundle exec rspec"```.
+Avalon is served by Puma in development mode so any changes will be picked up automatically. 
 
 Rails debugging with Pry can be accessed by attaching to the docker container: ```docker attach avalon_container_name```. Now, when you reach a binding.pry breakpoint in rails, you can step through the breakpoint in that newly attached session.
 
 To get live compilation and hot-reload when developing with Javascript, run ```WEBPACKER_DEV_SERVER_HOST=0.0.0.0 $NODE_PATH/.bin/webpack-dev-server --config /home/app/avalon/config/webpack/development.js``` inside the avalon container.
+
+To run tests, first bring up the test stack then run Rspec as usual:
+* ```docker-compose up test```.
+* ```docker-compose exec test bash -c "bundle exec rspec"```.
 
 # Getting Started (without Docker)
 

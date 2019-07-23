@@ -39,8 +39,8 @@ RSpec.describe AvalonDerivativeService, clean_repo: true do
     allow(file_set).to receive(:parent).and_return(parent)
   end
 
-  let(:file_set) { create(:file_set) }
-  let(:parent) { GenericWork.new(id: 'work-id') }
+  let(:parent) { create(:work_with_one_file) }
+  let(:file_set) { parent.file_sets.first }
   let(:encode_class) { ::ActiveEncode::Base }
   let(:options_service_class) { Hyrax::ActiveEncode::DefaultOptionService }
   let(:service) { described_class.new(file_set, encode_class: encode_class, options_service_class: options_service_class) }
@@ -107,7 +107,7 @@ RSpec.describe AvalonDerivativeService, clean_repo: true do
 
       context 'with custom options service class' do
         let(:options_service_class) { CustomOptionService }
-        let(:internal_options) { { file_set_id: file_set.id, local_streaming: true, work_id: 'work-id', work_type: 'GenericWork' } }
+        let(:internal_options) { { file_set_id: file_set.id, local_streaming: true, work_id: parent.id, work_type: 'GenericWork' } }
 
         it 'calls the ActiveEncode runner with the original file, passing the encode class and the provided output options' do
           allow(Hydra::Derivatives::ActiveEncodeDerivatives).to receive(:create).with("sample.mp4", encode_class: encode_class, outputs: outputs)

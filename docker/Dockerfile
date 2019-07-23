@@ -41,10 +41,11 @@ RUN         curl -fSL -o fits-${FITS_VER}.zip https://github.com/harvard-lts/fit
          && ln -s /usr/local/bin/fits-${FITS_VER}/tools/mediainfo/linux/libzen.so.0 /usr/local/bin/fits-${FITS_VER}/tools/mediainfo/linux/`basename /usr/lib/x86_64-linux-gnu/libzen.so.0.*`
 ENV         PATH "$PATH:/usr/local/bin/fits-${FITS_VER}"
 
-RUN         mkdir -p /home/app/node_modules && chmod 777 /home/app/node_modules
-
 ADD         . /home/app/avalon
 WORKDIR     /home/app/avalon
+
+RUN         mkdir -p /home/app/avalon/node_modules && chmod 777 /home/app/avalon/node_modules \ 
+         && mkdir -p /usr/local/bundle && chmod 777 /usr/local/bundle
 
 ENV         RAILS_ENV=development
 ADD         docker/rails_init-dev.sh /

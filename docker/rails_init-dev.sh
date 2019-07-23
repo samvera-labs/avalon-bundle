@@ -20,6 +20,7 @@ echo " `date` : Remove server pid"
 rm -f tmp/pids/server.pid
 
 echo " `date` : Rake tasks"
-bundle exec rails db:migrate hyrax:default_collection_types:create hyrax:default_admin_set:create
+bundle exec rails db:migrate hyrax:default_collection_types:create
+bundle exec rails hyrax:default_admin_set:create # Needs to be a separate rake call
 
 echo " `date` : Starting the rails server"
