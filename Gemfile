@@ -96,10 +96,11 @@ end
 gem 'config'
 
 gem 'hydra-works', github: 'avalonmediasystem/hydra-works', branch: 'av_characterization'
-gem 'iiif_manifest', github: 'samvera-labs/iiif_manifest'
 gem 'riiif', '~> 1.1'
 
 gem 'active_encode', github: 'samvera-labs/active_encode'
+# Last revision before version 0.6 was released.  This can be removed once this gem is upgraded to hyrax master (3.0.0.beta2) or support for 0.6 is backported to hyrax 2.x
+gem 'iiif_manifest', github: 'samvera-labs/iiif_manifest', ref: '4219eb57ae9fbcd178391f401928040ebe057529'
 gem 'hyrax-active_encode', github: 'samvera-labs/hyrax-active_encode'
 gem 'hyrax-batch_ingest', github: 'samvera-labs/hyrax-batch_ingest'
 gem 'hyrax-iiif_av', github: 'samvera-labs/hyrax-iiif_av'
