@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/hyrax-active_encode.git
-  revision: ff2a941b151f223b48f9f487f412b33043c0fc55
+  revision: 278b2d9e2cb70a348d7aae393aaa17f8a8f4452b
   specs:
     hyrax-active_encode (0.2.0)
       active_encode (~> 0.5)
@@ -257,7 +257,7 @@ GEM
     aws-sdk-connect (1.10.0)
       aws-sdk-core (~> 3, >= 3.39.0)
       aws-sigv4 (~> 1.0)
-    aws-sdk-core (3.59.0)
+    aws-sdk-core (3.60.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.1)
@@ -945,7 +945,7 @@ GEM
     dry-core (0.4.8)
       concurrent-ruby (~> 1.0)
     dry-equalizer (0.2.2)
-    dry-events (0.1.1)
+    dry-events (0.2.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.4)
       dry-equalizer (~> 0.2)
