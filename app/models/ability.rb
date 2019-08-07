@@ -17,8 +17,8 @@
 
 class Ability
   include Hydra::Ability
-
   include Hyrax::Ability
+  include Hyrax::ActiveEncode::Ability
   include Hyrax::BatchIngest::Ability
 
   self.ability_logic += [:everyone_can_create_curation_concerns, :encode_dashboard_permissions]

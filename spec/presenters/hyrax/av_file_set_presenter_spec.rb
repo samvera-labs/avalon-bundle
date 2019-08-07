@@ -68,7 +68,7 @@ RSpec.describe Hyrax::AVFileSetPresenter do
         ActiveEncode::EncodeRecord.create(global_id: encode_global_id)
       end
 
-      it { is_expected.to be_a ActiveEncodeEncodePresenter }
+      it { is_expected.to be_a Hyrax::ActiveEncode::EncodePresenter }
     end
   end
 

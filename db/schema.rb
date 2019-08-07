@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190703185245) do
+ActiveRecord::Schema.define(version: 20190723195828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(version: 20190703185245) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "create_options"
+    t.float "progress"
+    t.string "display_title"
+    t.string "file_set"
+    t.string "work_id"
+    t.string "work_type"
+    t.index ["display_title"], name: "index_active_encode_encode_records_on_display_title"
+    t.index ["file_set"], name: "index_active_encode_encode_records_on_file_set"
+    t.index ["work_id"], name: "index_active_encode_encode_records_on_work_id"
   end
 
   create_table "bookmarks", id: :serial, force: :cascade do |t|

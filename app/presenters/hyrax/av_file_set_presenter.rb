@@ -28,7 +28,7 @@ module Hyrax
     def encode_record
       return nil unless solr_document["encode_global_id_ssim"]
       encode_record = ::ActiveEncode::EncodeRecord.where(global_id: solr_document["encode_global_id_ssim"]).first
-      encode_record ? ActiveEncodeEncodePresenter.new(encode_record) : nil
+      encode_record ? Hyrax::ActiveEncode::EncodePresenter.new(encode_record) : nil
     end
 
     private
