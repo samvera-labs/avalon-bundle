@@ -295,9 +295,3 @@ Hyrax::Admin::AdminSetsController.admin_set_create_service = Hyrax::AvalonAdminS
 AdminSet.class_eval do
   include AdminSetDropbox
 end
-
-Hyrax::DashboardController.class_eval do
-  class_attribute :sidebar_partials
-  self.sidebar_partials = {}
-end
-Hyrax::DashboardController.sidebar_partials[:repository_content] = ['hyrax/dashboard/sidebar/transcoding_jobs']
