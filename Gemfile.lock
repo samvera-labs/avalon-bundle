@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/hyrax-active_encode.git
-  revision: 99884388982626dce204dcb61c699b9e8c11d0ea
+  revision: 5fc0e75dd28a52935d5cc089f8e1e2fc9b7364a1
   specs:
     hyrax-active_encode (0.2.0)
       active_encode (~> 0.5)
@@ -125,7 +125,7 @@ GEM
     awesome_nested_set (3.1.4)
       activerecord (>= 4.0.0, < 5.3)
     aws-eventstream (1.0.3)
-    aws-partitions (1.197.0)
+    aws-partitions (1.198.0)
     aws-sdk (3.0.1)
       aws-sdk-resources (~> 3)
     aws-sdk-acm (1.14.0)
