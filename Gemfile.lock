@@ -1290,7 +1290,8 @@ GEM
       rails (~> 5.0)
       rdf
     rack (2.0.7)
-    rack-cors (1.0.3)
+    rack-cors (1.0.6)
+      rack (>= 1.6.0)
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -1606,7 +1607,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   pg (~> 0.18)
   puma (~> 3.7)
-  rack-cors
+  rack-cors (>= 1.0.5)
   rails (~> 5.1.4)
   react-rails
   riiif (~> 1.1)

@@ -112,4 +112,4 @@ group :aws, optional: true do
   gem 'aws-sdk', require: false
 end
 
-gem 'rack-cors'
+gem 'rack-cors', '>= 1.0.5'
