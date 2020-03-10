@@ -2,7 +2,7 @@
   "name": "avalon",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "3.5",
+    "@rails/webpacker": "4.0.0",
     "babel-preset-react": "^6.24.1",
     "eslint-plugin-react": "^7.8.2",
     "jest": "^24.0.0",
