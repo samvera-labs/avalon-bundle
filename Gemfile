@@ -63,7 +63,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'hyrax', '2.4'
+gem 'hyrax', '2.4.0'
 group :development, :test do
   gem 'bixby'
   gem 'solr_wrapper', '>= 0.3'
@@ -85,11 +85,11 @@ gem 'webpacker', '~> 4.0.0.pre.3'
 
 group :test do
   # Use sqlite3 as the database in test
-  gem 'codeclimate-test-reporter'
+  gem 'codeclimate-test-reporter', '>= 1.0.8'
   gem 'database_cleaner'
   gem 'fakefs', require: 'fakefs/safe'
   gem 'shoulda-matchers', '~> 3.1'
-  gem 'simplecov'
+  gem 'simplecov', '>= 0.13.0'
   gem 'sqlite3'
 end
 
