@@ -102,7 +102,7 @@ gem 'riiif', '~> 1.7', '>= 1.7.1'
 
 gem 'active_encode', github: 'samvera-labs/active_encode'
 gem 'hyrax-active_encode', github: 'samvera-labs/hyrax-active_encode'
-gem 'hyrax-batch_ingest', github: 'samvera-labs/hyrax-batch_ingest'
+gem 'hyrax-batch_ingest', github: 'samvera-labs/hyrax-batch_ingest', branch: 'cjcolvar-patch-1'
 gem 'hyrax-iiif_av', github: 'samvera-labs/hyrax-iiif_av'
 gem 'license_header'
 gem 'react-rails', '>= 2.4.7'
