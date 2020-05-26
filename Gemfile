@@ -63,7 +63,8 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'hyrax', '2.4.0'
+gem 'hyrax', github: 'samvera/hyrax'
+
 group :development, :test do
   gem 'bixby'
   gem 'solr_wrapper', '>= 0.3'
@@ -97,13 +98,13 @@ gem 'config'
 
 gem 'hydra-works', github: 'avalonmediasystem/hydra-works', branch: 'av_characterization'
 # Last revision before version 0.6 was released.  This can be removed once this gem is upgraded to hyrax master (3.0.0.beta2) or support for 0.6 is backported to hyrax 2.x
-gem 'iiif_manifest', github: 'samvera-labs/iiif_manifest', ref: '4219eb57ae9fbcd178391f401928040ebe057529'
+gem 'iiif_manifest', '~> 1.0'
 gem 'riiif', '~> 1.7', '>= 1.7.1'
 
 gem 'active_encode', github: 'samvera-labs/active_encode'
-gem 'hyrax-active_encode', github: 'samvera-labs/hyrax-active_encode'
+gem 'hyrax-active_encode', github: 'samvera-labs/hyrax-active_encode', branch: 'hyrax_master'
 gem 'hyrax-batch_ingest', github: 'samvera-labs/hyrax-batch_ingest', branch: 'cjcolvar-patch-1'
-gem 'hyrax-iiif_av', github: 'samvera-labs/hyrax-iiif_av'
+gem 'hyrax-iiif_av', github: 'samvera-labs/hyrax-iiif_av', branch: 'hyrax_master'
 gem 'license_header'
 gem 'react-rails', '>= 2.4.7'
 
