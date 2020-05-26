@@ -1,0 +1,11 @@
+attributes:
+
+  date_issued:
+    type: string
+    multiple: false
+    index:
+      - "date_issued_sim"
+      - "date_issued_tesim"
+    form:
+      required: true
+      primary: true
