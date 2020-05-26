@@ -1,10 +1,9 @@
-version: '3.2'
+version: '3.4'
 
 volumes:
   db-avalon:
   fedora:
   solr:
-  bundle:
   npms:
 
 networks:
@@ -18,6 +17,7 @@ services:
       - PGDATA=/data
       - POSTGRES_USER=postgres
       - POSTGRES_DB=avalon
+      - POSTGRES_PASSWORD=avalon123
     volumes:
       - db-avalon:/data
     networks:
@@ -39,8 +39,9 @@ services:
     volumes: []
 
   solr: &solr
-    image: avalonmediasystem/solr:avalon-7.0
+    image: solr:6.6.4-alpine
     volumes:
+      - ./solr/config:/opt/solr/avalon_conf
       - solr:/opt/solr/server/solr/mycores
     entrypoint:
       - docker-entrypoint.sh
@@ -56,6 +57,10 @@ services:
 
   hls:
     image: avalonmediasystem/nginx:avalon-7.0
+    volumes:
+      - ./tmp/derivatives:/data
+    ports:
+       - "8880:80"
     networks:
       external:
 
@@ -67,11 +72,13 @@ services:
     <<: *redis
 
   avalon: &avalon
-    image: avalonmediasystem/avalon:7.0
+    image: avalonmediasystem/avalon:bundle-20200526
     build:
       context: .
-      dockerfile: docker/Dockerfile
-    command: "/rails_init-dev.sh"
+      target: dev
+      args:
+        FITS_VER: 1.4.1
+    command: bash -c "/docker_init.sh && rails server -b 0.0.0.0"
     depends_on:
       - db-avalon
       - fedora
@@ -79,13 +86,19 @@ services:
       - redis
       - hls
     environment:
-      - DATABASE_URL=postgresql://postgres@db-avalon/avalon
+      - DATABASE_URL=postgresql://postgres:avalon123@db-avalon/avalon
       - REDIS_HOST=redis
       - FEDORA_URL=http://fedora:8080/fedora/rest
       - SOLR_URL=http://solr:8983/solr/avalon
     volumes:
-      - bundle:/usr/local/bundle
+      - .:/home/app/avalon
       - npms:/home/app/avalon/node_modules
+    user: $UID
+    ports:
+      - 3000:3000
+      - 8080:8080
+    stdin_open: true
+    tty: true
     networks:
       external:
       internal:
@@ -93,7 +106,7 @@ services:
   test:
     <<: *avalon
     command: >
-      bash -c "/rails_init-dev.sh && tail -f /dev/null"
+      bash -c "/docker-init.sh && tail -f /dev/null"
     depends_on:
       - db-avalon-test
       - fedora-test
