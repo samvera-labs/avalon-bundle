@@ -96,7 +96,6 @@ services:
     user: $UID
     ports:
       - 3000:3000
-      - 8080:8080
     stdin_open: true
     tty: true
     networks:
@@ -119,3 +118,4 @@ services:
       - RAILS_ENV=test
       - BUNDLE_FLAGS=--with aws development test --without production
       - DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL=true
+    ports: []
