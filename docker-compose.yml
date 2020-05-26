@@ -105,19 +105,17 @@ services:
 
   test:
     <<: *avalon
-    command: >
-      bash -c "/docker-init.sh && tail -f /dev/null"
+    command: bash -c "/docker_init.sh && tail -f /dev/null"
     depends_on:
       - db-avalon-test
       - fedora-test
       - solr-test
       - redis-test
     environment:
-      - DATABASE_URL=postgresql://postgres@db-avalon-test/avalon
+      - DATABASE_URL=postgresql://postgres:avalon123@db-avalon-test/avalon
       - REDIS_HOST=redis-test
       - FEDORA_URL=http://fedora-test:8080/fedora/rest
       - SOLR_URL=http://solr-test:8983/solr/avalon
       - RAILS_ENV=test
       - BUNDLE_FLAGS=--with aws development test --without production
       - DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL=true
-    volumes: []
