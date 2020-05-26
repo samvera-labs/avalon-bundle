@@ -104,7 +104,7 @@ class AudiovisualWork < ActiveFedora::Base
   end
 
   self.indexer = AudiovisualWorkIndexer
-  self.human_readable_type = 'Audiovisual Work'
+  # self.human_readable_type = 'Audiovisual Work'
 
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []

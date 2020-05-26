@@ -1,4 +1,7 @@
 en:
+  activefedora:
+    models:
+      audiovisual_work: 'Audiovisual Work'
   hyrax:
     icons:
       audiovisual_work:     'fa fa-file-text-o'
