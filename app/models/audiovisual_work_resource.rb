@@ -19,6 +19,7 @@
 #  `rails generate hyrax:work AudiovisualWork`
 class AudiovisualWorkResource < Hyrax::Work
   include Hyrax::Schema(:basic_metadata)
+  include Hyrax::Schema(:core_metadata)   # :title
   include Hyrax::Schema(:audiovisual_work)
 
   # include ::Hyrax::WorkBehavior

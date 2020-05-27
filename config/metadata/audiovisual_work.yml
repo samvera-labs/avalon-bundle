@@ -9,3 +9,151 @@ attributes:
     form:
       required: true
       primary: true
+
+  physical_description:
+    type: string
+    multiple: true
+    index:
+      - "physical_description_ssim"
+      - "physical_description_tesim"
+    form:
+      required: false
+
+  genre:
+    type: string
+    multiple: true
+    index:
+      - "genre_ssim"
+    form:
+      required: false
+
+  topical_subject:
+    type: string
+    multiple: true
+    index:
+      - "topical_subject_ssim"
+    form:
+      required: false
+
+  temporal_subject:
+    type: string
+    multiple: true
+    index:
+      - "temporal_subject_ssim"
+    form:
+      required: false
+
+  geographical_subject:
+    type: string
+    multiple: true
+    index:
+      - "geographical_subject_ssim"
+    form:
+      required: false
+
+  permalink:
+    type: string
+    multiple: false
+    index:
+      - "permalink_ssi"
+    form:
+      required: false
+
+  related_item:
+    type: string
+    multiple: false
+    index:
+      - "related_item_ssi"
+    form:
+      required: false
+
+  # identifiers
+  bibliographic_id:
+    type: string
+    multiple: false
+    index:
+      - "bibliogrphic_id_ssi"
+    form:
+      required: false
+
+  local:
+    type: string
+    multiple: true
+    index:
+      - "local_ssim"
+    form:
+      required: false
+
+  oclc:
+    type: string
+    multiple: true
+    index:
+      - "oclc_ssim"
+    form:
+      required: false
+
+  lccn:
+    type: string
+    multiple: true
+    index:
+      - "lccn_ssim"
+    form:
+      required: false
+
+  issue_number:
+    type: integer
+    mutiple: true
+    index:
+      - "issue_number_isim"
+    form:
+      required: false
+
+  matrix_number:
+    type: integer
+    multiple: true
+    index:
+      - "matrix_number_isim"
+    form:
+      required: false
+
+  music_publisher:
+    type: string
+    multiple: true
+    index:
+      - "music_publisher_ssim"
+    form:
+      required: false
+
+  video_recording_identifier:
+    type: integer
+    multiple: true
+    index:
+      - "video_recording_identifier_ssim"
+    form:
+      required: false
+
+  table_of_content:
+    type: string
+    multiple: false
+    index:
+      - "table_of_content_ssi"
+    form:
+      required: false
+
+  note:
+    type: string
+    multiple: false
+    index:
+      - "note_ss"
+    form:
+      required: false
+
+  terms_of_use:
+    type: string
+    multiple: true
+    index:
+      - "terms_of_use_ssim"
+    form:
+      required: false
+
+  
