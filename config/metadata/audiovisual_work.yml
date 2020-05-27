@@ -43,11 +43,11 @@ attributes:
     form:
       required: false
 
-  geographical_subject:
+  geographic_subject:
     type: string
     multiple: true
     index:
-      - "geographical_subject_ssim"
+      - "geographic_subject_ssim"
     form:
       required: false
 
@@ -132,7 +132,7 @@ attributes:
     form:
       required: false
 
-  table_of_content:
+  table_of_contents:
     type: string
     multiple: false
     index:
