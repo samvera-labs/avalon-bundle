@@ -21,7 +21,7 @@ require 'rails_helper'
 
 RSpec.describe Hyrax::AudiovisualWorkForm do
   let(:work) { build(:audiovisual_work) }
-  let(:form) { described_class.new(work, nil, nil) }
+  let(:form) { described_class.new(work) }
 
   let(:required_fields) { [:title, :date_issued] }
 
@@ -35,7 +35,7 @@ RSpec.describe Hyrax::AudiovisualWorkForm do
   end
 
   describe "#required_fields" do
-    subject { form.required_fields }
+    subject { form.class.required_fields }
 
     it { is_expected.to eq required_fields }
   end

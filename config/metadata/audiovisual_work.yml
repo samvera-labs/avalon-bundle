@@ -18,6 +18,7 @@ attributes:
       - "physical_description_tesim"
     form:
       required: false
+      secondary: true
 
   genre:
     type: string
@@ -26,6 +27,7 @@ attributes:
       - "genre_ssim"
     form:
       required: false
+      secondary: true
 
   topical_subject:
     type: string
@@ -34,6 +36,7 @@ attributes:
       - "topical_subject_ssim"
     form:
       required: false
+      secondary: true
 
   temporal_subject:
     type: string
@@ -42,6 +45,7 @@ attributes:
       - "temporal_subject_ssim"
     form:
       required: false
+      secondary: true
 
   geographic_subject:
     type: string
@@ -50,6 +54,7 @@ attributes:
       - "geographic_subject_ssim"
     form:
       required: false
+      secondary: true
 
   permalink:
     type: string
@@ -58,6 +63,7 @@ attributes:
       - "permalink_ssi"
     form:
       required: false
+      secondary: true
 
   related_item:
     type: string
@@ -66,6 +72,7 @@ attributes:
       - "related_item_ssi"
     form:
       required: false
+      secondary: true
 
   # identifiers
   bibliographic_id:
@@ -75,6 +82,7 @@ attributes:
       - "bibliogrphic_id_ssi"
     form:
       required: false
+      secondary: true
 
   local:
     type: string
@@ -83,6 +91,7 @@ attributes:
       - "local_ssim"
     form:
       required: false
+      secondary: true
 
   oclc:
     type: string
@@ -91,6 +100,7 @@ attributes:
       - "oclc_ssim"
     form:
       required: false
+      secondary: true
 
   lccn:
     type: string
@@ -99,6 +109,7 @@ attributes:
       - "lccn_ssim"
     form:
       required: false
+      secondary: true
 
   issue_number:
     type: integer
@@ -107,6 +118,7 @@ attributes:
       - "issue_number_isim"
     form:
       required: false
+      secondary: true
 
   matrix_number:
     type: integer
@@ -115,6 +127,7 @@ attributes:
       - "matrix_number_isim"
     form:
       required: false
+      secondary: true
 
   music_publisher:
     type: string
@@ -123,6 +136,7 @@ attributes:
       - "music_publisher_ssim"
     form:
       required: false
+      secondary: true
 
   video_recording_identifier:
     type: integer
@@ -131,6 +145,7 @@ attributes:
       - "video_recording_identifier_ssim"
     form:
       required: false
+      secondary: true
 
   table_of_contents:
     type: string
@@ -139,6 +154,7 @@ attributes:
       - "table_of_content_ssi"
     form:
       required: false
+      secondary: true
 
   note:
     type: string
@@ -147,6 +163,7 @@ attributes:
       - "note_ss"
     form:
       required: false
+      secondary: true
 
   terms_of_use:
     type: string
@@ -155,5 +172,6 @@ attributes:
       - "terms_of_use_ssim"
     form:
       required: false
+      secondary: true
 
   
