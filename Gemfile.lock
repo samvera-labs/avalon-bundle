@@ -50,7 +50,8 @@ GIT
 
 GIT
   remote: https://github.com/samvera/hyrax.git
-  revision: 6b79cb2f09a029c9cfc98d28155e49742a66df45
+  revision: b7bb196cfc7c65b4f3e262ea8fcd0f153969bf06
+  branch: cjcolvar-wings-metadata-rebase
   specs:
     hyrax (3.0.0.pre.rc1)
       active-fedora (~> 13.1.2)
@@ -94,7 +95,8 @@ GIT
       rdf-rdfxml
       redis-namespace (~> 1.5)
       redlock (>= 0.1.2)
-      reform (< 2.3)
+      reform (~> 2.3)
+      reform-rails (~> 0.2.0)
       retriable (>= 2.9, < 4.0)
       samvera-nesting_indexer (~> 2.0)
       sass-rails (~> 5.0)
@@ -1436,12 +1438,13 @@ GEM
       redis (>= 3.0.4)
     redlock (1.2.0)
       redis (>= 3.0.0, < 5.0)
-    reform (2.2.4)
-      disposable (>= 0.4.1)
+    reform (2.3.1)
+      disposable (>= 0.4.2, < 0.5.0)
       representable (>= 2.4.0, < 3.1.0)
-    reform-rails (0.1.7)
-      activemodel (>= 3.2)
-      reform (>= 2.2.0)
+      uber (< 0.2.0)
+    reform-rails (0.2.0)
+      activemodel (>= 5.0)
+      reform (>= 2.3.1, < 3.0.0)
     representable (3.0.4)
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
