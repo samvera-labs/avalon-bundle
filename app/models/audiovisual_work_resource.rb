@@ -20,7 +20,7 @@
 class AudiovisualWorkResource < Hyrax::Work
   include Hyrax::Schema(:basic_metadata)
   include Hyrax::Schema(:core_metadata)   # :title
-  include Hyrax::Schema(:audiovisual_work)
+  include Hyrax::Schema(:audiovisual_work, schema_loader: Hyrax::SlightlyMoreComplexSchemaLoader.new)
 
   # include ::Hyrax::WorkBehavior
 

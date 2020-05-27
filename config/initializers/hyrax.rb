@@ -248,6 +248,9 @@ Hyrax.config do |config|
     config.browse_everything = nil
   end
 
+  ## FIXME: AVOID browse everything error: undefined local variable or method `browse_everything_engine`
+  config.browse_everything = nil
+
   ## Whitelist all directories which can be used to ingest from the local file
   # system.
   #
