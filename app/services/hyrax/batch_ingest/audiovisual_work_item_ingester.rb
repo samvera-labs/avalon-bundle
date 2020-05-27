@@ -16,7 +16,7 @@ module Hyrax
         fields = source_data["fields"]
         # Remove fields not present on the model
         # attrs = fields.slice(*AudiovisualWork.properties.keys)
-        attrs = fields.slice(*AudiovisualWork.schema.collect(&:name))
+        attrs = fields.slice(*AudiovisualWork.schema.map(&:name).map(&:to_s))
         # Make singular fields have singular values
         ['date_issued', 'physical_description', 'bibliographic_id', 'table_of_contents'].each do |field|
           attrs[field] = attrs[field].first if attrs[field].present?

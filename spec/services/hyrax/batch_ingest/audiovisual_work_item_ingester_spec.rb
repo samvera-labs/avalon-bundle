@@ -33,7 +33,7 @@ describe Hyrax::BatchIngest::AudiovisualWorkItemIngester, clean_repo: true do
     subject(:attributes) { ingester.attributes }
 
     let(:ingester) { described_class.new(batch_item) }
-    let(:allowed_attributes) { AudiovisualWork.properties.keys + ['admin_set_id'] }
+    let(:allowed_attributes) { AudiovisualWork.schema.map(&:name).map(&:to_s) + ['admin_set_id'] }
 
     its(['date_issued']) { is_expected.to eq '1990' }
     its(['title']) { is_expected.to eq ['lroom'] }
