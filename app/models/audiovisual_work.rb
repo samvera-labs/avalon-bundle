@@ -18,7 +18,7 @@
 # Generated via
 #  `rails generate hyrax:work AudiovisualWork`
 class AudiovisualWork < Hyrax::Work
-  include Hyrax::Schema(:basic_metadata)
+  # include Hyrax::Schema(:basic_metadata)
   include Hyrax::Schema(:core_metadata)   # :title
   include Hyrax::Schema(:audiovisual_work, schema_loader: Hyrax::SlightlyMoreComplexSchemaLoader.new)
 
