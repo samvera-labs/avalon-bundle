@@ -3,7 +3,7 @@ attributes:
   date_issued:
     type: string
     multiple: false
-    index:
+    index_keys:
       - "date_issued_sim"
       - "date_issued_tesim"
     form:
@@ -13,7 +13,7 @@ attributes:
   physical_description:
     type: string
     multiple: true
-    index:
+    index_keys:
       - "physical_description_ssim"
       - "physical_description_tesim"
     form:
@@ -23,7 +23,7 @@ attributes:
   genre:
     type: string
     multiple: true
-    index:
+    index_keys:
       - "genre_ssim"
     form:
       required: false
@@ -32,7 +32,7 @@ attributes:
   topical_subject:
     type: string
     multiple: true
-    index:
+    index_keys:
       - "topical_subject_ssim"
     form:
       required: false
@@ -41,7 +41,7 @@ attributes:
   temporal_subject:
     type: string
     multiple: true
-    index:
+    index_keys:
       - "temporal_subject_ssim"
     form:
       required: false
@@ -50,7 +50,7 @@ attributes:
   geographic_subject:
     type: string
     multiple: true
-    index:
+    index_keys:
       - "geographic_subject_ssim"
     form:
       required: false
@@ -59,7 +59,7 @@ attributes:
   permalink:
     type: string
     multiple: false
-    index:
+    index_keys:
       - "permalink_ssi"
     form:
       required: false
@@ -68,7 +68,7 @@ attributes:
   related_item:
     type: string
     multiple: false
-    index:
+    index_keys:
       - "related_item_ssi"
     form:
       required: false
@@ -78,7 +78,7 @@ attributes:
   bibliographic_id:
     type: string
     multiple: false
-    index:
+    index_keys:
       - "bibliogrphic_id_ssi"
     form:
       required: false
@@ -87,7 +87,7 @@ attributes:
   local:
     type: string
     multiple: true
-    index:
+    index_keys:
       - "local_ssim"
     form:
       required: false
@@ -96,7 +96,7 @@ attributes:
   oclc:
     type: string
     multiple: true
-    index:
+    index_keys:
       - "oclc_ssim"
     form:
       required: false
@@ -105,7 +105,7 @@ attributes:
   lccn:
     type: string
     multiple: true
-    index:
+    index_keys:
       - "lccn_ssim"
     form:
       required: false
@@ -114,7 +114,7 @@ attributes:
   issue_number:
     type: integer
     mutiple: true
-    index:
+    index_keys:
       - "issue_number_isim"
     form:
       required: false
@@ -123,7 +123,7 @@ attributes:
   matrix_number:
     type: integer
     multiple: true
-    index:
+    index_keys:
       - "matrix_number_isim"
     form:
       required: false
@@ -132,7 +132,7 @@ attributes:
   music_publisher:
     type: string
     multiple: true
-    index:
+    index_keys:
       - "music_publisher_ssim"
     form:
       required: false
@@ -141,7 +141,7 @@ attributes:
   video_recording_identifier:
     type: integer
     multiple: true
-    index:
+    index_keys:
       - "video_recording_identifier_ssim"
     form:
       required: false
@@ -150,7 +150,7 @@ attributes:
   table_of_contents:
     type: string
     multiple: false
-    index:
+    index_keys:
       - "table_of_content_ssi"
     form:
       required: false
@@ -159,7 +159,7 @@ attributes:
   note:
     type: string
     multiple: false
-    index:
+    index_keys:
       - "note_ss"
     form:
       required: false
@@ -168,7 +168,7 @@ attributes:
   terms_of_use:
     type: string
     multiple: true
-    index:
+    index_keys:
       - "terms_of_use_ssim"
     form:
       required: false

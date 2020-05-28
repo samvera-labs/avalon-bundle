@@ -19,14 +19,17 @@ require 'json'
 
 # Generated via
 #  `rails generate hyrax:work AudiovisualWork`
-class AudiovisualWorkIndexer < Hyrax::WorkIndexer
-  # This indexes the default metadata. You can remove it if you want to
-  # provide your own metadata and indexing.
-  include Hyrax::IndexesBasicMetadata
+class AudiovisualWorkIndexer < Hyrax::ValkyrieWorkIndexer
+  include Hyrax::Indexer(:basic_metadata)
+  include Hyrax::Indexer(:audiovisual_work)
 
-  # Fetch remote labels for based_near. You can remove this if you don't want
-  # this behavior
-  include Hyrax::IndexesLinkedMetadata
+  # # This indexes the default metadata. You can remove it if you want to
+  # # provide your own metadata and indexing.
+  # include Hyrax::IndexesBasicMetadata
+
+  # # Fetch remote labels for based_near. You can remove this if you don't want
+  # # this behavior
+  # include Hyrax::IndexesLinkedMetadata
 
   # Uncomment this block if you want to add custom indexing behavior:
   # def generate_solr_document
@@ -34,7 +37,7 @@ class AudiovisualWorkIndexer < Hyrax::WorkIndexer
   #    solr_doc['my_custom_field_ssim'] = object.my_custom_property
   #  end
   # end
-  def generate_solr_document
+  def to_solr
     super.tap do |solr_doc|
       solr_doc['formatted_note_tesim'] = JSON.parse(object.note).collect { |n| format_note(n) } if object.note.present?
       solr_doc['formatted_related_item_tesim'] = JSON.parse(object.related_item).collect { |ri| format_related_item(ri) } if object.related_item.present?
