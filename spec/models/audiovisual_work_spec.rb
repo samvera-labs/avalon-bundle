@@ -60,13 +60,4 @@ RSpec.describe AudiovisualWork do
       end
     end
   end
-
-  describe 'validations' do
-    it 'validates presence of title' do
-      expect(subject).to validate_presence_of(:title).with_message('Your work must have a title.')
-    end
-    it 'validates presence of date issued' do
-      expect(subject).to validate_presence_of(:date_issued).with_message('Your work must have date issued.')
-    end
-  end
 end

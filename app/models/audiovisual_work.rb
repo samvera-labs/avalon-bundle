@@ -18,21 +18,8 @@
 # Generated via
 #  `rails generate hyrax:work AudiovisualWork`
 class AudiovisualWork < Hyrax::Work
-  include Hyrax::Schema(:core_metadata)   # :title
   include Hyrax::Schema(:audiovisual_work, schema_loader: Hyrax::SlightlyMoreComplexSchemaLoader.new)
 
-  # include ::Hyrax::WorkBehavior
-
-  # self.indexer = AudiovisualWorkIndexer
-  # # self.human_readable_type = 'Audiovisual Work'
-
-  # # Change this to restrict which works can be added as a child.
-  # # self.valid_child_concerns = []
-
-  # validates :title, presence: { message: 'Your work must have a title.' }
-  # validates :date_issued, presence: { message: 'Your work must have date issued.' }
-
-  # # This must be included at the end, because it finalizes the metadata
-  # # schema (by adding accepts_nested_attributes)
-  # include ::Hyrax::BasicMetadata
+  # Change this to restrict which works can be added as a child.
+  # self.valid_child_concerns = []
 end

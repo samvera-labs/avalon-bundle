@@ -21,7 +21,7 @@ require 'rails_helper'
 
 RSpec.describe Hyrax::AudiovisualWorkForm do
   let(:work) { build(:audiovisual_work) }
-  let(:form) { described_class.new(work) }
+  subject(:form) { described_class.new(work) }
 
   let(:required_fields) { [:title, :date_issued] }
 
@@ -62,5 +62,14 @@ RSpec.describe Hyrax::AudiovisualWorkForm do
     subject { form.related_items_with_labels }
 
     it { is_expected.to eq [["Another Resource", "http://example.com/another-resource"]] }
+  end
+
+  describe 'validations', type: :model do
+    it 'validates presence of title' do
+      expect(subject).to validate_presence_of(:title).with_message('Your work must have a title.')
+    end
+    it 'validates presence of date issued' do
+      expect(subject).to validate_presence_of(:date_issued).with_message('Your work must have date issued.')
+    end
   end
 end

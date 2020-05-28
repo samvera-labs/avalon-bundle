@@ -23,9 +23,10 @@ require 'hyrax/forms/resource_form'
 module Hyrax
   # Generated form for AudiovisualWork
   class AudiovisualWorkForm < Hyrax::Forms::ResourceForm(AudiovisualWork)
-    # FIXME: Next line isn't needed as the core metadata fields have already been loaded somehow
-    # include Hyrax::FormFields(:core_metadata)
     include Hyrax::FormFields(:audiovisual_work, definition_loader: Hyrax::SlightlyMoreComplexSchemaLoader.new)
+
+    validates :title, presence: { message: 'Your work must have a title.' }
+    validates :date_issued, presence: { message: 'Your work must have date issued.' }
 
     # Transient fields to make SimpleForm happy
     attr_accessor :note_type, :note_body
