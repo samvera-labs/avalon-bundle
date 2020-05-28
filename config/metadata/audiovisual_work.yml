@@ -10,15 +10,65 @@ attributes:
       required: true
       primary: true
 
-  physical_description:
+  date_created:
+    type: date_time
+    multiple: true
+    index_keys:
+      - "date_created_dtsim"
+    form:
+      primary: false
+
+  creator:
     type: string
     multiple: true
+    index_keys:
+      - "creator_ssim"
+    form:
+      required: false
+      primary: false
+
+  contributor:
+    type: string
+    multiple: true
+    index_keys:
+      - "contributor_ssim"
+    form:
+      primary: false
+
+  publisher:
+    type: string
+    multiple: true
+    index_keys:
+      - "publisher_ssim"
+    form:
+      primary: false
+
+  abstract:
+    type: string
+    multiple: true
+    index_keys:
+      - "abstract_ssim"
+      - "abstract_tesim"
+    form:
+      primary: false
+
+  physical_description:
+    type: string
+    multiple: false
     index_keys:
       - "physical_description_ssim"
       - "physical_description_tesim"
     form:
       required: false
-      secondary: true
+      primary: false
+
+  language:
+    type: string
+    multiple: true
+    index_keys:
+      - "language_ssim"
+    form:
+      primary: false
 
   genre:
     type: string
@@ -27,7 +77,7 @@ attributes:
       - "genre_ssim"
     form:
       required: false
-      secondary: true
+      primary: false
 
   topical_subject:
     type: string
@@ -36,7 +86,7 @@ attributes:
       - "topical_subject_ssim"
     form:
       required: false
-      secondary: true
+      primary: false
 
   temporal_subject:
     type: string
@@ -45,7 +95,7 @@ attributes:
       - "temporal_subject_ssim"
     form:
       required: false
-      secondary: true
+      primary: false
 
   geographic_subject:
     type: string
@@ -54,16 +104,16 @@ attributes:
       - "geographic_subject_ssim"
     form:
       required: false
-      secondary: true
+      primary: false
 
   permalink:
     type: string
-    multiple: false
+    multiple: true
     index_keys:
-      - "permalink_ssi"
+      - "permalink_ssim"
     form:
       required: false
-      secondary: true
+      primary: false
 
   related_item:
     type: string
@@ -72,7 +122,8 @@ attributes:
       - "related_item_ssi"
     form:
       required: false
-      secondary: true
+      primary: false
+
 
   # identifiers
   bibliographic_id:
@@ -82,7 +133,7 @@ attributes:
       - "bibliogrphic_id_ssi"
     form:
       required: false
-      secondary: true
+      primary: false
 
   local:
     type: string
@@ -91,7 +142,7 @@ attributes:
       - "local_ssim"
     form:
       required: false
-      secondary: true
+      primary: false
 
   oclc:
     type: string
@@ -100,7 +151,7 @@ attributes:
       - "oclc_ssim"
     form:
       required: false
-      secondary: true
+      primary: false
 
   lccn:
     type: string
@@ -109,7 +160,7 @@ attributes:
       - "lccn_ssim"
     form:
       required: false
-      secondary: true
+      primary: false
 
   issue_number:
     type: integer
@@ -118,7 +169,7 @@ attributes:
       - "issue_number_isim"
     form:
       required: false
-      secondary: true
+      primary: false
 
   matrix_number:
     type: integer
@@ -127,7 +178,7 @@ attributes:
       - "matrix_number_isim"
     form:
       required: false
-      secondary: true
+      primary: false
 
   music_publisher:
     type: string
@@ -136,7 +187,7 @@ attributes:
       - "music_publisher_ssim"
     form:
       required: false
-      secondary: true
+      primary: false
 
   video_recording_identifier:
     type: integer
@@ -145,7 +196,7 @@ attributes:
       - "video_recording_identifier_ssim"
     form:
       required: false
-      secondary: true
+      primary: false
 
   table_of_contents:
     type: string
@@ -154,7 +205,7 @@ attributes:
       - "table_of_content_ssi"
     form:
       required: false
-      secondary: true
+      primary: false
 
   note:
     type: string
@@ -163,7 +214,23 @@ attributes:
       - "note_ss"
     form:
       required: false
-      secondary: true
+      primary: false
+
+  rights_statement:
+    type: string
+    multiple: false
+    index_keys:
+      - "rights_statement_ssi"
+    form:
+      primary: false
+
+  license:
+    type: string
+    multiple: true
+    index_keys:
+      - "license_ssim"
+    form:
+      primary: false
 
   terms_of_use:
     type: string
@@ -172,6 +239,4 @@ attributes:
       - "terms_of_use_ssim"
     form:
       required: false
-      secondary: true
-
-  
+      primary: false
