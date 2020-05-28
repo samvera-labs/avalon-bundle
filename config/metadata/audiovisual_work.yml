@@ -4,8 +4,8 @@ attributes:
     type: string
     multiple: false
     index_keys:
-      - "date_issued_sim"
-      - "date_issued_tesim"
+      - "date_issued_si"
+      - "date_issued_tesi"
     form:
       required: true
       primary: true
@@ -14,7 +14,7 @@ attributes:
     type: date_time
     multiple: true
     index_keys:
-      - "date_created_dtsim"
+      - "date_created_tesim"
     form:
       primary: false
 
@@ -23,6 +23,7 @@ attributes:
     multiple: true
     index_keys:
       - "creator_ssim"
+      - "creator_tesim"
     form:
       required: false
       primary: false
@@ -32,6 +33,7 @@ attributes:
     multiple: true
     index_keys:
       - "contributor_ssim"
+      - "contributor_tesim"
     form:
       primary: false
 
@@ -40,6 +42,7 @@ attributes:
     multiple: true
     index_keys:
       - "publisher_ssim"
+      - "publisher_tesim"
     form:
       primary: false
 
@@ -56,8 +59,8 @@ attributes:
     type: string
     multiple: false
     index_keys:
-      - "physical_description_ssim"
-      - "physical_description_tesim"
+      - "physical_description_ssi"
+      - "physical_description_tesi"
     form:
       required: false
       primary: false
@@ -67,6 +70,7 @@ attributes:
     multiple: true
     index_keys:
       - "language_ssim"
+      - "language_tesim"
     form:
       primary: false
 
@@ -75,6 +79,7 @@ attributes:
     multiple: true
     index_keys:
       - "genre_ssim"
+      - "genre_tesim"
     form:
       required: false
       primary: false
@@ -84,6 +89,7 @@ attributes:
     multiple: true
     index_keys:
       - "topical_subject_ssim"
+      - "topical_subject_tesim"
     form:
       required: false
       primary: false
@@ -93,6 +99,7 @@ attributes:
     multiple: true
     index_keys:
       - "temporal_subject_ssim"
+      - "temporal_subject_tesim"
     form:
       required: false
       primary: false
@@ -102,6 +109,7 @@ attributes:
     multiple: true
     index_keys:
       - "geographic_subject_ssim"
+      - "geographic_subject_tesim"
     form:
       required: false
       primary: false
@@ -111,6 +119,7 @@ attributes:
     multiple: true
     index_keys:
       - "permalink_ssim"
+      - "permalink_tesim"
     form:
       required: false
       primary: false
@@ -120,6 +129,7 @@ attributes:
     multiple: false
     index_keys:
       - "related_item_ssi"
+      - "related_item_tesi"
     form:
       required: false
       primary: false
@@ -130,7 +140,8 @@ attributes:
     type: string
     multiple: false
     index_keys:
-      - "bibliogrphic_id_ssi"
+      - "bibliographic_id_ssi"
+      - "bibliographic_id_tesi"
     form:
       required: false
       primary: false
@@ -140,6 +151,7 @@ attributes:
     multiple: true
     index_keys:
       - "local_ssim"
+      - "local_tesim"
     form:
       required: false
       primary: false
@@ -149,6 +161,7 @@ attributes:
     multiple: true
     index_keys:
       - "oclc_ssim"
+      - "oclc_tesim"
     form:
       required: false
       primary: false
@@ -158,6 +171,7 @@ attributes:
     multiple: true
     index_keys:
       - "lccn_ssim"
+      - "lccn_tesim"
     form:
       required: false
       primary: false
@@ -167,6 +181,7 @@ attributes:
     mutiple: true
     index_keys:
       - "issue_number_isim"
+      - "issue_number_tesim"
     form:
       required: false
       primary: false
@@ -176,6 +191,7 @@ attributes:
     multiple: true
     index_keys:
       - "matrix_number_isim"
+      - "matrix_number_tesim"
     form:
       required: false
       primary: false
@@ -185,6 +201,7 @@ attributes:
     multiple: true
     index_keys:
       - "music_publisher_ssim"
+      - "music_publisher_tesim"
     form:
       required: false
       primary: false
@@ -194,6 +211,7 @@ attributes:
     multiple: true
     index_keys:
       - "video_recording_identifier_ssim"
+      - "video_recording_identifier_tesim"
     form:
       required: false
       primary: false
@@ -202,7 +220,8 @@ attributes:
     type: string
     multiple: false
     index_keys:
-      - "table_of_content_ssi"
+      - "table_of_contents_ssi"
+      - "table_of_contents_tesi"
     form:
       required: false
       primary: false
@@ -221,6 +240,7 @@ attributes:
     multiple: false
     index_keys:
       - "rights_statement_ssi"
+      - "rights_statement_tesi"
     form:
       primary: false
 
@@ -229,6 +249,7 @@ attributes:
     multiple: true
     index_keys:
       - "license_ssim"
+      - "license_tesim"
     form:
       primary: false
 
@@ -237,6 +258,7 @@ attributes:
     multiple: true
     index_keys:
       - "terms_of_use_ssim"
+      - "terms_of_use_tesim"
     form:
       required: false
       primary: false

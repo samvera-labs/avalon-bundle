@@ -23,6 +23,8 @@ require 'hyrax/forms/resource_form'
 module Hyrax
   # Generated form for AudiovisualWork
   class AudiovisualWorkForm < Hyrax::Forms::ResourceForm(AudiovisualWork)
+    # FIXME: Next line isn't needed as the core metadata fields have already been loaded somehow
+    # include Hyrax::FormFields(:core_metadata)
     include Hyrax::FormFields(:audiovisual_work, definition_loader: Hyrax::SlightlyMoreComplexSchemaLoader.new)
 
     # Transient fields to make SimpleForm happy

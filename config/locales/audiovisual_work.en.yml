@@ -5,6 +5,8 @@ en:
   hyrax:
     icons:
       audiovisual_work:     'fa fa-file-text-o'
+    models:
+      audiovisual_work: 'Audiovisual Work'
     select_type:
       audiovisual_work:
         description:        "Audiovisual work works"

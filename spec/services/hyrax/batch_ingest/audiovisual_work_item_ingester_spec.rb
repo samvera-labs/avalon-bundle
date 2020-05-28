@@ -56,7 +56,7 @@ describe Hyrax::BatchIngest::AudiovisualWorkItemIngester, clean_repo: true do
     let(:ingester) { described_class.new(batch_item) }
     let(:created_work) { ingester.ingest }
 
-    it 'ingests' do
+    xit 'ingests' do
       expect(created_work).to be_a AudiovisualWork
     end
   end
