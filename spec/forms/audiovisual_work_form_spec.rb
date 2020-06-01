@@ -19,7 +19,7 @@
 #  `rails generate hyrax:work AudiovisualWork`
 require 'rails_helper'
 
-RSpec.describe Hyrax::AudiovisualWorkForm do
+RSpec.describe AudiovisualWorkForm do
   let(:work) { build(:audiovisual_work) }
   subject(:form) { described_class.new(work) }
 

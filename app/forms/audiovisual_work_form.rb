@@ -20,27 +20,25 @@
 
 require 'hyrax/forms/resource_form'
 
-module Hyrax
-  # Generated form for AudiovisualWork
-  class AudiovisualWorkForm < Hyrax::Forms::ResourceForm(AudiovisualWork)
-    include Hyrax::FormFields(:audiovisual_work)
+# Generated form for AudiovisualWork
+class AudiovisualWorkForm < Hyrax::Forms::ResourceForm(AudiovisualWork)
+  include Hyrax::FormFields(:audiovisual_work)
 
-    validates :title, presence: { message: 'Your work must have a title.' }
-    validates :date_issued, presence: { message: 'Your work must have date issued.' }
+  validates :title, presence: { message: 'Your work must have a title.' }
+  validates :date_issued, presence: { message: 'Your work must have date issued.' }
 
-    # Transient fields to make SimpleForm happy
-    attr_accessor :note_type, :note_body
-    def notes_with_types
-      # Parse json from note
-      return [] if note.blank?
-      JSON.parse(note).collect { |n| [n['note_type'], n['note_body']] }
-    end
+  # Transient fields to make SimpleForm happy
+  attr_accessor :note_type, :note_body
+  def notes_with_types
+    # Parse json from note
+    return [] if note.blank?
+    JSON.parse(note).collect { |n| [n['note_type'], n['note_body']] }
+  end
 
-    attr_accessor :related_item_url, :related_item_label
-    def related_items_with_labels
-      # Parse json from related_item
-      return [] if related_item.blank?
-      JSON.parse(related_item).collect { |ri| [ri['related_item_label'], ri['related_item_url']] }
-    end
+  attr_accessor :related_item_url, :related_item_label
+  def related_items_with_labels
+    # Parse json from related_item
+    return [] if related_item.blank?
+    JSON.parse(related_item).collect { |ri| [ri['related_item_label'], ri['related_item_url']] }
   end
 end
