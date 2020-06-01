@@ -30,5 +30,14 @@ module Hyrax
 
     # Use this line if you want to use a custom presenter
     self.show_presenter = Hyrax::AudiovisualWorkPresenter
+
+    # Use the Wings search builder for Valkyrie models until legacy ActiveFedora
+    # indexing is turned off. See:
+    # https://github.com/samvera/hyrax/wiki/Hyrax-Valkyrie-Usage-Guide#indexing
+    self.search_builder_class = Wings::WorkSearchBuilder(::AudiovisualWork)
+
+    # Use a Valkyrie aware form service to generate Valkyrie::ChangeSet style
+    # forms.
+    self.work_form_service = Hyrax::FormFactory.new
   end
 end
