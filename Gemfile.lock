@@ -50,8 +50,7 @@ GIT
 
 GIT
   remote: https://github.com/samvera/hyrax.git
-  revision: b7bb196cfc7c65b4f3e262ea8fcd0f153969bf06
-  branch: cjcolvar-wings-metadata-rebase
+  revision: 1bde7090c7761e633626177451da906f7c6b047b
   specs:
     hyrax (3.0.0.pre.rc1)
       active-fedora (~> 13.1.2)

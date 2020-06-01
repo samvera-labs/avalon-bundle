@@ -23,7 +23,7 @@ require 'hyrax/forms/resource_form'
 module Hyrax
   # Generated form for AudiovisualWork
   class AudiovisualWorkForm < Hyrax::Forms::ResourceForm(AudiovisualWork)
-    include Hyrax::FormFields(:audiovisual_work, definition_loader: Hyrax::SlightlyMoreComplexSchemaLoader.new)
+    include Hyrax::FormFields(:audiovisual_work)
 
     validates :title, presence: { message: 'Your work must have a title.' }
     validates :date_issued, presence: { message: 'Your work must have date issued.' }

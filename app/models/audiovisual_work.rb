@@ -18,7 +18,7 @@
 # Generated via
 #  `rails generate hyrax:work AudiovisualWork`
 class AudiovisualWork < Hyrax::Work
-  include Hyrax::Schema(:audiovisual_work, schema_loader: Hyrax::SlightlyMoreComplexSchemaLoader.new)
+  include Hyrax::Schema(:audiovisual_work)
 
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []

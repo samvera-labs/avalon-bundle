@@ -20,7 +20,7 @@ require 'json'
 # Generated via
 #  `rails generate hyrax:work AudiovisualWork`
 class AudiovisualWorkIndexer < Hyrax::ValkyrieWorkIndexer
-  include Hyrax::Indexer(:audiovisual_work, index_loader: Hyrax::SlightlyMoreComplexSchemaLoader.new)
+  include Hyrax::Indexer(:audiovisual_work)
 
   def to_solr
     super.tap do |solr_doc|

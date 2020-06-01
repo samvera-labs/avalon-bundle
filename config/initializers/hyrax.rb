@@ -300,7 +300,3 @@ Hyrax::Admin::AdminSetsController.admin_set_create_service = Hyrax::AvalonAdminS
 AdminSet.class_eval do
   include AdminSetDropbox
 end
-
-# FIXME: uncomment following line when it doesn't break everything (No schema defined: audiovisual_work (Hyrax::SimpleSchemaLoader::UndefinedSchemaError))
-Hyrax::ValkyrieIndexer.register AudiovisualWorkIndexer, as_indexer_for: AudiovisualWork rescue nil
-Hyrax::ValkyrieIndexer.register AudiovisualWorkIndexer, as_indexer_for: AudiovisualWork
