@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: https://github.com/samvera-labs/hyrax-iiif_av.git
-  revision: 66fc881c0b6fd3a80f83d008668f0254b8962133
+  revision: bd483bfc74e7d4ba5d999ab413c8124f27587798
   branch: hyrax_master
   specs:
     hyrax-iiif_av (0.2.0)
@@ -50,7 +50,7 @@ GIT
 
 GIT
   remote: https://github.com/samvera/hyrax.git
-  revision: 6b79cb2f09a029c9cfc98d28155e49742a66df45
+  revision: 8ba7cf8edba968dcd6cd3bbfd08911dd34809880
   specs:
     hyrax (3.0.0.pre.rc1)
       active-fedora (~> 13.1.2)
@@ -94,7 +94,8 @@ GIT
       rdf-rdfxml
       redis-namespace (~> 1.5)
       redlock (>= 0.1.2)
-      reform (< 2.3)
+      reform (~> 2.3)
+      reform-rails (~> 0.2.0)
       retriable (>= 2.9, < 4.0)
       samvera-nesting_indexer (~> 2.0)
       sass-rails (~> 5.0)
@@ -183,7 +184,7 @@ GEM
     awesome_nested_set (3.2.0)
       activerecord (>= 4.0.0, < 7.0)
     aws-eventstream (1.1.0)
-    aws-partitions (1.320.0)
+    aws-partitions (1.323.0)
     aws-sdk (3.0.1)
       aws-sdk-resources (~> 3)
     aws-sdk-acm (1.14.0)
@@ -315,7 +316,7 @@ GEM
     aws-sdk-connect (1.10.0)
       aws-sdk-core (~> 3, >= 3.39.0)
       aws-sigv4 (~> 1.0)
-    aws-sdk-core (3.96.1)
+    aws-sdk-core (3.97.1)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
@@ -473,7 +474,7 @@ GEM
     aws-sdk-kinesisvideomedia (1.6.0)
       aws-sdk-core (~> 3, >= 3.39.0)
       aws-sigv4 (~> 1.0)
-    aws-sdk-kms (1.31.0)
+    aws-sdk-kms (1.33.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-lambda (1.17.0)
@@ -780,7 +781,7 @@ GEM
     aws-sdk-route53resolver (1.1.0)
       aws-sdk-core (~> 3, >= 3.39.0)
       aws-sigv4 (~> 1.0)
-    aws-sdk-s3 (1.66.0)
+    aws-sdk-s3 (1.67.1)
       aws-sdk-core (~> 3, >= 3.96.1)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
@@ -878,7 +879,7 @@ GEM
       aws-sdk-core (~> 3, >= 3.39.0)
       aws-sigv4 (~> 1.0)
     aws-sigv2 (1.0.1)
-    aws-sigv4 (1.1.3)
+    aws-sigv4 (1.1.4)
       aws-eventstream (~> 1.0, >= 1.0.2)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -973,7 +974,7 @@ GEM
       activesupport (>= 3.0)
       deep_merge (~> 1.2.1)
       dry-validation (>= 0.10.4)
-    connection_pool (2.2.2)
+    connection_pool (2.2.3)
     crass (1.0.6)
     daemons (1.3.1)
     database_cleaner (1.7.0)
@@ -1088,7 +1089,7 @@ GEM
       faraday
     fcrepo_wrapper (0.9.0)
       ruby-progressbar
-    ffi (1.12.2)
+    ffi (1.13.0)
     flipflop (2.6.0)
       activesupport (>= 4.0)
     flot-rails (0.0.7)
@@ -1436,12 +1437,13 @@ GEM
       redis (>= 3.0.4)
     redlock (1.2.0)
       redis (>= 3.0.0, < 5.0)
-    reform (2.2.4)
-      disposable (>= 0.4.1)
+    reform (2.3.1)
+      disposable (>= 0.4.2, < 0.5.0)
       representable (>= 2.4.0, < 3.1.0)
-    reform-rails (0.1.7)
-      activemodel (>= 3.2)
-      reform (>= 2.2.0)
+      uber (< 0.2.0)
+    reform-rails (0.2.0)
+      activemodel (>= 5.0)
+      reform (>= 2.3.1, < 3.0.0)
     representable (3.0.4)
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
@@ -1511,7 +1513,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    sassc (2.3.0)
+    sassc (2.4.0)
       ffi (~> 1.9)
     select2-rails (3.5.10)
       thor (~> 0.14)
@@ -1631,11 +1633,11 @@ GEM
       railties (>= 4.2)
     websocket-driver (0.7.2)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.4)
+    websocket-extensions (0.1.5)
     xml-simple (1.1.5)
     xpath (3.1.0)
       nokogiri (~> 1.8)
-    xray-rails (0.3.1)
+    xray-rails (0.3.2)
       rails (>= 3.1.0)
 
 PLATFORMS
@@ -1674,7 +1676,7 @@ DEPENDENCIES
   pg (~> 0.18)
   puma (~> 3.12, >= 3.12.6)
   rack-cors (>= 1.0.5)
-  rails (~> 5.2.4, >= 5.2.4.2)
+  rails (~> 5.2.4, >= 5.2.4.3)
   react-rails (>= 2.4.7)
   riiif (~> 1.7, >= 1.7.1)
   rsolr (>= 1.0)
