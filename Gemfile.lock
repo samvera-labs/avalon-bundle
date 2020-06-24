@@ -1330,7 +1330,7 @@ GEM
       nokogiri (~> 1.6)
       rails (~> 5.0)
       rdf
-    rack (2.2.2)
+    rack (2.2.3)
     rack-cors (1.0.6)
       rack (>= 1.6.0)
     rack-proxy (0.6.5)
