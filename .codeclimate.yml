@@ -24,7 +24,7 @@ engines:
     enabled: false
   rubocop:
     enabled: true
-    channel: rubocop-0-50
+    channel: rubocop-0-85
     config:
       file: .rubocop.cc.yml
 ratings:
