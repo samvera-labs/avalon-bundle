@@ -45,5 +45,8 @@
     "pretty": "yarn run prettier --write app/javascript/src/*.js",
     "test": "NODE_ENV=test jest",
     "test-debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
+  },
+  "resolutions": {
+    "compression-webpack-plugin": "3.1.0"
   }
 }
