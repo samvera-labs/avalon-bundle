@@ -1,6 +1,6 @@
 # Base stage for building gems
-FROM        ruby:2.5.5-stretch as bundle
-RUN         echo "deb http://deb.debian.org/debian stretch-backports main" >> /etc/apt/sources.list \
+FROM        ruby:2.5-buster as bundle
+RUN         echo "deb http://deb.debian.org/debian buster-backports main" >> /etc/apt/sources.list \
          && apt-get update && apt-get upgrade -y build-essential \
          && apt-get install -y --no-install-recommends \
             cmake \
@@ -23,7 +23,7 @@ RUN         bundle install --with aws development test postgres --without produc
 
 
 # Download binaries in parallel
-FROM        ruby:2.5.5-stretch as download
+FROM        ruby:2.5-buster as download
 RUN         curl -L https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz | tar xvz -C /usr/bin/
 RUN         curl https://chromedriver.storage.googleapis.com/2.46/chromedriver_linux64.zip -o /usr/local/bin/chromedriver \
          && chmod +x /usr/local/bin/chromedriver
@@ -40,15 +40,12 @@ RUN         curl -fSL -o fits-${FITS_VER}.zip https://github.com/harvard-lts/fit
 
 
 # Base stage for building final images
-FROM        ruby:2.5.5-slim-stretch as base
+FROM        ruby:2.5-slim-buster as base
 RUN         apt-get update && apt-get install -y --no-install-recommends curl gnupg2 \
-         && curl -sL http://deb.nodesource.com/setup_8.x | bash - \
-         && curl -O https://mediaarea.net/repo/deb/repo-mediaarea_1.0-6_all.deb && dpkg -i repo-mediaarea_1.0-6_all.deb \
-         && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-         && echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+         && curl -sL http://deb.nodesource.com/setup_10.x | bash - \
+         && curl -O https://mediaarea.net/repo/deb/repo-mediaarea_1.0-16_all.deb && dpkg -i repo-mediaarea_1.0-16_all.deb 
 
 RUN         apt-get update && apt-get install -y --no-install-recommends --allow-unauthenticated \
-            yarn \
             nodejs \
             lsof \
             x264 \
@@ -61,7 +58,8 @@ RUN         apt-get update && apt-get install -y --no-install-recommends --allow
             openssh-client \
             zip \
             dumb-init \
-         && ln -s /usr/bin/lsof /usr/sbin/
+         && ln -s /usr/bin/lsof /usr/sbin/ \
+        && npm install --global yarn
 
 RUN         useradd -m -U app \
          && su -s /bin/bash -c "mkdir -p /home/app/avalon" app
@@ -96,7 +94,7 @@ RUN         bundle install --without development test --with aws production post
 
 
 # Install node modules
-FROM        node:8.17.0-stretch-slim as node-modules
+FROM        node:10.24-buster-slim as node-modules
 RUN         apt-get update && apt-get install -y --no-install-recommends git
 COPY        package.json .
 COPY        yarn.lock .
