@@ -1170,6 +1170,8 @@ GEM
     i18n (1.8.9)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
+    iiif-image-api (0.2.0)
+      activesupport
     iiif_manifest (1.0.1)
       activesupport (>= 4)
     io-like (0.3.0)
@@ -1277,7 +1279,9 @@ GEM
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2021.0225)
-    mimemagic (0.3.6)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_magick (4.10.1)
     mini_mime (1.0.2)
     mini_portile2 (2.5.0)
@@ -1459,9 +1463,10 @@ GEM
       railties (>= 5.0)
     retriable (3.1.2)
     rexml (3.2.4)
-    riiif (1.7.1)
+    riiif (2.3.0)
       deprecation (>= 1.0.0)
-      railties (>= 4.2, < 6)
+      iiif-image-api (>= 0.1.0)
+      railties (>= 4.2, < 7)
     roo (2.7.1)
       nokogiri (~> 1)
       rubyzip (~> 1.1, < 2.0.0)
@@ -1686,7 +1691,7 @@ DEPENDENCIES
   hyrax-iiif_av!
   iiif_manifest (~> 1.0)
   jbuilder (~> 2.5)
-  jquery-rails (>= 4.3.5)
+  jquery-rails (>= 4.4.0)
   license_header
   listen (>= 3.0.5, < 3.2)
   pg (~> 0.18)
@@ -1694,11 +1699,11 @@ DEPENDENCIES
   rack-cors (>= 1.0.5)
   rails (~> 5.2.4, >= 5.2.4.5)
   react-rails (>= 2.4.7)
-  riiif (~> 1.7, >= 1.7.1)
+  riiif (~> 2.2, >= 2.2.0)
   rsolr (>= 1.0)
   rspec-its
   rspec-rails (>= 3.8.0)
-  sass-rails (~> 5.0, >= 5.0.7)
+  sass-rails (~> 5.1, >= 5.1.0)
   selenium-webdriver
   shoulda-matchers (~> 3.1)
   simplecov (>= 0.13.0)
