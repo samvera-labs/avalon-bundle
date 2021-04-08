@@ -42,3 +42,4 @@ exclude_paths:
 - spec/fixtures/
 - vendor/
 - karma.conf.js
+- "**.config.js"
