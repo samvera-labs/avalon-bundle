@@ -66,7 +66,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'hyrax', github: 'samvera/hyrax'
 
 group :development, :test do
-  gem 'bixby'
+  gem 'bixby', '>= 3.0.2'
   gem 'solr_wrapper', '>= 0.3'
 end
 
