@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.4', '>= 5.2.4.5'
+gem 'rails', '~> 5.2.4', '>= 5.2.4.6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.1', '>= 5.1.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -99,7 +99,7 @@ gem 'config'
 gem 'hydra-works', github: 'avalonmediasystem/hydra-works', branch: 'av_characterization'
 # Last revision before version 0.6 was released.  This can be removed once this gem is upgraded to hyrax master (3.0.0.beta2) or support for 0.6 is backported to hyrax 2.x
 gem 'iiif_manifest', '~> 1.0'
-gem 'riiif', '~> 2.2', '>= 2.2.0'
+gem 'riiif', '~> 2.3', '>= 2.3.0'
 
 gem 'active_encode', github: 'samvera-labs/active_encode'
 gem 'hyrax-active_encode', github: 'samvera-labs/hyrax-active_encode', branch: 'hyrax_master'
