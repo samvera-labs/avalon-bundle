@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.4', '>= 5.2.4.6'
+gem 'rails', '~> 5.2.6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.1', '>= 5.1.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -38,9 +38,9 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem "capistrano", "~> 3.10", require: false
-  gem 'capybara', '~> 2.13'
-  gem 'capybara-selenium'
-  gem 'chromedriver-helper'
+  gem 'capybara', '~> 2.18', '>= 2.18.0'
+  gem 'capybara-selenium', '>= 0.0.6'
+  gem 'chromedriver-helper', '>= 2.1.0'
   gem 'selenium-webdriver'
 end
 
