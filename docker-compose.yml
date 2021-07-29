@@ -72,7 +72,7 @@ services:
     <<: *redis
 
   avalon: &avalon
-    image: avalonmediasystem/avalon:bundle-20210330
+    image: avalonmediasystem/avalon:bundle-20210729
     build:
       context: .
       target: dev
