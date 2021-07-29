@@ -91,7 +91,7 @@ group :test do
   gem 'fakefs', require: 'fakefs/safe'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov', '>= 0.13.0'
-  gem 'sqlite3'
+  gem 'sqlite3', '< 1.4'
 end
 
 gem 'config'
