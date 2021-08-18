@@ -1732,4 +1732,4 @@ DEPENDENCIES
   xray-rails (>= 0.3.1)
 
 BUNDLED WITH
-   1.17.3
+   2.2.21
