@@ -7,6 +7,7 @@ RUN         echo "deb http://deb.debian.org/debian buster-backports main" >> /et
             pkg-config \
             zip \
             git \
+         && apt-get -y install sqlite3 \
          && rm -rf /var/lib/apt/lists/* \
          && apt-get clean
 

@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
     # Primary container image where all steps run.
-     - image: avalonmediasystem/avalon:bundle-20210330
+     - image: avalonmediasystem/avalon:bundle-20210901-sqlite3
        environment:
         - DATABASE_URL=postgresql://postgres@localhost:5432/postgres
         - FEDORA_URL=http://localhost:8080/fedora/rest
