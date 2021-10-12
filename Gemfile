@@ -33,7 +33,7 @@ gem 'sprockets', '~> 3.7.2'
 
 group :development, :test do
   # Use Puma as the app server
-  gem 'puma', '~> 4.3'
+  gem 'puma', '~> 5.5'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
