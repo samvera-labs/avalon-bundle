@@ -1309,7 +1309,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (5.0.2)
-    nio4r (2.5.7)
+    nio4r (2.5.8)
     noid (0.9.0)
     noid-rails (3.0.1)
       actionpack (>= 5.0.0, < 6)
@@ -1342,7 +1342,7 @@ GEM
     posix-spawn (0.3.14)
     power_converter (0.1.2)
     public_suffix (4.0.6)
-    puma (4.3.8)
+    puma (4.3.12)
       nio4r (~> 2.0)
     qa (3.0.0)
       activerecord-import
@@ -1686,9 +1686,9 @@ DEPENDENCIES
   bumbler
   byebug
   capistrano (~> 3.10)
-  capybara (~> 2.13)
-  capybara-selenium
-  chromedriver-helper
+  capybara (~> 2.18, >= 2.18.0)
+  capybara-selenium (>= 0.0.6)
+  chromedriver-helper (>= 2.1.0)
   codeclimate-test-reporter (>= 1.0.8)
   coffee-rails (~> 4.2, >= 4.2.2)
   config
@@ -1711,7 +1711,7 @@ DEPENDENCIES
   pg (~> 0.18)
   puma (~> 4.3)
   rack-cors (>= 1.0.5)
-  rails (~> 5.2.4, >= 5.2.4.6)
+  rails (~> 5.2.6)
   react-rails (>= 2.4.7)
   riiif (~> 2.3, >= 2.3.0)
   rsolr (>= 1.0)
